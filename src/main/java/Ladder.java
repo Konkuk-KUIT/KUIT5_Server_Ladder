@@ -5,4 +5,5 @@ public class Ladder {
     public Ladder(int row, int numberOfPerson) {
         rows = new int[row][numberOfPerson];
     }
+
 }
