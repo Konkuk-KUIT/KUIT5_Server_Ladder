@@ -15,8 +15,8 @@ public class Ladder {
         this.rows = new int[row][numberOfPerson];
     }
 
-    public void init(int row) {
-        for (int i = 0; i < row; i++) {
+    public void init() {
+        for (int i = 0; i < rows.length; i++) {
             Arrays.fill(rows[i], 0);
         }
     }

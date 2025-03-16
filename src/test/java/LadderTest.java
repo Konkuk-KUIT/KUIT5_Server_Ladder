@@ -31,7 +31,7 @@ class LadderTest {
     void createLine() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
         Position position = Position.of(1, 1);
 
         // when
@@ -47,7 +47,7 @@ class LadderTest {
     void runTheLadder() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
         ladder.drawLine(Position.of(1, 1));
         ladder.drawLine(Position.of(2, 1));
         ladder.drawLine(Position.of(3, 2));
@@ -66,7 +66,7 @@ class LadderTest {
     void verifyLadder1_1() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
         ladder.drawLine(Position.of(1, 1));
 
         // when & then
@@ -80,7 +80,7 @@ class LadderTest {
     void verifyLadder1_2() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
         ladder.drawLine(Position.of(1, 3));
 
         // when & then
@@ -94,7 +94,7 @@ class LadderTest {
     void verifyLadder2() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
 
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(Position.of(5, 2)))
@@ -107,7 +107,7 @@ class LadderTest {
     void verifyLadder3() {
         //  given
         Ladder ladder = new Ladder(4, 4);
-        ladder.init(4);
+        ladder.init();
 
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(Position.of(2, 4)))
