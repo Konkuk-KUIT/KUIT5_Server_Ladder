@@ -51,8 +51,23 @@ class LadderTest {
         assertEquals("이미 선점된 위치입니다.", exception.getMessage());
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {-8, -1, 6, 10})
+    @DisplayName("사다리 타기 - 잘못된 라인 선택")
+    void testRunWhenSelectedLineIsOutOfRange(int selectedLine) {
+        int givenRow = 4, givenNumberOfPerson = 5;
+        Ladder ladder = new Ladder(givenRow, givenNumberOfPerson);
+        ladder.drawLine(1,1);
+        ladder.drawLine(4,1);
+        ladder.drawLine(2,2);
+        ladder.drawLine(4,2);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> ladder.run(selectedLine));
+        assertEquals("선택할 수 없는 번호입니다.", exception.getMessage());
+    }
+
     @Test
-    @DisplayName("사다리 타기")
+    @DisplayName("사다리 타기 - 정상 작동")
     void testRun(){
         int givenRow = 8, givenNumberOfPerson = 5;
         Ladder ladder = new Ladder(givenRow, givenNumberOfPerson);
