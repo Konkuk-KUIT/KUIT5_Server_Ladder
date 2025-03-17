@@ -23,7 +23,7 @@ public class DrawPossible {
         if (this.rows[drawRow][drawColumn+1] == 1) {
             throw new IllegalArgumentException("선을 이어지게 두개 이상 그릴 수 없습니다.");
         }
-        // 위 조건을 모두 통과하면 해당 위치를 1로 바꿔준다.
+        // 위 조건을 모두 통과하면 해당위치는 1, 옮겨질 위치는 -1로 변경한다.
         rows[drawRow][drawColumn] = 1;
         rows[drawRow][drawColumn + 1] = -1;
     }

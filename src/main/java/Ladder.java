@@ -25,18 +25,20 @@ public class Ladder {
         int position = startPosition.getNaturalNumber();
         validationPosition.checkValidPostion(position);
         for (int i = 1; i < rows.length; i++) {
-            position+=movePosition(i,position);
+//            position+=movePosition(i,position);
+            position+=rows[i][position];
         }
         return position;
     }
-    public int movePosition(int currentRow, int position){
-        if(rows[currentRow][position]==1){
-            return 1;
-        }
-        if(rows[currentRow][position]==-1){
-            return -1;
-        }
-        return 0;
-    }
+
+//    public int movePosition(int currentRow, int position){
+//        if(rows[currentRow][position]==1){
+//            return 1;
+//        }
+//        if(rows[currentRow][position]==-1){
+//            return -1;
+//        }
+//        return 0;
+//    }
 
 }

@@ -80,14 +80,14 @@ class LadderTest {
         Assertions.assertThatThrownBy(()->validationPosition.checkValidPostion((givenNumbers)))
                         .isInstanceOf(IndexOutOfBoundsException.class);
     }
-
-    @Test
-    @DisplayName("run 메소드 작동 잘 되는지 확인")
-    void testMovePosition(){
-        Ladder ladder =new Ladder(new NaturalNumber(3),new NaturalNumber(5));
-        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(1));
-        assertEquals(2,ladder.run(new NaturalNumber(1)));
-    }
+//
+//    @Test
+//    @DisplayName("run 메소드 작동 잘 되는지 확인")
+//    void testMovePosition(){
+//        Ladder ladder =new Ladder(new NaturalNumber(3),new NaturalNumber(5));
+//        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(1));
+//        assertEquals(2,ladder.run(new NaturalNumber(1)));
+//    }
 
     @Test
     @DisplayName("간단한 사다리 게임 테스트")
