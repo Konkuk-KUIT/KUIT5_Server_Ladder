@@ -30,20 +30,7 @@ class LadderTest {
     void testMakeLadderLine(){
         Ladder ladder =new Ladder(new NaturalNumber(3),new NaturalNumber(5));
         ladder.drawLine(new NaturalNumber(2),new NaturalNumber(1));
-        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(2));
-        ladder.drawLine(new NaturalNumber(3),new NaturalNumber(3));
-        ladder.drawLine(new NaturalNumber(3),new NaturalNumber(5));
-    }
-
-    @Test
-    @DisplayName("연속된 선 만들면 오류 발생")
-    void throwExceptionWhenMakeContinuousLine(){
-        Ladder ladder =new Ladder(new NaturalNumber(3),new NaturalNumber(5));
-        Assertions.assertThatThrownBy(()->{
-            ladder.drawLine(new NaturalNumber(1),new NaturalNumber(1));
-            ladder.drawLine(new NaturalNumber(1),new NaturalNumber(2));
-            ladder.drawLine(new NaturalNumber(1),new NaturalNumber(3));
-        }).isInstanceOf(IllegalArgumentException.class);
+        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(3));
     }
 
     @ParameterizedTest

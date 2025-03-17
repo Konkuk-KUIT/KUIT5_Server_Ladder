@@ -19,24 +19,24 @@ public class Ladder {
     public void drawLine(NaturalNumber row,NaturalNumber column){
         int drawRow=row.getNaturalNumber();
         int drawColumn=column.getNaturalNumber();
-        drawPossible.possilbe(drawRow,drawColumn);
+        drawPossible.possibleAndDraw(drawRow,drawColumn);
     }
     public int run(NaturalNumber startPosition){
         int position = startPosition.getNaturalNumber();
         validationPosition.checkValidPostion(position);
-        for (int i = 0; i < rows.length; i++) {
-            if (position > 0 && rows[i][position - 1] == 1) {
-                position--;
-            } else if (position < numberOfPerson - 1 && rows[i][position] == 1) {
-                position++;
-            }
+        for (int i = 1; i <= rows.length; i++) {
+            position+=movePosition(i,position);
         }
         return position;
     }
-//    public void movePosition(int currentRow, int currentPosition){
-//        if(currentPosition){
-//
-//        }
-//    }
+    public int movePosition(int currentRow, int position){
+        if(rows[currentRow][position]==1){
+            return 1;
+        }
+        if(rows[currentRow][position]==-1){
+            return -1;
+        }
+        return 0;
+    }
 
 }

@@ -7,7 +7,6 @@ public class NaturalNumber {
         }
         this.naturalNumber = naturalNumber;
     }
-
     public int getNaturalNumber() {
         return naturalNumber;
     }
