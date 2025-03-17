@@ -6,3 +6,4 @@ public class Ladder {
         rows = new int[row][numberOfPerson];
     }
 }
+// 새 브랜치 test
