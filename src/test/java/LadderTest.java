@@ -38,4 +38,16 @@ class LadderTest {
         assertThat(result).isEqualTo(2);
     }
 
+    @Test
+    @DisplayName("같은 번호로 line 을 그릴 수 없다.")
+    void testDrawLineSameNumber(){
+        //given
+        String errorMessage = LadderException.SAME_NUMBER.getMessage();
+        Ladder ladder = new Ladder(3, 3);
+
+        //when & then
+        assertThatThrownBy(() -> ladder.drawLine(1, 1, 2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(errorMessage);
+    }
 }
