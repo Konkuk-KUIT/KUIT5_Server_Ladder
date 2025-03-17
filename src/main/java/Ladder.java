@@ -67,4 +67,8 @@ public class Ladder {
             return Move(number+ladder[number][height],height+1);
         }
     }
+
+    public void run(int number){
+
+    }
 }
