@@ -24,7 +24,7 @@ public class Ladder {
     public int run(NaturalNumber startPosition){
         int position = startPosition.getNaturalNumber();
         validationPosition.checkValidPostion(position);
-        for (int i = 1; i <= rows.length; i++) {
+        for (int i = 1; i < rows.length; i++) {
             position+=movePosition(i,position);
         }
         return position;
