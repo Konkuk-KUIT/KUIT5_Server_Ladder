@@ -1,13 +1,17 @@
 import exception.ExceptionMessage;
 
 public class NaturalNumber {
-    private int naturalNumber;
+    private final int naturalNumber;
 
-    public NaturalNumber(int naturalNumber) {
+    private NaturalNumber(int naturalNumber) {
+
+        this.naturalNumber = naturalNumber;
+    }
+    public static NaturalNumber of(int naturalNumber) {
         if (naturalNumber < 1) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER.getMessage());
         }
-        this.naturalNumber = naturalNumber;
+        return new NaturalNumber(naturalNumber);
     }
     public int getNaturalNumber() {
         return naturalNumber;
