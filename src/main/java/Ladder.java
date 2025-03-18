@@ -10,7 +10,7 @@ public class Ladder {
 
     public void drawLine(Position p){
         //포지션이 합당한지 확인해야지
-        if(!Position.check(p)){
+        if(Position.DownZero(p)){
             return;
         }
         if(!PossibleLine(p)){
@@ -37,13 +37,13 @@ public class Ladder {
     public boolean CanMove(Position p){
         Position LeftLine = new Position(ladderPosition.x-1,ladderPosition.y);
         Position RightLine = new Position(ladderPosition.x+1,ladderPosition.y);
-        if(!Position.check(LeftLine)){
+        if(Position.DownZero(LeftLine)){
             return false;
         }
         if(HasLine(LeftLine)){
             return false;
         }
-        if(!Position.check(RightLine)){
+        if(Position.DownZero(RightLine)){
             return false;
         }
         return !HasLine(RightLine);
