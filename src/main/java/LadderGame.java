@@ -1,9 +1,9 @@
 import exception.ExceptionMessage;
 
 public class LadderGame {
-    private int rows[][];
-    private int row;
-    private int numberOfPerson;
+    private final int rows[][];
+    private final int row;
+    private final int numberOfPerson;
 
     private LadderGame(int rows[][],int row, int numberOfPerson) {
         this.rows = rows;
@@ -18,7 +18,6 @@ public class LadderGame {
     private static void possibleAndDraw(int rows[][], int drawRow, int drawColumn) {
         IsValidPosition(rows,drawRow,drawColumn);
         IsDuplicatedLine(rows,drawRow,drawColumn);
-        IsContinuousLine(rows,drawRow,drawColumn);
         // 위 조건을 모두 통과하면 해당위치는 1, 옮겨질 위치는 -1로 변경한다.
         rows[drawRow][drawColumn] = 1;
         rows[drawRow][drawColumn + 1] = -1;
@@ -26,7 +25,7 @@ public class LadderGame {
 
     // 존재하지 않는 배열 부분에 그리기 방지. 마지막 열에도 그릴 수 없음.
     private static void IsValidPosition(int rows[][],int drawRow, int drawColumn) {
-        if (drawRow > rows.length || drawColumn >= rows[0].length) {
+        if (drawRow >= rows.length || drawColumn >= rows[0].length-1) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
     }
@@ -34,12 +33,6 @@ public class LadderGame {
     private static void IsDuplicatedLine(int rows[][],int drawRow, int drawColumn) {
         if (rows[drawRow][drawColumn] == 1 || rows[drawRow][drawColumn]==-1) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DUPLICATED_POSITION.getMessage());
-        }
-    }
-    // 연속된 선 그리기 방지
-    private static void IsContinuousLine(int rows[][],int drawRow, int drawColumn) {
-        if (rows[drawRow][drawColumn+1] == 1) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_CONTINUOUS_LINE.getMessage());
         }
     }
 }
