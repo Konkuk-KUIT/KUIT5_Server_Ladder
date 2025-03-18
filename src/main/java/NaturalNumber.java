@@ -1,9 +1,11 @@
+import exception.ExceptionMessage;
+
 public class NaturalNumber {
     private int naturalNumber;
 
     public NaturalNumber(int naturalNumber) {
         if (naturalNumber < 1) {
-            throw new IllegalArgumentException("자연수가 아닙니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER.getMessage());
         }
         this.naturalNumber = naturalNumber;
     }

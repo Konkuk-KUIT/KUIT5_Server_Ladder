@@ -1,3 +1,5 @@
+import exception.ExceptionMessage;
+
 public class ValidationPosition {
     private final int[][] rows;
 
@@ -6,7 +8,7 @@ public class ValidationPosition {
     }
     public void checkValidPostion(int currentPosition){
         if(currentPosition > rows[0].length){
-            throw new IndexOutOfBoundsException("존재하지 않는 사다리 시작점입니다.");
+            throw new IndexOutOfBoundsException(ExceptionMessage.INVALID_START_POSITION.getMessage());
         }
     }
 }
