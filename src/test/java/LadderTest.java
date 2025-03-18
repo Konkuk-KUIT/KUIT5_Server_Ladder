@@ -51,13 +51,13 @@ class LadderTest {
     void thowExceptionWhenNotPossibleDrawLine(){
         int row=3; int numberOfPerson=4;
         int [][]rows=new int[row][numberOfPerson];
-        Assertions.assertThatThrownBy(()->DrawPossible.of(rows,2,4))
+        Assertions.assertThatThrownBy(()->LadderGame.of(rows,2,4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 위치입니다.");
-        Assertions.assertThatThrownBy(()->DrawPossible.of(rows,2,5))
+        Assertions.assertThatThrownBy(()->LadderGame.of(rows,2,5))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 위치입니다.");
-        Assertions.assertThatThrownBy(()->DrawPossible.of(rows,4,3))
+        Assertions.assertThatThrownBy(()->LadderGame.of(rows,4,3))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 위치입니다.");
     }
@@ -68,8 +68,8 @@ class LadderTest {
         int row=3; int numberOfPerson=4;
         int [][]rows=new int[row+1][numberOfPerson+1];
         Assertions.assertThatThrownBy(()-> {
-                    DrawPossible.of(rows,1, 2);
-                    DrawPossible.of(rows,1,3);
+                    LadderGame.of(rows,1, 2);
+                    LadderGame.of(rows,1,3);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이미 라인이 그려진 위치입니다.");

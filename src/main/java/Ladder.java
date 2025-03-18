@@ -14,27 +14,15 @@ public class Ladder {
     public void drawLine(NaturalNumber row,NaturalNumber column){
         int drawRow=row.getNaturalNumber();
         int drawColumn=column.getNaturalNumber();
-        DrawPossible.of(rows,drawRow,drawColumn);
+        LadderGame.of(rows,drawRow,drawColumn);
     }
     public int run(NaturalNumber startPosition){
         int position = startPosition.getNaturalNumber();
         ValidationPosition.of(rows,position);
-//        validationPosition.checkValidPostion(position);
         for (int i = 1; i < rows.length; i++) {
-//            position+=movePosition(i,position);
             position+=rows[i][position];
         }
         return position;
     }
-
-//    public int movePosition(int currentRow, int position){
-//        if(rows[currentRow][position]==1){
-//            return 1;
-//        }
-//        if(rows[currentRow][position]==-1){
-//            return -1;
-//        }
-//        return 0;
-//    }
 
 }

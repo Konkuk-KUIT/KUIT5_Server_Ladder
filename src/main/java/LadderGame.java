@@ -1,19 +1,18 @@
 import exception.ExceptionMessage;
 
-// 그릴 수 있는 위치인지 검증한다.
-public class DrawPossible {
+public class LadderGame {
     private int rows[][];
     private int row;
     private int numberOfPerson;
 
-    private DrawPossible(int rows[][],int row, int numberOfPerson) {
+    private LadderGame(int rows[][],int row, int numberOfPerson) {
         this.rows = rows;
         this.row = row;
         this.numberOfPerson = numberOfPerson;
     }
-    public static DrawPossible of(int rows[][],int row, int numberOfPerson){
+    public static LadderGame of(int rows[][],int row, int numberOfPerson){
         possibleAndDraw(rows,row,numberOfPerson);
-        return new DrawPossible(rows,row,numberOfPerson);
+        return new LadderGame(rows,row,numberOfPerson);
     }
     // 선을 그릴 위치를 검증하고 선을 다음 열과 잇도록 그린다.
     private static void possibleAndDraw(int rows[][], int drawRow, int drawColumn) {
