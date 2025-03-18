@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
@@ -49,5 +50,25 @@ class LadderTest {
         assertThatThrownBy(() -> ladder.drawLine(1, 1, 2))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(errorMessage);
+    }
+
+    @ParameterizedTest
+    @DisplayName("사다리를 만들때 row 로 1 이상의 인자를 넘겨야한다.")
+    @ValueSource(ints = {-2, -1, 0})
+    void testCreateLadderWithInvalidRowValues(int row){
+        //given
+        assertThatThrownBy(() -> new Ladder(row, 3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("사다리를 만들때 numberOfPerson 으로 1 이상의 인자를 넘겨야한다.")
+    @ValueSource(ints = {-2, -1, 0})
+    void testCreateLadderWithInvalidNumberOfPersonValues(int numberOfPerson){
+        //given
+        assertThatThrownBy(() -> new Ladder(3, numberOfPerson))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
     }
 }
