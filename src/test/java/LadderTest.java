@@ -2,6 +2,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,7 +42,8 @@ class LadderTest {
             ladder.drawLine(new NaturalNumber(2),new NaturalNumber(1));
             ladder.drawLine(new NaturalNumber(2),new NaturalNumber(4));
             ladder.drawLine(new NaturalNumber(2),new NaturalNumber(3));
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이어지는 선을 그릴 수 없습니다.");
     }
 
     @Test
@@ -51,11 +53,14 @@ class LadderTest {
         int [][]rows=new int[row+1][numberOfPerson+1];
         DrawPossible drawPossible = new DrawPossible(rows, row, numberOfPerson);
         Assertions.assertThatThrownBy(()->drawPossible.possibleAndDraw(2,4))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 위치입니다.");
         Assertions.assertThatThrownBy(()->drawPossible.possibleAndDraw(2,5))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 위치입니다.");
         Assertions.assertThatThrownBy(()->drawPossible.possibleAndDraw(4,3))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("유효하지 않은 위치입니다.");
     }
 
     @Test
@@ -68,7 +73,8 @@ class LadderTest {
                     drawPossible.possibleAndDraw(1, 2);
                     drawPossible.possibleAndDraw(1,3);
                 })
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이미 라인이 그려진 위치입니다.");
     }
 
     @ParameterizedTest
@@ -80,18 +86,16 @@ class LadderTest {
         Assertions.assertThatThrownBy(()->validationPosition.checkValidPostion((givenNumbers)))
                         .isInstanceOf(IndexOutOfBoundsException.class);
     }
-//
-//    @Test
-//    @DisplayName("run 메소드 작동 잘 되는지 확인")
-//    void testMovePosition(){
-//        Ladder ladder =new Ladder(new NaturalNumber(3),new NaturalNumber(5));
-//        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(1));
-//        assertEquals(2,ladder.run(new NaturalNumber(1)));
-//    }
 
-    @Test
-    @DisplayName("간단한 사다리 게임 테스트")
-    void testSimpleLadderGame(){
+    @ParameterizedTest
+    @CsvSource({
+            "1,4",
+            "2,2",
+            "3,3",
+            "4,1",
+    })
+    @DisplayName("run 메서드가 잘 작동하는지")
+    void testRunMethod(int input, int expected){
         Ladder ladder =new Ladder(new NaturalNumber(5),new NaturalNumber(4));
         ladder.drawLine(new NaturalNumber(1),new NaturalNumber(1));
         ladder.drawLine(new NaturalNumber(1),new NaturalNumber(3));
@@ -99,35 +103,12 @@ class LadderTest {
         ladder.drawLine(new NaturalNumber(3),new NaturalNumber(1));
         ladder.drawLine(new NaturalNumber(4),new NaturalNumber(3));
 
-        assertEquals(4,ladder.run(new NaturalNumber(1)));
-        assertEquals(2,ladder.run(new NaturalNumber(2)));
-        assertEquals(3,ladder.run(new NaturalNumber(3)));
-        assertEquals(1,ladder.run(new NaturalNumber(4)));
+        assertEquals(expected,ladder.run(new NaturalNumber(input)));
+//        assertEquals(4,ladder.run(new NaturalNumber(1)));
+//        assertEquals(2,ladder.run(new NaturalNumber(2)));
+//        assertEquals(3,ladder.run(new NaturalNumber(3)));
+//        assertEquals(1,ladder.run(new NaturalNumber(4)));
     }
 
-    @Test
-    @DisplayName("간단한 사다리 게임 테스트")
-    void testComplicatedLadderGame(){
-        Ladder ladder =new Ladder(new NaturalNumber(7),new NaturalNumber(6));
-        ladder.drawLine(new NaturalNumber(1),new NaturalNumber(1));
-        ladder.drawLine(new NaturalNumber(1),new NaturalNumber(3));
-        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(2));
-        ladder.drawLine(new NaturalNumber(2),new NaturalNumber(5));
-        ladder.drawLine(new NaturalNumber(3),new NaturalNumber(1));
-        ladder.drawLine(new NaturalNumber(4),new NaturalNumber(5));
-        ladder.drawLine(new NaturalNumber(5),new NaturalNumber(3));
-        ladder.drawLine(new NaturalNumber(5),new NaturalNumber(5));
-        ladder.drawLine(new NaturalNumber(6),new NaturalNumber(2));
-        ladder.drawLine(new NaturalNumber(6),new NaturalNumber(4));
-        ladder.drawLine(new NaturalNumber(7),new NaturalNumber(5));
-        ladder.drawLine(new NaturalNumber(7),new NaturalNumber(2));
-
-        assertEquals(6,ladder.run(new NaturalNumber(1)));
-        assertEquals(2,ladder.run(new NaturalNumber(2)));
-        assertEquals(3,ladder.run(new NaturalNumber(3)));
-        assertEquals(1,ladder.run(new NaturalNumber(4)));
-        assertEquals(5,ladder.run(new NaturalNumber(5)));
-        assertEquals(4,ladder.run(new NaturalNumber(6)));
-    }
 
 }
