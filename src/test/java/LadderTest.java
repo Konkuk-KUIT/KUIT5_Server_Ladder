@@ -13,10 +13,13 @@ class LadderTest {
 //    }
     @Test
     void runTest() {
-    ladder.drawLine(1, 0);
-    ladder.drawLine(2, 1);
-    ladder.drawLine(1, 2);
-    assertDoesNotThrow(() -> ladder.run(0));
+    ladder.drawLine(0, 0);
+    ladder.drawLine(1, 1);
+    ladder.drawLine(2, 2);
+
+    int result = ladder.run(0);  // 실행 후 반환값 저장
+    assertEquals(3, result);
+//    assertDoesNotThrow(() -> ladder.run(0));
 }
 
 
