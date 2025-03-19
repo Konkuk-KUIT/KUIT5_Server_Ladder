@@ -76,7 +76,7 @@ class LadderTest {
             "5, 3"
     })
     @DisplayName("Row index out of range 확인")
-    void testLadder5(int row, int col) {
+    void testLadder4(int row, int col) {
         // given
         Ladder ladder = new Ladder(4,4);
 
