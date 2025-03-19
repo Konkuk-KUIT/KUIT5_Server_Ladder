@@ -36,8 +36,8 @@ class LadderTest {
     @DisplayName("사다리에 선이 잘 생성되는 지 확인")
     void testMakeLadderLine(){
         Ladder ladder =new Ladder(NaturalNumber.of(3),NaturalNumber.of(5));
-        ladder.drawLine(NaturalNumber.of(2),NaturalNumber.of(1));
-        ladder.drawLine(NaturalNumber.of(2),NaturalNumber.of(3));
+        ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(1));
+        ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(3));
     }
 
     @Test
@@ -45,8 +45,8 @@ class LadderTest {
     void throwExceptionWhenDrawLineContinuous(){
         Ladder ladder =new Ladder(NaturalNumber.of(6),NaturalNumber.of(5));
         Assertions.assertThatThrownBy(()->{
-            ladder.drawLine(NaturalNumber.of(2),NaturalNumber.of(3));
-            ladder.drawLine(NaturalNumber.of(2),NaturalNumber.of(4));
+            ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(3));
+            ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(4));
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이미 라인이 그려진 위치입니다.");
     }
@@ -61,7 +61,7 @@ class LadderTest {
     @DisplayName("그릴 수 있는 범위를 초과한 것을 그리려고 할 때 오류 발생")
     void thowExceptionWhenNotPossibleDrawLine(int row, int column){
         Ladder ladder =new Ladder(NaturalNumber.of(3),NaturalNumber.of(4));
-        Assertions.assertThatThrownBy(()->ladder.drawLine(NaturalNumber.of(row),NaturalNumber.of(column)))
+        Assertions.assertThatThrownBy(()->ladder.tryToDrawLine(NaturalNumber.of(row),NaturalNumber.of(column)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 위치입니다.");
     }
@@ -85,11 +85,13 @@ class LadderTest {
     @DisplayName("run 메서드가 잘 작동하는지")
     void testRunMethod(int input, int expected){
         Ladder ladder =new Ladder(NaturalNumber.of(3),NaturalNumber.of(3));
-        ladder.drawLine(NaturalNumber.of(1),NaturalNumber.of(1));
-        ladder.drawLine(NaturalNumber.of(2),NaturalNumber.of(2));
-        ladder.drawLine(NaturalNumber.of(3),NaturalNumber.of(1));
+        ladder.tryToDrawLine(NaturalNumber.of(1),NaturalNumber.of(1));
+        ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(2));
+        ladder.tryToDrawLine(NaturalNumber.of(3),NaturalNumber.of(1));
 
-        assertEquals(expected,ladder.run(NaturalNumber.of(input)));
+        LadderGame ladderGame=LadderGame.of(ladder.getLadderRows());
+
+        assertEquals(expected,ladderGame.run(NaturalNumber.of(input)));
     }
 
 

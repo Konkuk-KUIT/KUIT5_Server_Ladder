@@ -8,7 +8,7 @@ public class NaturalNumber {
         this.naturalNumber = naturalNumber;
     }
     public static NaturalNumber of(int naturalNumber) {
-        if (naturalNumber < 1 || naturalNumber % 1 != 0) {
+        if (naturalNumber < 1 ) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER.getMessage());
         }
         return new NaturalNumber(naturalNumber);
