@@ -1,39 +1,47 @@
-public class Ladder {
-    private final int[][] rows;
-    private final int numberOfPerson;
-    private final int row;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-    public Ladder(int row, int numberOfPerson) {
-        rows = new int[row][numberOfPerson];
+public class Ladder {
+    private final List<Row> rows;
+    private final NaturalNumber numberOfPerson;
+
+    public Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        rows = IntStream.range(0, row.getValue())
+                .mapToObj(i -> Row.create(numberOfPerson.getValue()))
+                .collect(Collectors.toList());
         this.numberOfPerson = numberOfPerson;
-        this.row = row;
+    }
+
+    public static Ladder create(int row, int numberOfPerson) {
+        return new Ladder(NaturalNumber.of(row), NaturalNumber.of(numberOfPerson));
     }
 
     public void drawLine(int line, int level) {
-        if (line < 1 || line > numberOfPerson - 1) {
-            throw new IllegalArgumentException("선택된 라인과 그 오른편의 라인을 연결하므로 가장 끝 라인을 제외한 라인을 선택하세요.");
+        NaturalNumber validLevel = NaturalNumber.of(level);
+        NaturalNumber validLine = NaturalNumber.of(line);
+        if(validLevel.getValue() > rows.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_DRAW_LEVEL.getMessage());
         }
-        if (level < 1 || level > row) {
-            throw new IllegalArgumentException("가능한 높이를 벗어났습니다.");
-        }
-        if (rows[level-1][line - 1] != 0 || rows[level-1][line] != 0) {
-            throw new IllegalArgumentException("이미 선점된 위치입니다.");
-        }
-        rows[level-1][line - 1] = 1;
-        rows[level-1][line] = -1;
+        rows.get(validLevel.getValue()-1).drawLine(validLine.getValue());
     }
 
     public int run(int selectedLine) {
-        if (selectedLine < 1 || selectedLine > numberOfPerson) {
-            throw new IllegalArgumentException("선택할 수 없는 번호입니다.");
+        NaturalNumber line = NaturalNumber.of(selectedLine);
+
+        if (line.getValue() > numberOfPerson.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_RUN_LINE.getMessage());
         }
 
-        int currentLine = selectedLine - 1;
+        int currentLine = line.getValue() - 1;
 
-        for (int level = 0; level < row; level++) {
-            currentLine += rows[level][currentLine];
+        for (int level = 0; level < rows.size(); level++) {
+            currentLine = rows.get(level).move(currentLine);
         }
 
         return currentLine + 1;
     }
+
 }
