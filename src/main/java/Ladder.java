@@ -26,22 +26,20 @@ public class Ladder {
             start_col += rows[now_row][start_col];
             now_row++;
         }
-        System.out.println(start_col);
+        System.out.println(start_col);//일단 출력은 해볼까
         return start_col;
     }
 
     private boolean parser(int target_col, int start_row) {
         if (target_col < 0 || target_col >= rows[0].length - 1 || start_row < 0 || start_row >= rows.length) {
-            System.out.println("잘못된 사다리 위치입니다.");
-            return false;
+            throw new IllegalArgumentException("잘못된 사다리 위치입니다.");
         }
         return true;
     }
 
     private boolean parser(int target_col) {
         if (target_col < 0 || target_col >= rows[0].length) {
-            System.out.println("잘못된 시작 위치입니다.");
-            return false;
+            throw new IllegalArgumentException("잘못된 시작 위치입니다.");
         }
         return true;
     }
