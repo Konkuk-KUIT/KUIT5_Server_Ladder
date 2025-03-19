@@ -17,9 +17,9 @@ public class Ladder {
         }
     }
 
-    public void run(int start_col) {
+    public int run(int start_col) {
         // 입력 검사
-        if (!parser(start_col)) return;
+        if (!parser(start_col)) return -1;
 
         int now_row = 0;
         while (now_row < rows.length) {
@@ -27,10 +27,11 @@ public class Ladder {
             now_row++;
         }
         System.out.println(start_col);
+        return start_col;
     }
 
     private boolean parser(int target_col, int start_row) {
-        if (target_col < 0 || target_col >= rows[0].length - 2 || start_row < 0 || start_row >= rows.length) {
+        if (target_col < 0 || target_col >= rows[0].length - 1 || start_row < 0 || start_row >= rows.length) {
             System.out.println("잘못된 사다리 위치입니다.");
             return false;
         }
