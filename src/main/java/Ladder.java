@@ -2,15 +2,11 @@ public class Ladder {
 
     private final int[][] rows;
 
-    public Ladder(int row, int numberOfPerson) {
-        validLadderSize(row, numberOfPerson);
-        rows = new int[row][numberOfPerson];
+    private Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        rows = new int[row.getNumber()][numberOfPerson.getNumber()];
     }
-
-    private static void validLadderSize(int row, int numberOfPerson) {
-        if (row <= 0 || numberOfPerson <= 0) {
-            throw new IllegalArgumentException(LadderException.INVALID_LADDER_SIZE.getMessage());
-        }
+    public static Ladder createLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        return new Ladder(row, numberOfPerson);
     }
 
     public void drawLine(int start, int end, int row) {
@@ -60,7 +56,7 @@ public class Ladder {
         return targetColumn + 1;
     }
 
-    private static int getTargetColumn(int[] row, int targetColumn) {
+    private int getTargetColumn(int[] row, int targetColumn) {
         if (row[targetColumn] == Direction.RIGHT.getDirections()) {
             targetColumn++;
             return targetColumn;

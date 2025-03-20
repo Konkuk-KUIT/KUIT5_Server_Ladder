@@ -15,7 +15,7 @@ class LadderTest {
     @ValueSource(ints = {-2, -1, 0})
     void testCreateLadderWithInvalidRowValues(int row){
         //given
-        assertThatThrownBy(() -> new Ladder(row, 3))
+        assertThatThrownBy(() -> Ladder.createLadder(NaturalNumber.of(row), NaturalNumber.of(3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
     }
@@ -25,7 +25,7 @@ class LadderTest {
     @ValueSource(ints = {-2, -1, 0})
     void testCreateLadderWithInvalidNumberOfPersonValues(int numberOfPerson){
         //given
-        assertThatThrownBy(() -> new Ladder(3, numberOfPerson))
+        assertThatThrownBy(() -> Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(numberOfPerson)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
     }
@@ -35,7 +35,7 @@ class LadderTest {
     @ValueSource(ints = {1, 2, 3})
     void testRunWithoutDrawLine(int targetNumber){
         //given
-        Ladder ladder = new Ladder(2, 3);
+        Ladder ladder = Ladder.createLadder(NaturalNumber.of(2), NaturalNumber.of(3));
 
         //when
         int result = ladder.run(targetNumber);
@@ -48,7 +48,7 @@ class LadderTest {
     @DisplayName("line 이 있을 때, run 메소드 동작 테스트")
     void testRunWithDrawLines(){
         //given
-        Ladder ladder = new Ladder(3, 3);
+        Ladder ladder = Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(3));
 
         //when
         ladder.drawLine(1, 2, 1);
@@ -66,7 +66,7 @@ class LadderTest {
     void testDrawLineSameNumber(){
         //given
         String errorMessage = LadderException.SAME_NUMBER.getMessage();
-        Ladder ladder = new Ladder(3, 3);
+        Ladder ladder = Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(3));
 
         //when & then
         assertThatThrownBy(() -> ladder.drawLine(1, 1, 2))
