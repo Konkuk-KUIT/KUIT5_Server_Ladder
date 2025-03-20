@@ -8,6 +8,28 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LadderTest {
 
+    //CsvSource 사용해서 통합
+    // 입력값 null 도 예외처리
+    @ParameterizedTest
+    @DisplayName("사다리를 만들때 row 로 1 이상의 인자를 넘겨야한다.")
+    @ValueSource(ints = {-2, -1, 0})
+    void testCreateLadderWithInvalidRowValues(int row){
+        //given
+        assertThatThrownBy(() -> new Ladder(row, 3))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("사다리를 만들때 numberOfPerson 으로 1 이상의 인자를 넘겨야한다.")
+    @ValueSource(ints = {-2, -1, 0})
+    void testCreateLadderWithInvalidNumberOfPersonValues(int numberOfPerson){
+        //given
+        assertThatThrownBy(() -> new Ladder(3, numberOfPerson))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
+    }
+
     @ParameterizedTest
     @DisplayName("사다리에 Line 이 없을 때 시작 번호 그대로 반환해야한다.")
     @ValueSource(ints = {1, 2, 3})
@@ -52,23 +74,4 @@ class LadderTest {
                 .hasMessageContaining(errorMessage);
     }
 
-    @ParameterizedTest
-    @DisplayName("사다리를 만들때 row 로 1 이상의 인자를 넘겨야한다.")
-    @ValueSource(ints = {-2, -1, 0})
-    void testCreateLadderWithInvalidRowValues(int row){
-        //given
-        assertThatThrownBy(() -> new Ladder(row, 3))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
-    }
-
-    @ParameterizedTest
-    @DisplayName("사다리를 만들때 numberOfPerson 으로 1 이상의 인자를 넘겨야한다.")
-    @ValueSource(ints = {-2, -1, 0})
-    void testCreateLadderWithInvalidNumberOfPersonValues(int numberOfPerson){
-        //given
-        assertThatThrownBy(() -> new Ladder(3, numberOfPerson))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
-    }
 }
