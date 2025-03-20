@@ -19,13 +19,13 @@ public class Ladder {
         validRow(row);
 
         if (start < end){
-            rows[row - 1][start - 1] = 1;
-            rows[row - 1][end - 1] = -1;
+            rows[row - 1][start - 1] = Direction.RIGHT.getDirections();
+            rows[row - 1][end - 1] = Direction.LEFT.getDirections();
             return;
         }
         if (start > end){
-            rows[row - 1][start - 1] = -1;
-            rows[row - 1][end - 1] = 1;
+            rows[row - 1][start - 1] = Direction.LEFT.getDirections();
+            rows[row - 1][end - 1] = Direction.RIGHT.getDirections();
         }
     }
 
@@ -61,11 +61,11 @@ public class Ladder {
     }
 
     private static int getTargetColumn(int[] row, int targetColumn) {
-        if (row[targetColumn] == 1) {
+        if (row[targetColumn] == Direction.RIGHT.getDirections()) {
             targetColumn++;
             return targetColumn;
         }
-        if (row[targetColumn] == -1) {
+        if (row[targetColumn] == Direction.LEFT.getDirections()) {
             targetColumn--;
         }
         return targetColumn;
