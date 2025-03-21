@@ -13,7 +13,7 @@ public class Ladder {
 
     public int run(NaturalNumber startPosition) {
         int position = startPosition.getNumber();
-        return move(position) + 1;
+        return move(position);
     }
 
     private int move(int position) {
