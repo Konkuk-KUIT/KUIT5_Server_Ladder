@@ -42,7 +42,6 @@ public class Ladder {
         }
 
         int targetColumn = targetNumber.getNumber() - 1;
-        System.out.println(targetColumn);
 
         for (int[] row : rows)
             targetColumn = getTargetColumn(row, targetColumn);
