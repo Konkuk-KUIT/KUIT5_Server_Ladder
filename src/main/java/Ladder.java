@@ -1,70 +1,56 @@
 public class Ladder {
-
     private final int[][] ladder;
-    private final Position ladderPosition;
 
-    public Ladder(int height, int numberOfPerson) {
-        // 여기 입력 예외 처리하기
-        ladder = new int[numberOfPerson][height];
-        ladderPosition= new Position(numberOfPerson,height);
-    }
-
-    public void drawLine(Position p){
-        //포지션이 합당한지 확인해야지
-        if(Position.LessThenZero(p)){
-            return;
-        }
-        if(ImpossibleLine(p)){
-            return;
-        }
-        if(!CanLine(p)){
-            return;
-        }
-        ladder[p.x][p.y]=1;
-        ladder[p.x+1][p.y]=-1;
-
+    Ladder(int[][] ladder) {
+        this.ladder = ladder;
     }
 
     public boolean CanLine(Position p){
-        if(HasLine(p)){// 이미 그려져 있음
+        if(hasLine(p)){// 이미 그려져 있음
             return false;
         }
-        return CanMove(p);
+        return canMove(p);
     }
 
-    public boolean CanMove(Position p){
+    public boolean impossibleLine(Position p){
+        return p.x+1 >= ladder[0].length || p.y >= ladder.length;
+    }
+
+    public boolean canMove(Position p){
         Position LeftLine = new Position(p.x-1,p.y);
         Position RightLine = new Position(p.x+1,p.y);
-        if(!Position.LessThenZero(LeftLine) && HasLine(LeftLine)){
+        if(!Position.LessThenZero(LeftLine) && hasLine(LeftLine)){
             return false;
         }
-        return ImpossibleLine(RightLine) || !HasLine(RightLine);
-    }
-    public boolean HasLine(Position p){
-        return ladder[p.x][p.y]!=0;
+        return impossibleLine(RightLine) || !hasLine(RightLine);
     }
 
-    public boolean ImpossibleLine(Position p){
-        return p.x >= ladderPosition.x || p.y >= ladderPosition.y;
+
+    public boolean hasLine(Position p){
+        return ladder[p.y][p.x]!=0;
     }
 
-    public int run(int number){
-        if(!CanRun(number)){
-            return -1;
-        }
-        return Move(number-1,0)+1;
-    }
-    public boolean CanRun(int number){
-        return number > 0 && number <= ladderPosition.x;
+    public boolean canRun(int number){
+       return number > 0 && number <= ladder[0].length;
     }
 
-    private int Move(int number, int height){
-        if(height>=ladderPosition.y){
-            return number;
+    public void setLine(Position p){
+        ladder[p.y][p.x]=1;
+        ladder[p.y][p.x+1]=-1;
+    }
+
+    public int getHeight(){
+        return ladder.length;
+    }
+
+    public int getValue(Position p){
+        try{
+            return ladder[p.y][p.x];
         }
-        else{
-            return Move(number+ladder[number][height],height+1);
+        catch(Exception e){
+            return 0;
         }
+
     }
 
 }

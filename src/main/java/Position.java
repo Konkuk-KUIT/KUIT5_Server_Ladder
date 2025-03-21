@@ -9,4 +9,5 @@ public class Position {
     public static boolean LessThenZero(Position p) {
         return (p.x < 0 || p.y < 0);
     }
+
 }
