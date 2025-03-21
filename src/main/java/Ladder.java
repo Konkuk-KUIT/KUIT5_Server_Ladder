@@ -22,23 +22,24 @@ public class Ladder {
     }
 
     private void validPosition(NaturalNumber row, Position position) {
-        if (rows[row.getNumber()][position.getStart()] != 0 || rows[row.getNumber()][position.getEnd()] != 0) {
+        if (position.getStart() >= rows[0].length || position.getEnd() >= rows[0].length) {
+            throw new IllegalArgumentException(LadderException.OUT_OF_COLUMN_LENGTH_RANGE.getMessage());
+        }
+        if (rows[row.getNumber() - 1][position.getStart()] != 0 || rows[row.getNumber() - 1][position.getEnd()] != 0) {
             throw new IllegalArgumentException(LadderException.LINE_POSITION_CONFLICT.getMessage());
         }
-        if (position.getStart() > rows[0].length || position.getEnd() > rows[0].length) {
-            throw new IllegalArgumentException(LadderException.OUT_OF_NUMBER_RANGE.getMessage());
-        }
+
     }
 
     private void validRow(NaturalNumber row) {
         if (row.getNumber() > rows.length) {
-            throw new IllegalArgumentException(LadderException.OUT_OF_LENGTH_RANGE.getMessage());
+            throw new IllegalArgumentException(LadderException.OUT_OF_ROW_LENGTH_RANGE.getMessage());
         }
     }
 
     public int run(NaturalNumber targetNumber){
         if (targetNumber.getNumber() > rows[0].length) {
-            throw new IllegalArgumentException(LadderException.OUT_OF_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(LadderException.OUT_OF_COLUMN_LENGTH_RANGE.getMessage());
         }
 
         int targetColumn = targetNumber.getNumber() - 1;
