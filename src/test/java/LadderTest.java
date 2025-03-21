@@ -30,6 +30,23 @@ class LadderTest {
     }
 
     @Test
+    @DisplayName("여러 줄에 걸쳐 선을 그린 후 올바르게 이동하는지 확인")
+    void runMultiLineLadderTest() {
+        // given
+        Ladder ladder = new Ladder(3, 4); // 3줄, 4명
+        ladder.drawLine(0, 1); // 줄 0: 1-2 연결
+        ladder.drawLine(1, 2); // 줄 1: 2-3 연결
+        ladder.drawLine(2, 0); // 줄 2: 0-1 연결
+
+        // when & then
+        assertThat(ladder.run(new Position(0).getIndex())).isEqualTo(1);
+        assertThat(ladder.run(new Position(1).getIndex())).isEqualTo(3);
+        assertThat(ladder.run(new Position(2).getIndex())).isEqualTo(0);
+        assertThat(ladder.run(new Position(3).getIndex())).isEqualTo(2);
+
+    }
+
+    @Test
     @DisplayName("줄이 그어진 위치에서만 좌우 이동")
     void drawLineMoveLeftOrRight() {
         Ladder ladder = new Ladder(3, 4);
