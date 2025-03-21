@@ -15,13 +15,11 @@ public class Position {
     }
 
     public void moveRight() {
-        this.position+=1; ///todo--
+        this.position+=1;
     }
 
     public void moveLeft() {
-        this.position-=1; ///todo--
+        this.position-=1;
     }
-
-    //todo 해당위치가 갈 수 있는 위치인지 검증하는 parser
 
 }
