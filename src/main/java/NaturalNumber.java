@@ -12,13 +12,9 @@ public class NaturalNumber {
     }
 
     private static void validateNumber(int number) {
-        if (!isNaturalNumber(number)) {
+        if (number<=0) {
             throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_OF_POSITION.getErrorMessage());
         }
-    }
-
-    private static boolean isNaturalNumber(int number) {
-        return number > 0;
     }
 
     public int getNumber() {
