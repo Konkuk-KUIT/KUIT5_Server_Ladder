@@ -17,8 +17,8 @@ class LadderTest {
         ladder.drawLine(Position.of(2), Position.of(2));
 
         // then
-        assertEquals(1, ladder.getState(Position.of(2), Position.of(2)));
-        assertEquals(-1, ladder.getState(Position.of(2), Position.of(3)));
+        assertEquals(Direction.RIGHT, ladder.getState(Position.of(2), Position.of(2)));
+        assertEquals(Direction.LEFT, ladder.getState(Position.of(2), Position.of(3)));
     }
 
 

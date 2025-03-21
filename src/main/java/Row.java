@@ -5,7 +5,7 @@ public class Row {
     public Row(int numberOfPeople) {
         this.nodes = new Node[numberOfPeople];
         for (int i = 0; i < nodes.length; i++) {
-            nodes[i] = Node.of(0);
+            nodes[i] = Node.of(Direction.NONE);
         }
     }
 
@@ -14,7 +14,7 @@ public class Row {
         if (!validateDrawPosition(position)) return;
 
         nodes[position.getValue()].setRight();
-        position.moveRight();
+        position.move(Direction.RIGHT);
         nodes[position.getValue()].setLeft();
     }
 
@@ -41,7 +41,7 @@ public class Row {
     }
 
     //test코드 용 state 반환 메서드
-    public int getState(Position position) {
+    public Direction getState(Position position) {
         return nodes[position.getValue()].getState();
     }
 

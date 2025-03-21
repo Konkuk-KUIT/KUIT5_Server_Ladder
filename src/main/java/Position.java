@@ -14,12 +14,7 @@ public class Position {
         return this.position;
     }
 
-    public void moveRight() {
-        this.position+=1;
+    public void move(Direction direction) {
+        this.position+= direction.getValue();
     }
-
-    public void moveLeft() {
-        this.position-=1;
-    }
-
 }

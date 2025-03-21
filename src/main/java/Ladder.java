@@ -23,10 +23,8 @@ public class Ladder {
     }
 
     //test코드 용 state 반환 메서드
-    public int getState(Position row, Position col) {
+    public Direction getState(Position row, Position col) {
         return rows[row.getValue()].getState(col);
     }
-}
 
-// todo enum 설정
-// todo 예외처리
+}
