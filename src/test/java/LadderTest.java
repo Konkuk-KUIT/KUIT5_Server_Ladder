@@ -17,7 +17,7 @@ class LadderTest {
         //given
         assertThatThrownBy(() -> Ladder.createLadder(NaturalNumber.of(row), NaturalNumber.of(3)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
+                .hasMessageContaining(LadderException.INVALID_NUMBER.getMessage());
     }
 
     @ParameterizedTest
@@ -27,7 +27,7 @@ class LadderTest {
         //given
         assertThatThrownBy(() -> Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(numberOfPerson)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LadderException.INVALID_LADDER_SIZE.getMessage());
+                .hasMessageContaining(LadderException.INVALID_NUMBER.getMessage());
     }
 
     @ParameterizedTest
@@ -35,10 +35,11 @@ class LadderTest {
     @ValueSource(ints = {1, 2, 3})
     void testRunWithoutDrawLine(int targetNumber){
         //given
+        NaturalNumber targetNum = NaturalNumber.of(targetNumber);
         Ladder ladder = Ladder.createLadder(NaturalNumber.of(2), NaturalNumber.of(3));
 
         //when
-        int result = ladder.run(targetNumber);
+        int result = ladder.run(targetNum);
 
         //then
         assertThat(result).isEqualTo(targetNumber);
@@ -48,17 +49,17 @@ class LadderTest {
     @DisplayName("line 이 있을 때, run 메소드 동작 테스트")
     void testRunWithDrawLines(){
         //given
-        Ladder ladder = Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(3));
+        Ladder ladder = Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(4));
 
         //when
-        ladder.drawLine(1, 2, 1);
-        ladder.drawLine(2, 3, 2);
-        ladder.drawLine(3, 2, 3);
+        ladder.drawLine(NaturalNumber.of(1), NaturalNumber.of(2), NaturalNumber.of(1));
+        ladder.drawLine(NaturalNumber.of(2), NaturalNumber.of(3), NaturalNumber.of(2));
+        //ladder.drawLine(NaturalNumber.of(3), NaturalNumber.of(2), NaturalNumber.of(3));
 
-        int result = ladder.run(1);
+        int result = ladder.run(NaturalNumber.of(1));
 
         //then
-        assertThat(result).isEqualTo(2);
+        assertThat(result).isEqualTo(3);
     }
 
     @Test
@@ -69,7 +70,7 @@ class LadderTest {
         Ladder ladder = Ladder.createLadder(NaturalNumber.of(3), NaturalNumber.of(3));
 
         //when & then
-        assertThatThrownBy(() -> ladder.drawLine(1, 1, 2))
+        assertThatThrownBy(() -> ladder.drawLine(NaturalNumber.of(1), NaturalNumber.of(1), NaturalNumber.of(2)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(errorMessage);
     }

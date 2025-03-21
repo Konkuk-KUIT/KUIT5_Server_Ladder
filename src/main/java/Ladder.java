@@ -9,46 +9,40 @@ public class Ladder {
         return new Ladder(row, numberOfPerson);
     }
 
-    public void drawLine(int start, int end, int row) {
+    public void drawLine(NaturalNumber start, NaturalNumber end, NaturalNumber row) {
 
-        validStartEnd(start, end);
+        Position position = Position.of(start, end);
+
         validRow(row);
+        validPosition(row, position);
 
-        if (start < end){
-            rows[row - 1][start - 1] = Direction.RIGHT.getDirections();
-            rows[row - 1][end - 1] = Direction.LEFT.getDirections();
-            return;
-        }
-        if (start > end){
-            rows[row - 1][start - 1] = Direction.LEFT.getDirections();
-            rows[row - 1][end - 1] = Direction.RIGHT.getDirections();
-        }
+        rows[row.getNumber() - 1][position.getStart()] = Direction.RIGHT.getDirections();
+        rows[row.getNumber() - 1][position.getEnd()] = Direction.LEFT.getDirections();
+
     }
 
-    private void validStartEnd(int start, int end) {
-        if (start == end) {
-            throw new IllegalArgumentException(LadderException.SAME_NUMBER.getMessage());
+    private void validPosition(NaturalNumber row, Position position) {
+        if (rows[row.getNumber()][position.getStart()] != 0 || rows[row.getNumber()][position.getEnd()] != 0) {
+            throw new IllegalArgumentException(LadderException.LINE_POSITION_CONFLICT.getMessage());
         }
-        if (start > rows[0].length || start < 1 || end > rows[0].length || end < 1) {
+        if (position.getStart() > rows[0].length || position.getEnd() > rows[0].length) {
             throw new IllegalArgumentException(LadderException.OUT_OF_NUMBER_RANGE.getMessage());
         }
-        if (Math.abs(start - end) != 1) {
-            throw new IllegalArgumentException(LadderException.InvalidLinePositionException.getMessage());
-        }
     }
 
-    private void validRow(int row) {
-        if (row > rows.length || row < 1 ) {
+    private void validRow(NaturalNumber row) {
+        if (row.getNumber() > rows.length) {
             throw new IllegalArgumentException(LadderException.OUT_OF_LENGTH_RANGE.getMessage());
         }
     }
 
-    public int run(int targetNumber){
-        if (targetNumber <= 0 || targetNumber > rows[0].length) {
+    public int run(NaturalNumber targetNumber){
+        if (targetNumber.getNumber() > rows[0].length) {
             throw new IllegalArgumentException(LadderException.OUT_OF_NUMBER_RANGE.getMessage());
         }
 
-        int targetColumn = targetNumber - 1;
+        int targetColumn = targetNumber.getNumber() - 1;
+        System.out.println(targetColumn);
 
         for (int[] row : rows)
             targetColumn = getTargetColumn(row, targetColumn);

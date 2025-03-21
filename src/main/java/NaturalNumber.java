@@ -8,7 +8,7 @@ public class NaturalNumber {
 
     private static void validNaturalNumber(int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException(LadderException.INVALID_LADDER_SIZE.getMessage());
+            throw new IllegalArgumentException(LadderException.INVALID_NUMBER.getMessage());
         }
     }
 
