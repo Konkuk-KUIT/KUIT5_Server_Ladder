@@ -7,7 +7,7 @@ public class Line {
     }
 
     public void validateDrawLine(int col) {
-        if (col >= moves.length - 1) {
+        if (col < 0 || col >= moves.length - 1) {
             throw new IllegalArgumentException("마지막 열에는 선을 그을 수 없습니다.");
         }
         if (moves[col] != 0 || moves[col + 1] != 0) {
