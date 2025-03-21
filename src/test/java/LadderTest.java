@@ -9,12 +9,16 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LadderTest {
-    @DisplayName("빈 사다리에서 위치 그대로 도착")
+
     @ParameterizedTest
     @CsvSource({
-            "0,0", "1,1", "2,2", "3,3"
+            "0, 0",
+            "1, 1",
+            "2, 2",
+            "3, 3"
     })
-    void testLadderWithoutLine(int input, int expected) {
+    @DisplayName("줄이 없는 경우는 그대로 내려감")
+    void runWithoutLines(int input, int expected) {
         // given
         Ladder ladder = new Ladder(3, 4);
 
@@ -25,22 +29,26 @@ class LadderTest {
         assertThat(result).isEqualTo(expected);
     }
 
-
     @Test
-    @DisplayName("사다리 라인 그리기 - 오른쪽/왼쪽 이동 확인")
-    void testDrawLineAndRun() {
-        // given
+    @DisplayName("줄이 그어진 위치에서만 좌우 이동")
+    void drawLineMoveLeftOrRight() {
         Ladder ladder = new Ladder(3, 4);
-        ladder.drawLine(0, 1); // 1번, 2번 연결
+        ladder.drawLine(0, 1);
 
-        // when & then
-        assertThat(ladder.run(1)).isEqualTo(2); // 오른쪽
-        assertThat(ladder.run(2)).isEqualTo(1); // 왼쪽
+        // when
+        int result1 = ladder.run(new Position(1).getIndex());
+        int result2 = ladder.run(new Position(2).getIndex());
+        int result3 = ladder.run(new Position(0).getIndex());
+
+        // then
+        assertThat(result1).isEqualTo(2); // 오른쪽 이동
+        assertThat(result2).isEqualTo(1); // 왼쪽 이동
+        assertThat(result3).isEqualTo(0); // 이동 없음
     }
 
     @Test
-    @DisplayName("라인 연속 생성 시 예외 발생")
-    void testDrawContinuousLinesException() {
+    @DisplayName("연속된 줄은 예외 발생")
+    void drawLineException() {
         // given
         Ladder ladder = new Ladder(3, 4);
         ladder.drawLine(0, 1);
@@ -52,8 +60,8 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("마지막 열에는 선을 그을 수 없다")
-    void testDrawLineAtLastColumnException() {
+    @DisplayName("마지막 열에는 선을 그을 수 없음")
+    void drawLineCannotInLastCol() {
         // given
         Ladder ladder = new Ladder(3, 4);
 
@@ -64,21 +72,16 @@ class LadderTest {
     }
 
     @Test
-    @DisplayName("라인 이동 방향 테스트")
-    void testLineMove() {
+    @DisplayName("범위를 벗어난 줄에 그릴 경우 예외 발생")
+    void drawLineOutOfBoundsException() {
         // given
-        Line line = new Line(4);
-        line.draw(1);
-        Position p1 = new Position(1);
-        Position p2 = new Position(2);
+        Ladder ladder = new Ladder(3, 4);
 
-        // when
-        line.move(p1);
-        line.move(p2);
-
-        // then
-        assertThat(p1.getIndex()).isEqualTo(2);
-        assertThat(p2.getIndex()).isEqualTo(1);
+        // when & then
+        assertThatThrownBy(() -> ladder.drawLine(3, 0)) // row는 0~2까지
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("잘못된 사다리 위치입니다.");
     }
+
 
 }
