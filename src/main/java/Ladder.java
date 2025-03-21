@@ -38,4 +38,31 @@ public class Ladder {
         }
     }
 
+    public int run(int selectcol) {
+        validateRunCol(selectcol);
+
+        int row=0;
+        while (row!=rows.length) {
+            selectcol = moveLadder(row, selectcol);
+            row+=1;
+        }
+        return selectcol;
+    }
+
+    private int moveLadder(int row, int selectcol) {
+        if (rows[row][selectcol-1]==0) {
+            return selectcol;
+        }
+        if (rows[row][selectcol-1]==1) {
+            return selectcol+1;
+        }
+        return selectcol-1;
+
+    }
+
+    private void validateRunCol(int selectcol) {
+        if (selectcol<1 || selectcol > rows[0].length) {
+            throw new IllegalArgumentException("1~" +rows.length +" 사이의 사다리 줄만 선택가능합니다.");
+        }
+    }
 }
