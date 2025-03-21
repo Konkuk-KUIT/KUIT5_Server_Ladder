@@ -7,12 +7,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import static org.assertj.core.api.Assertions.*;
 
 class LadderTest {
 
-
+    //  테스트를 어디까지 작성해야 할 지
 
     @Test
     @DisplayName("범위 밖에 사다리를 그리게 되면 에러가 발생한다")
@@ -82,9 +83,34 @@ class LadderTest {
                 ladder.drawLine(position);
             }
         }
-
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "5,3",
+            "7,4",
+            "10,6"
+    })
+    @DisplayName("통합 테스트")
+    public void integration_test(int rows, int numberOfPerson){
+        //given
+        Ladder ladder = new Ladder(rows, numberOfPerson);
+        for (int i = 0 ; i<numberOfPerson; i++){
+            for(int j = 0; j<numberOfPerson-1; j++){
+                Random random = new Random();
+                if(random.nextBoolean()) {
+                    Position position = new Position(i, j);
+                    ladder.drawLine(position);
+                }
+            }
+        }
+
+        //  when & then
+        for(int i = 0 ; i<numberOfPerson; i++){
+            ladder.run(i);
+        }
+
+    }
 
 
 

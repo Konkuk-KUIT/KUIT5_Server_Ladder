@@ -10,7 +10,7 @@ public class Ladder {
     }
 
 
-    public void drawLine(Position position){
+    public void drawLine(final Position position){
 
         validateDraw(position);
         this.rows[position.getRow()][position.getColumn()] = 1;
@@ -30,7 +30,7 @@ public class Ladder {
     }
 
 
-    public void validateDraw(Position position){
+    public void validateDraw(final Position position){
         position.validateRow(rows.length);
         position.validateColumn(rows[0].length);
     }
