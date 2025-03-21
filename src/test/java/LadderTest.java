@@ -73,7 +73,7 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(0, 2))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("이미 선이 그어져 있거나 연속된 선입니다.");
+                .hasMessageContaining(ExceptionMsg.ALREADY_CONNECTED);
     }
 
     @Test
@@ -85,7 +85,7 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(0, 3))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("잘못된 사다리 위치입니다.");
+                .hasMessageContaining(ExceptionMsg.INVALID_LADDER_POSITION);
     }
 
     @Test
@@ -97,7 +97,7 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(3, 0)) // row는 0~2까지
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("잘못된 사다리 위치입니다.");
+                .hasMessageContaining(ExceptionMsg.INVALID_LADDER_POSITION);
     }
 
 

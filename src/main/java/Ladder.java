@@ -11,13 +11,7 @@ public class Ladder {
     }
 
     public void drawLine(int row, int col) {
-        if (row < 0 || row >= rows.length || col < 0 || col >= rows[0].length - 1) {
-            throw new IllegalArgumentException("잘못된 사다리 위치입니다.");
-        }
-
-        if (rows[row][col] != 0 || rows[row][col + 1] != 0){
-            throw new IllegalArgumentException("이미 선이 그어져 있거나 연속된 선입니다.");
-        }
+        validateDrawLine(row, col);
 
         Line line = new Line(rows[row]);
         line.validateDrawLine(col);
@@ -36,6 +30,17 @@ public class Ladder {
         }
 
         return position.getIndex();
+    }
+
+    private void validateDrawLine(int row, int col){
+        if (row < 0 || row >= rows.length || col < 0 || col >= rows[0].length - 1) {
+            throw new IllegalArgumentException(ExceptionMsg.INVALID_LADDER_POSITION);
+        }
+
+        if (rows[row][col] != 0 || rows[row][col + 1] != 0){
+            throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED);
+        }
+
     }
 
 }

@@ -8,10 +8,10 @@ public class Line {
 
     public void validateDrawLine(int col) {
         if (col < 0 || col >= moves.length - 1) {
-            throw new IllegalArgumentException("마지막 열에는 선을 그을 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMsg.INVALID_LINE_POSITION);
         }
         if (moves[col] != 0 || moves[col + 1] != 0) {
-            throw new IllegalStateException("연속된 선이거나 이미 선이 그어져 있습니다.");
+            throw new IllegalStateException(ExceptionMsg.ALREADY_CONNECTED);
         }
     }
 }
