@@ -67,11 +67,12 @@ class LadderTest {
 
         //when
         ladder.drawLine(givendrawrow,givendrawcol);
-        int[][] DrawResultRows = ladder.getRows();
+        Row[] DrawResultRows = ladder.getRows();
+        int[] resultRow = DrawResultRows[givendrawrow].getRow();
 
         //then
-        assertThat(DrawResultRows[givendrawrow][givendrawcol]).isEqualTo(RightMoveLadder);
-        assertThat(DrawResultRows[givendrawrow][givendrawcol+1]).isEqualTo(LeftMoveLadder);
+        assertThat(resultRow[givendrawcol]).isEqualTo(RightMoveLadder);
+        assertThat(resultRow[givendrawcol+1]).isEqualTo(LeftMoveLadder);
     }
 
     @ParameterizedTest
