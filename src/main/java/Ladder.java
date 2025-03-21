@@ -5,36 +5,19 @@ public class Ladder {
     private Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
         rows = new int[row.getNumber()][numberOfPerson.getNumber()];
     }
+
     public static Ladder createLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
         return new Ladder(row, numberOfPerson);
     }
 
     public void drawLine(NaturalNumber start, NaturalNumber end, NaturalNumber row) {
+        Row drawRow = Row.of(rows.length, row);
 
         Position position = Position.of(start, end);
+        position.validPosition(rows, row, position);
 
-        validRow(row);
-        validPosition(row, position);
-
-        rows[row.getNumber() - 1][position.getStart()] = Direction.RIGHT.getDirections();
-        rows[row.getNumber() - 1][position.getEnd()] = Direction.LEFT.getDirections();
-
-    }
-
-    private void validPosition(NaturalNumber row, Position position) {
-        if (position.getStart() >= rows[0].length || position.getEnd() >= rows[0].length) {
-            throw new IllegalArgumentException(LadderException.OUT_OF_COLUMN_LENGTH_RANGE.getMessage());
-        }
-        if (rows[row.getNumber() - 1][position.getStart()] != 0 || rows[row.getNumber() - 1][position.getEnd()] != 0) {
-            throw new IllegalArgumentException(LadderException.LINE_POSITION_CONFLICT.getMessage());
-        }
-
-    }
-
-    private void validRow(NaturalNumber row) {
-        if (row.getNumber() > rows.length) {
-            throw new IllegalArgumentException(LadderException.OUT_OF_ROW_LENGTH_RANGE.getMessage());
-        }
+        rows[drawRow.getRow()][position.getStart()] = Direction.RIGHT.getDirections();
+        rows[drawRow.getRow()][position.getEnd()] = Direction.LEFT.getDirections();
     }
 
     public int run(NaturalNumber targetNumber){

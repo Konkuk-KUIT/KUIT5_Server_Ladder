@@ -26,6 +26,15 @@ public class Position {
         return new Position(start, end);
     }
 
+    public void validPosition(int[][] rows, NaturalNumber row, Position position) {
+        if (position.getStart() >= rows[0].length || position.getEnd() >= rows[0].length) {
+            throw new IllegalArgumentException(LadderException.OUT_OF_COLUMN_LENGTH_RANGE.getMessage());
+        }
+        if (rows[row.getNumber() - 1][position.getStart()] != 0 || rows[row.getNumber() - 1][position.getEnd()] != 0) {
+            throw new IllegalArgumentException(LadderException.LINE_POSITION_CONFLICT.getMessage());
+        }
+    }
+
     public int getStart() {
         return start.getNumber() - 1;
     }
