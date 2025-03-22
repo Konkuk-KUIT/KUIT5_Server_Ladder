@@ -40,3 +40,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.idea/.name
+/build.gradle.kts
+/.idea/inspectionProfiles/Project_Default.xml
+/settings.gradle.kts
