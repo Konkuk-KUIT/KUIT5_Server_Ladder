@@ -1,5 +1,6 @@
 package ladder;
 
+// 예외 메시지 처리.
 public enum ExceptionMessage {
 
     INVALID_LADDER_POSITION("사다리 위치는 1이상 자연수입니다."),

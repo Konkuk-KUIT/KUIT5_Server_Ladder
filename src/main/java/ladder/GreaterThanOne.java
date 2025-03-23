@@ -2,6 +2,7 @@ package ladder;
 
 import static ladder.ExceptionMessage.*;
 
+// 2 이상 값만 허용하는 검증용 객체
 public class GreaterThanOne {
 
     private final int number;

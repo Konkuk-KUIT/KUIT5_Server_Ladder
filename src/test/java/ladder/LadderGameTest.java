@@ -16,6 +16,8 @@ class LadderGameTest {
     @DisplayName("사다리 생성 확인")
     void testCreateLadder() {
         //given
+        // 왜 new 대신 from? 이름을 통해 의미 전달 가능, 유효성 검사를 내부에서 통제 가능.
+        // 추상화, 캡슐화 강화
         GreaterThanOne numberOfRow = GreaterThanOne.from(3);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 

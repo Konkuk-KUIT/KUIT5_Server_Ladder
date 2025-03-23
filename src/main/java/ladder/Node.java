@@ -2,6 +2,7 @@ package ladder;
 
 import static ladder.Direction.*;
 
+// 각 위치의 상태를 나타내는 클래스
 public class Node {
 
     private Direction direction;
@@ -47,5 +48,9 @@ public class Node {
 
     private boolean isNone() {
         return direction == NONE;
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 }

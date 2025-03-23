@@ -2,6 +2,7 @@ package ladder;
 
 import static ladder.ExceptionMessage.INVALID_LADDER_POSITION;
 
+// 현재 위치를 반환, 이동 & 검증
 public class Position {
     private int position;
 
