@@ -17,8 +17,8 @@ class LadderTest {
 
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
-        assertThat(ladder.getRows().length).isEqualTo(rowLength);
-        assertThat(ladder.getRows()[0].length).isEqualTo(numberOfPerson);
+        assertThat(ladder.getPositions().getPositions().length).isEqualTo(rowLength);
+        assertThat(ladder.getPositions().getPositions()[0].length).isEqualTo(numberOfPerson);
     }
 
     @ParameterizedTest
@@ -41,7 +41,7 @@ class LadderTest {
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
         ladder.drawLine(1, 2);
 
-        assertThat(ladder.getRows()[1][2]).isEqualTo(1);
+        assertThat(ladder.getPositions().getPositions()[1][2].hasBridge()).isEqualTo(true);
     }
 
     @Test
