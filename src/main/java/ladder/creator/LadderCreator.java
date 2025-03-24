@@ -1,6 +1,7 @@
 package ladder.creator;
 
 import ladder.GreaterThanOne;
+import ladder.LadderSize;
 import ladder.Position;
 import ladder.Row;
 
@@ -8,6 +9,7 @@ import ladder.Row;
 public class LadderCreator {
 
     private final Row[] rows;
+    private final LadderSize ladderSize;
 
     // 1. 사다리 생성 틀
     public LadderCreator(GreaterThanOne numberOfRow, GreaterThanOne numberOfPerson) {
@@ -16,6 +18,7 @@ public class LadderCreator {
         for (int i = 0; i < numberOfRow.getNumber(); i++) {
             rows[i] = new Row(numberOfPerson);
         }
+        ladderSize = LadderSize.fromLadder(rows);
     }
 
     // 2. 선 그리기
@@ -24,7 +27,12 @@ public class LadderCreator {
         rows[row.getValue()].drawLine(col);
     }
 
+
     public Row[] getRows() {
         return rows;
+    }
+
+    public LadderSize getLadderSize() {
+        return ladderSize;
     }
 }

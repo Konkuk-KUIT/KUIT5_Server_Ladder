@@ -87,4 +87,9 @@ public class Row {
     private Direction getDirection(int index) {
         return nodes[index].getDirection();
     }
+
+
+    public int getNumberOfPerson() {
+        return nodes.length;
+    }
 }

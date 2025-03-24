@@ -2,6 +2,7 @@ package ladder.creator;
 
 import ladder.GreaterThanOne;
 import ladder.LadderGame;
+import ladder.LadderGameFactory;
 import ladder.Position;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,21 @@ class LadderCreatorTest {
 
         //then
         // 여기서 출력을 해야함!
+        ladderGame.run(Position.from(0));
+    }
+
+    @Test
+    @DisplayName("자동 생성 사다리 게임 실행 테스트")
+    void autoLadderCreator()  {
+        //given
+        GreaterThanOne numberOfRow = GreaterThanOne.from(4);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+
+        //when
+        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(ladderCreator);
+
+        //then
         ladderGame.run(Position.from(0));
     }
 
