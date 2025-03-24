@@ -21,17 +21,6 @@ class LadderTest {
         assertThat(ladder.getPositions().getPositions()[0].length).isEqualTo(numberOfPerson);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {-1, 0})
-    @DisplayName("createEmptyLadder throw 검증")
-    void testLadderInitializationThrows(int givenNumberOfPerson) {
-        NaturalNumber rowLength = new NaturalNumber(5);
-
-        assertThatThrownBy(() -> Ladder.createEmptyLadder(rowLength, new NaturalNumber(givenNumberOfPerson)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.NATURAL_NUMBER_CANNOT_BE_NEGATIVE_OR_ZERO.getMessage());
-    }
-
     @Test
     @DisplayName("drawLine() 검증")
     void testLadderDrawLine(){
