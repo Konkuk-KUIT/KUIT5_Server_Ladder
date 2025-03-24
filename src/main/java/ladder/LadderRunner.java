@@ -8,22 +8,24 @@ public class LadderRunner {
         this.rows = rows;
     }
 
-    public int run(Position position) {
+    public void run(Position position) {
 
-        for (int i = 0; i < rows.length; i++) {
-            rows[i].nextPosition(position);
-            for (Row row : rows) {
-            row.showRow();
+        for (Row row : rows) {
+            row.nextPosition(position);
+            System.out.println("Before");
+            printRow();
             System.out.println();
-            }
-            System.out.println();
-            rows[i].nextStar(position);
-            for (Row row : rows) {
-                row.showRow();
-                System.out.println();
-            }
+            row.nextStar(position);
+            System.out.println("After");
+            printRow();
             System.out.println();
         }
-        return position.getValue();
+    }
+
+    private void printRow(){
+        for (Row row : rows) {
+            row.showRow();
+            System.out.println();
+        }
     }
 }

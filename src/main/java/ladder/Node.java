@@ -5,26 +5,27 @@ import static ladder.Direction.*;
 public class Node {
 
     private Direction direction;
+    private boolean star = false;
 
     private Node(Direction direction) {
         this.direction = direction;
     }
-    private boolean star = false;
 
     public static Node from(Direction direction) {
         return new Node(direction);
     }
+
     public void showNode() {
         System.out.print(direction.getValue() + (star ? "* " : " "));
         star = false;
     }
+
     public void makeStar(){
         star = true;
     }
 
     public void move(Position position) {
         makeStar();
-//        System.out.println(position.getValue()+" "+direction+"\n");
         if (isRight()) {
             position.next();
             return;
