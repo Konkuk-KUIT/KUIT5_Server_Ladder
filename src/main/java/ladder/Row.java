@@ -21,7 +21,6 @@ public class Row {
 
     public void nextPosition(Position position) {
         validatePosition(position);
-
         nodes[position.getValue()].move(position);
     }
 
@@ -57,6 +56,16 @@ public class Row {
         boolean lineAtPosition = isLineAtPosition(position);
         position.prev();
         return lineAtPosition;
+    }
+
+
+
+    public String presentNode(){
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ; i<nodes.length ; i++) {
+            sb.append("0");
+        }
+        return sb.toString();
     }
 
 }
