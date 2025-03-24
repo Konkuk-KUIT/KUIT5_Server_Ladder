@@ -29,7 +29,7 @@ class LadderTest {
 
         assertThatThrownBy(() -> new Ladder(rowLength, givenNumberOfPerson))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("시작 안원은 1 이상으로 입력해야 합니다.");
+                .hasMessageContaining(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
     }
 
     @Test
@@ -55,7 +55,7 @@ class LadderTest {
 
         assertThatThrownBy(() -> ladder.drawLine(1, 3))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("연속된 다리는 생성할 수 없습니다.");
+                .hasMessageContaining(ExceptionMessage.LINE_UNREPEATABLE.getMessage());
     }
 
     @Test
@@ -68,7 +68,7 @@ class LadderTest {
 
         assertThatThrownBy(() -> ladder.drawLine(100, 2))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("유효하지 않은 좌표입니다.");
+                .hasMessageContaining(ExceptionMessage.POSITION_INVALID.getMessage());
     }
 
     @ParameterizedTest
@@ -95,6 +95,6 @@ class LadderTest {
 
         assertThatThrownBy(() -> ladder.run(givenIndexNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("시작 지점은 0 이상 " + (numberOfPerson - 1) + "이하로 선택해야 합니다.");
+                .hasMessageContaining(ExceptionMessage.START_INDEX_OUT_OF_BOUNDS.getMessage());
     }
 }

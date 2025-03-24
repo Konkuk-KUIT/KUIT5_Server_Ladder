@@ -7,7 +7,7 @@ public class Ladder {
     public Ladder(int row, int numberOfPerson) {
         // 시작 인원 입력이 잘못되었을 경우에는 throw
         if (numberOfPerson <= 0) {
-            throw new IllegalArgumentException("시작 안원은 1 이상으로 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
         }
 
         // numberOfPerson -> col
@@ -21,7 +21,7 @@ public class Ladder {
     public int run(int startIndex){
         // 시작 좌표 입력이 잘못되었을 경우에는 throw
         if (startIndex >= rows[0].length || startIndex < 0) {
-            throw new IllegalArgumentException("시작 지점은 0 이상 " + rows.length + "이하로 선택해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.START_INDEX_OUT_OF_BOUNDS.getMessage());
         }
 
         return processLadder(startIndex);
@@ -30,12 +30,12 @@ public class Ladder {
     // 특정 위치에 다리를 그리는 public 메서드
     public void drawLine(int row, int col) {
         if (row < 0 || row >= rows.length || col < 0 || col >= rows[0].length - 1) {
-            throw new IllegalArgumentException("유효하지 않은 좌표입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.POSITION_INVALID.getMessage());
         }
 
         // 연속된 다리 방지 (왼쪽에 다리가 있으면 생성 X)
         if (col > 0 && rows[row][col - 1] == 1) {
-            throw new IllegalArgumentException("연속된 다리는 생성할 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.LINE_UNREPEATABLE.getMessage());
         }
 
         rows[row][col] = 1;
