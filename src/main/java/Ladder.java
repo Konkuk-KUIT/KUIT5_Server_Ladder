@@ -7,31 +7,21 @@ public class Ladder {
         this.positions = new Positions(row, numberOfPerson);
     }
 
-    public static Ladder createEmptyLadder(int row, int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-        return new Ladder(row, numberOfPerson);
+    public static Ladder createEmptyLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        return new Ladder(row.getNumber(), numberOfPerson.getNumber());
     }
 
-    public static Ladder createRandomLadder(int row, int numberOfPerson) {
-        validateNumberOfPerson(numberOfPerson);
-
-        Ladder ladder = new Ladder(row, numberOfPerson);
+    public static Ladder createRandomLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        Ladder ladder = new Ladder(row.getNumber(), numberOfPerson.getNumber());
         ladder.drawRandomLine();
 
         return ladder;
     }
 
-    // 시작 인원 입력이 잘못되었을 경우에는 throw
-    private static void validateNumberOfPerson(int numberOfPerson) {
-        if (numberOfPerson <= 0) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
-        }
-    }
-
     // 사다리타기 시작
     public int run(int startIndex){
         // 시작 좌표 입력이 잘못되었을 경우에는 throw
-        if (startIndex >= positions.getMaxCol() || startIndex < 0) {
+        if (startIndex < 0 || startIndex >= positions.getMaxCol()) {
             throw new IllegalArgumentException(ExceptionMessage.START_INDEX_OUT_OF_BOUNDS.getMessage());
         }
 
@@ -39,8 +29,11 @@ public class Ladder {
     }
 
     // 특정 위치에 다리를 그리는 public 메서드
-    public void drawLine(int row, int col) {
-        if (row < 0 || row >= positions.getMaxRow() || col < 0 || col >= positions.getMaxCol()) {
+    public void drawLine(NaturalNumber naturalRow, NaturalNumber naturalCol) {
+        int row = naturalRow.getNumber();
+        int col = naturalCol.getNumber();
+
+        if (row >= positions.getMaxRow() || col >= positions.getMaxCol()) {
             throw new IllegalArgumentException(ExceptionMessage.POSITION_INVALID.getMessage());
         }
 
@@ -107,20 +100,4 @@ public class Ladder {
     public Positions getPositions() {
         return positions;
     }
-
-    //    public static void main(String[] args) {
-//        Ladder ladder = new Ladder(5, 6);
-//
-//        // 외부에서 다리 그리기
-//        ladder.drawLine(0, 1);
-//        ladder.drawLine(1, 2);
-//        ladder.drawLine(2, 0);
-//        ladder.drawLine(3, 3);
-//        ladder.drawLine(4, 4);
-//
-//        int startIndex = new Random().nextInt(6);
-//        int result = ladder.run(startIndex);
-//
-//        System.out.println("시작 위치: " + startIndex + " -> 도착 위치: " + result);
-//    }
 }

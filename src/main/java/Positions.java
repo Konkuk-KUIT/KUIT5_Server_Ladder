@@ -6,10 +6,6 @@ public class Positions {
     }
 
     private void initializePositions(int row, int col) {
-        if (row < 0 || col < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.POSITION_INVALID.getMessage());
-        }
-
         positions = new Position[row][col];
 
         for (int i = 0; i < row; i++) {

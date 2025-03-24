@@ -15,7 +15,7 @@ class LadderTest {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(new NaturalNumber(rowLength), new NaturalNumber(numberOfPerson));
 
         assertThat(ladder.getPositions().getPositions().length).isEqualTo(rowLength);
         assertThat(ladder.getPositions().getPositions()[0].length).isEqualTo(numberOfPerson);
@@ -25,21 +25,21 @@ class LadderTest {
     @ValueSource(ints = {-1, 0})
     @DisplayName("createEmptyLadder throw 검증")
     void testLadderInitializationThrows(int givenNumberOfPerson) {
-        int rowLength = 5;
+        NaturalNumber rowLength = new NaturalNumber(5);
 
-        assertThatThrownBy(() -> Ladder.createEmptyLadder(rowLength, givenNumberOfPerson))
+        assertThatThrownBy(() -> Ladder.createEmptyLadder(rowLength, new NaturalNumber(givenNumberOfPerson)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
+                .hasMessageContaining(ExceptionMessage.NATURAL_NUMBER_CANNOT_BE_NEGATIVE_OR_ZERO.getMessage());
     }
 
     @Test
     @DisplayName("drawLine() 검증")
     void testLadderDrawLine(){
-        int rowLength = 5;
-        int numberOfPerson = 6;
+        NaturalNumber rowLength = new NaturalNumber(5);
+        NaturalNumber numberOfPerson = new NaturalNumber(6);
 
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
-        ladder.drawLine(1, 2);
+        ladder.drawLine(new NaturalNumber(1), new NaturalNumber(2));
 
         assertThat(ladder.getPositions().getPositions()[1][2].hasBridge()).isEqualTo(true);
     }
@@ -47,13 +47,13 @@ class LadderTest {
     @Test
     @DisplayName("drawLine() Throw 검증")
     void testLadderDrawLineThrows(){
-        int rowLength = 5;
-        int numberOfPerson = 6;
+        NaturalNumber rowLength = new NaturalNumber(5);
+        NaturalNumber numberOfPerson = new NaturalNumber(6);
 
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
-        ladder.drawLine(1, 2);
+        ladder.drawLine(new NaturalNumber(1), new NaturalNumber(2));
 
-        assertThatThrownBy(() -> ladder.drawLine(1, 3))
+        assertThatThrownBy(() -> ladder.drawLine(new NaturalNumber(1), new NaturalNumber(3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.LINE_UNREPEATABLE.getMessage());
     }
@@ -61,12 +61,12 @@ class LadderTest {
     @Test
     @DisplayName("drawLine() OutBound Throw 검증")
     void testLadderDrawLineThrowsOutBound(){
-        int rowLength = 5;
-        int numberOfPerson = 6;
+        NaturalNumber rowLength = new NaturalNumber(5);
+        NaturalNumber numberOfPerson = new NaturalNumber(6);
 
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
-        assertThatThrownBy(() -> ladder.drawLine(100, 2))
+        assertThatThrownBy(() -> ladder.drawLine(new NaturalNumber(100), new NaturalNumber(2)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.POSITION_INVALID.getMessage());
     }
@@ -75,9 +75,10 @@ class LadderTest {
     @ValueSource(ints = {10, 20, 30})
     @DisplayName("run() 검증")
     void testLadderRun(int givenNumberOfPerson){
-        int rowLength = givenNumberOfPerson;
+        // 임의의 길이
+        NaturalNumber rowLength = new NaturalNumber(givenNumberOfPerson);
 
-        Ladder ladder = Ladder.createEmptyLadder(rowLength, givenNumberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, new NaturalNumber(givenNumberOfPerson));
 
         assertThat(ladder.run(0))
                 .isGreaterThanOrEqualTo(0)
@@ -88,8 +89,8 @@ class LadderTest {
     @ValueSource(ints = {-10, -1})
     @DisplayName("run() throw 검증")
     void testLadderRunThrows(int givenIndexNumber){
-        int rowLength = 5;
-        int numberOfPerson = 6;
+        NaturalNumber rowLength = new NaturalNumber(5);
+        NaturalNumber numberOfPerson = new NaturalNumber(6);
 
         Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
