@@ -1,28 +1,42 @@
+import java.util.Arrays;
+
 public class Ladder {
-    private final Line line;
+    private final Direction[][] rows;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
-        this.line = new Line(numberOfRow, numberOfPerson);
-    }
-
-    // 특정 위치(row, col)에 가로 선 그리기
-    public void drawLine(int row, int col){
-        line.drawLine(row-1, col-1);
-    }
-
-    // 선택한 위치에서 아래로 내려가며 최종 도착 위치 반환
-    public int run(int selectedLadder){
-        int row = 0;
-        int col = selectedLadder-1;
-        while(row < line.getNumberOfRow()){
-            col = nextPosition(col, line.getDirection(row, col));
-            row++;
+        rows = new Direction[numberOfRow][numberOfPerson];
+        for (int i = 0; i < rows.length; i++) {
+            Arrays.fill(rows[i], Direction.NONE);
         }
-        return col+1;
     }
 
-    // 현재 위치(col)에서 주어진 방향에 따라 다음 위치 계산
-    public int nextPosition(int col, Direction direction){
-        return col + direction.getValue();
+    // 특정 위치(row, col)에 가로 선 추가
+    public void drawLine(int row, int col){
+        validateLine(row, col);
+        rows[row][col] = Direction.RIGHT;
+        rows[row][col+1] = Direction.LEFT;
+    }
+
+    // 유효한 위치인지 검사
+    public void validateLine(int row, int col){
+        if(col < 0 || col >= rows[0].length-1){
+            throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_COLUMN.getMessage());
+        }
+        if(row < 0 || row >= rows.length){
+            throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_ROW.getMessage());
+        }
+        if(rows[row][col] != Direction.NONE || rows[row][col+1] != Direction.NONE){
+            throw new IllegalArgumentException(ErrorMessage.LINE_ALREADY_EXISTS.getMessage());
+        }
+    }
+
+    // 해당 위치의 방향 반환
+    public Direction getDirection(int row, int col){
+        return rows[row][col];
+    }
+
+    // 사다리 총 행(row)개수 반환
+    public int getNumberOfRow(){
+        return rows.length;
     }
 }
