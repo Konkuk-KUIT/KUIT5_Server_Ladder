@@ -29,9 +29,9 @@ class LadderTest {
     @Test
     @DisplayName("선 여러개 있을 때 잘 가는지 확인")
     void testRunWithMultipleLines() {
-        ladder.drawLine(0, 1); // 1 -> 2
-        ladder.drawLine(1, 2); // 2 -> 3
-        ladder.drawLine(2, 1); // 1 -> 2
+        ladder.drawLine(0, 1); // 1->2
+        ladder.drawLine(1, 2); // 2->3
+        ladder.drawLine(2, 1); // 1->2
         assertEquals(2, ladder.run(1));
     }
 
