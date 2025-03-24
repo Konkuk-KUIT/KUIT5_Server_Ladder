@@ -9,8 +9,16 @@ public class Row {
     public Row(GreaterThanOne numberOfPerson) {
         nodes = new Node[numberOfPerson.getNumber()];
         for (int i = 0; i < numberOfPerson.getNumber(); i++) {
-            nodes[i] = Node.from(NONE);
+            nodes[i] = Node.from(NONE); // 초기화
         }
+    }
+    public void showRow(){
+        for (Node node : nodes) {
+            node.showNode();
+        }
+    }
+    public void nextStar(Position position){
+        nodes[position.getValue()].makeStar();
     }
 
     public void drawLine(Position startPosition) {

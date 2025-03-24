@@ -10,6 +10,10 @@ public class LadderGame {
         this.ladderCreator = ladderCreator;
     }
 
+    public static LadderGame createRandomLadderGame(LadderCreator ladderCreator) {
+        return new LadderGame(ladderCreator);
+    }
+
     public int run(Position position) {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         ladderRunner.run(position);
