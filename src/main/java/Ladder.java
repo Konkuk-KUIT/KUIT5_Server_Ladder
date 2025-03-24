@@ -4,17 +4,30 @@ public class Ladder {
 
     private final int[][] rows;
 
-    public Ladder(int row, int numberOfPerson) {
-        // 시작 인원 입력이 잘못되었을 경우에는 throw
+    private Ladder(int row, int numberOfPerson) {
+        // numberOfPerson -> col
+        this.rows = new int[row][numberOfPerson];
+    }
+
+    public static Ladder createEmptyLadder(int row, int numberOfPerson) {
+        validateNumberOfPerson(numberOfPerson);
+        return new Ladder(row, numberOfPerson);
+    }
+
+    public static Ladder createRandomLadder(int row, int numberOfPerson) {
+        validateNumberOfPerson(numberOfPerson);
+
+        Ladder ladder = new Ladder(row, numberOfPerson);
+        ladder.drawLine();
+
+        return ladder;
+    }
+
+    // 시작 인원 입력이 잘못되었을 경우에는 throw
+    private static void validateNumberOfPerson(int numberOfPerson) {
         if (numberOfPerson <= 0) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
         }
-
-        // numberOfPerson -> col
-        rows = new int[row][numberOfPerson];
-
-        //사다리 객체 랜덤 초기화
-        //drawLine();
     }
 
     // 사다리타기 시작

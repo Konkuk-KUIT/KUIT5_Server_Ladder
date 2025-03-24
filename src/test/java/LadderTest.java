@@ -10,12 +10,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LadderTest {
 
     @Test
-    @DisplayName("생성자 검증")
+    @DisplayName("createEmptyLadder 검증")
     void testLadderInitialization() {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = new Ladder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
         assertThat(ladder.getRows().length).isEqualTo(rowLength);
         assertThat(ladder.getRows()[0].length).isEqualTo(numberOfPerson);
@@ -23,11 +23,11 @@ class LadderTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
-    @DisplayName("생성자 throw 검증")
+    @DisplayName("createEmptyLadder throw 검증")
     void testLadderInitializationThrows(int givenNumberOfPerson) {
         int rowLength = 5;
 
-        assertThatThrownBy(() -> new Ladder(rowLength, givenNumberOfPerson))
+        assertThatThrownBy(() -> Ladder.createEmptyLadder(rowLength, givenNumberOfPerson))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.NUMBER_OF_PERSON_OUT_OF_BOUNDS.getMessage());
     }
@@ -38,7 +38,7 @@ class LadderTest {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = new Ladder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
         ladder.drawLine(1, 2);
 
         assertThat(ladder.getRows()[1][2]).isEqualTo(1);
@@ -50,7 +50,7 @@ class LadderTest {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = new Ladder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
         ladder.drawLine(1, 2);
 
         assertThatThrownBy(() -> ladder.drawLine(1, 3))
@@ -64,7 +64,7 @@ class LadderTest {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = new Ladder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
         assertThatThrownBy(() -> ladder.drawLine(100, 2))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -77,7 +77,7 @@ class LadderTest {
     void testLadderRun(int givenNumberOfPerson){
         int rowLength = givenNumberOfPerson;
 
-        Ladder ladder = new Ladder(rowLength, givenNumberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, givenNumberOfPerson);
 
         assertThat(ladder.run(0))
                 .isGreaterThanOrEqualTo(0)
@@ -91,7 +91,7 @@ class LadderTest {
         int rowLength = 5;
         int numberOfPerson = 6;
 
-        Ladder ladder = new Ladder(rowLength, numberOfPerson);
+        Ladder ladder = Ladder.createEmptyLadder(rowLength, numberOfPerson);
 
         assertThatThrownBy(() -> ladder.run(givenIndexNumber))
                 .isInstanceOf(IllegalArgumentException.class)
