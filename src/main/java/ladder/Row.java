@@ -59,4 +59,27 @@ public class Row {
         return lineAtPosition;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Node node : nodes) {
+            sb.append(node.getNodeDirection()).append(" ");
+        }
+        return sb.toString();
+    }
+
+    public String printCurrentPosition(Position position) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < nodes.length; i++) {
+            if (i == position.getValue()) {
+                sb.append(nodes[i].getNodeDirection()).append("* ");
+                continue;
+            }
+            if (i != position.getValue()) {
+                sb.append(nodes[i].getNodeDirection()).append(" ");
+            }
+        }
+        return sb.toString();
+    }
 }
