@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.UserLadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +22,7 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        UserLadderCreator ladderCreator = new UserLadderCreator(numberOfRow, numberOfPerson);
 
         //then
         assertThat(ladderCreator).isNotNull();
@@ -33,7 +33,7 @@ class LadderGameTest {
     void throwInvalidPersonException() {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
+        UserLadderCreator ladderCreator = new UserLadderCreator(GreaterThanOne.from(2), numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //given
@@ -51,7 +51,7 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        UserLadderCreator ladderCreator = new UserLadderCreator(row, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
@@ -88,7 +88,7 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        UserLadderCreator ladderCreator = new UserLadderCreator(row, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));

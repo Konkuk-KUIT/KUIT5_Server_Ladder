@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.UserLadderCreator;
 
 // 게임의 실행을 담당하는 메인 컨트롤러
 public class LadderGame {
