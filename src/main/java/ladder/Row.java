@@ -59,4 +59,29 @@ public class Row {
         return lineAtPosition;
     }
 
+    public void printRow(StringBuilder sb) {
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i].printNode(sb);
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
+
+    public void printStar(StringBuilder sb, LadderPosition ladderPosition) {
+        for (int i = 0; i < nodes.length; i++) {
+            if (isCurrentLadder(ladderPosition, i)) {
+                nodes[i].printNode(sb);
+                sb.append("* ");
+                continue;
+            }
+            nodes[i].printNode(sb);
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
+
+    private static boolean isCurrentLadder(LadderPosition ladderPosition, int i) {
+        return i == ladderPosition.getCol();
+    }
+
 }

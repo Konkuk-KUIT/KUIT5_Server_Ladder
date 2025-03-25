@@ -48,4 +48,9 @@ public class Node {
     private boolean isNone() {
         return direction == NONE;
     }
+
+    public void printNode(StringBuilder sb) {
+        sb.append(direction.getValue());
+    }
+
 }
