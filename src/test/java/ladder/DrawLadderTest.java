@@ -1,7 +1,6 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,30 +8,28 @@ import static org.assertj.core.api.Assertions.*;
 
 
 public class DrawLadderTest {
+
+
+
     @Test
-    @DisplayName("Node가 없이 0으로만 그려진 사다리가 출력된다.")
-    public void DrawRawLadderTest() {
+    @DisplayName("게임을 실행하면 진행 과정이 별로 표시되어 출력된다.")
+    void DrawStarAtLadder() {
         // given
         GreaterThanOne row = new GreaterThanOne(4);
         GreaterThanOne numberOfPerson = new GreaterThanOne(5);
         LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
 
-        // when
-        StringBuilder sb = new StringBuilder();
-        String expectedLadderStructure;
-        for (int i = 0; i<row.getNumber(); i++)
-        {
-            for(int j=0; j<numberOfPerson.getNumber(); j++){
-                sb.append("0");
-            }
-             sb.append("\n");
-        }
-        expectedLadderStructure = sb.toString();
-
-        String ladderStructure = ladderCreator.presentLadder();
+        Position position1 = Position.from(1);
+        Position position2 = Position.from(2);
+        ladderCreator.drawLine(position1,position1);
+        ladderCreator.drawLine(position2,position2);
 
 
-        // then
-        assertThat(ladderStructure).isEqualTo(expectedLadderStructure);
+        // when & then
+        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+        int result = ladderRunner.run(Position.from(1));
+        assertThat(result).isEqualTo(3);
+
+
     }
 }

@@ -22,6 +22,7 @@ public class Row {
     public void nextPosition(Position position) {
         validatePosition(position);
         nodes[position.getValue()].move(position);
+
     }
 
     private void setDirectionBetweenNextPosition(Position position) {
@@ -60,10 +61,33 @@ public class Row {
 
 
 
-    public String presentNode(){
+    public String presentNode(final int row, final LadderPosition ladderPosition){
         StringBuilder sb = new StringBuilder();
+        Position origin = Position.from(0);
+
         for (int i = 0 ; i<nodes.length ; i++) {
-            sb.append("0");
+            Position tempPosition = Position.from(origin.getValue());
+            nodes[i].move(tempPosition);
+
+            if(origin.isSmallerThan(tempPosition.getValue())){
+                sb.append(" 1");
+            }
+
+            if(origin.isBiggerThan(tempPosition.getValue())){
+                sb.append("-1");
+            }
+
+            if(origin.isSameAs(tempPosition.getValue())) {
+                sb.append(" 0");
+            }
+
+            if(ladderPosition.isSameAs(row,i)){
+                sb.append("*");
+                continue;
+            }
+
+            sb.append(" ");
+            origin.next();
         }
         return sb.toString();
     }
