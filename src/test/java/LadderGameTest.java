@@ -25,7 +25,7 @@ class LadderGameTest {
         ladderGame.drawLine(4,3);
 
         // when
-        int result = ladderGame.run(input);
+        int result = ladderGame.runWithTrace(input);
 
         // then
         Assertions.assertThat(result).isEqualTo(expected);
@@ -44,7 +44,7 @@ class LadderGameTest {
         ladderGame.drawLine(2,2);
 
         // when & then
-        assertThatThrownBy(()-> ladderGame.drawLine(row,col))
+        assertThatThrownBy(()-> ladderGame.drawLine(row, col))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("A line already exists");
     }

@@ -1,42 +1,57 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ladder {
-    private final Direction[][] rows;
+    private final List<Row> rows;
 
     public Ladder(int numberOfRow, int numberOfPerson) {
-        rows = new Direction[numberOfRow][numberOfPerson];
-        for (int i = 0; i < rows.length; i++) {
-            Arrays.fill(rows[i], Direction.NONE);
+        rows = new ArrayList<>();
+        for (int i = 0; i < numberOfRow; i++) {
+            rows.add(new Row(numberOfPerson));
         }
     }
 
     // 특정 위치(row, col)에 가로 선 추가
     public void drawLine(int row, int col){
-        validateLine(row, col);
-        rows[row][col] = Direction.RIGHT;
-        rows[row][col+1] = Direction.LEFT;
+        validate(row, col);
+        rows.get(row).drawLine(col);
     }
 
     // 유효한 위치인지 검사
-    public void validateLine(int row, int col){
-        if(col < 0 || col >= rows[0].length-1){
-            throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_COLUMN.getMessage());
-        }
-        if(row < 0 || row >= rows.length){
+    public void validate(int row, int col){
+        if (row < 0 || row >= rows.size()) {
             throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_ROW.getMessage());
         }
-        if(rows[row][col] != Direction.NONE || rows[row][col+1] != Direction.NONE){
+        if (col < 0 || col >= rows.get(0).getLength() - 1) {
+            throw new ArrayIndexOutOfBoundsException(ErrorMessage.INVALID_COLUMN.getMessage());
+        }
+        Direction d1 = rows.get(row).getDirection(col);
+        Direction d2 = rows.get(row).getDirection(col + 1);
+        if (d1 != Direction.NONE || d2 != Direction.NONE) {
             throw new IllegalArgumentException(ErrorMessage.LINE_ALREADY_EXISTS.getMessage());
         }
     }
 
     // 해당 위치의 방향 반환
-    public Direction getDirection(int row, int col){
-        return rows[row][col];
+    public Direction getDirection(int row, int col) {
+        return rows.get(row).getDirection(col);
     }
 
     // 사다리 총 행(row)개수 반환
-    public int getNumberOfRow(){
-        return rows.length;
+    public int getNumberOfRow() {
+        return rows.size();
+    }
+
+    // 사다리 출력
+    public void print(LadderPosition position) {
+        for (int i = 0; i < rows.size(); i++) {
+            if (i == position.getX()) {
+                System.out.println(rows.get(i).toStringWithPosition(position));
+            } else {
+                System.out.println(rows.get(i).toStringWithPosition(null));
+            }
+        }
+        System.out.println();
     }
 }
