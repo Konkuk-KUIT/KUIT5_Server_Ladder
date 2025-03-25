@@ -8,10 +8,10 @@ public class Line {
 
     public void validateDrawLine(int col) {
         if (col < 0 || col >= moves.length - 1) {
-            throw new IllegalArgumentException(ExceptionMsg.INVALID_LINE_POSITION);
+            throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
         if (moves[col] != 0 || moves[col + 1] != 0) {
-            throw new IllegalStateException(ExceptionMsg.ALREADY_CONNECTED);
+            throw new IllegalStateException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
     }
 }

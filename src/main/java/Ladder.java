@@ -1,5 +1,3 @@
-import java.util.zip.CheckedInputStream;
-
 // 사다리 관리 클래스
 public class Ladder {
 
@@ -34,11 +32,11 @@ public class Ladder {
 
     private void validateDrawLine(int row, int col){
         if (row < 0 || row >= rows.length || col < 0 || col >= rows[0].length - 1) {
-            throw new IllegalArgumentException(ExceptionMsg.INVALID_LADDER_POSITION);
+            throw new IllegalArgumentException(ExceptionMsg.INVALID_LADDER_POSITION.getMessage());
         }
 
         if (rows[row][col] != 0 || rows[row][col + 1] != 0){
-            throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED);
+            throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
 
     }
