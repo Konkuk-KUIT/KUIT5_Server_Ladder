@@ -24,13 +24,24 @@ public class LadderPrinter {
 
     private String getCurrentCellState(int row, int column, int currentRow, Position position) {
         if (row == 0) {
-            return (column == 0 ? "+" : "-") + " ";
+            return decideFirstLineCell(column);
         }
         if (column == 0) {
             return "| ";
         }
 
-        String marker = (row == currentRow && column == position.getCurrentPosition()) ? "*" : "";
+        String marker = checkMarker(row, column, currentRow, position);
         return ladderRows.getRowsValue(row, column) + marker + " ";
+    }
+
+    private static String decideFirstLineCell(int column) {
+        return column == 0 ? "+ " : "- ";
+    }
+
+    private static String checkMarker(int row, int column, int currentRow, Position position) {
+        if(row == currentRow && column == position.getCurrentPosition()){
+            return "*";
+        }
+        return "";
     }
 }
