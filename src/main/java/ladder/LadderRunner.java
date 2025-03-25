@@ -12,13 +12,9 @@ public class LadderRunner {
 
     public int run(Position position) {
         for (int i = 0; i < rows.length; i++) {
-            LadderPosition ladderPosition = new LadderPosition(Position.from(i), position);
-            ladderPrinter.printBefore(ladderPosition);
-
+            ladderPrinter.printBefore(LadderPosition.of(Position.from(i), position));
             rows[i].nextPosition(position);
-
-            ladderPosition = new LadderPosition(Position.from(i), position);
-            ladderPrinter.printAfter(ladderPosition);
+            ladderPrinter.printAfter(LadderPosition.of(Position.from(i), position));
         }
         return position.getValue();
     }
