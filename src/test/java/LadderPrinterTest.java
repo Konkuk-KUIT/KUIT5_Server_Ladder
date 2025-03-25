@@ -16,7 +16,7 @@ class LadderPrinterTest {
         LadderGame ladderGame=LadderGame.of(ladder.getLadderRows());
 
         // when
-        LadderPrinter ladderPrinter = new LadderPrinter(ladder.getLadderRows());
+        LadderPrinter ladderPrinter = LadderPrinter.create(ladder.getLadderRows());
         ladderGame.run(NaturalNumber.of(1));
 
         // then

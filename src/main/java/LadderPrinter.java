@@ -1,8 +1,12 @@
 public class LadderPrinter {
     private final LadderRows ladderRows;
 
-    public LadderPrinter(LadderRows ladderRows) {
+    private LadderPrinter(LadderRows ladderRows) {
         this.ladderRows = ladderRows;
+    }
+
+    public static LadderPrinter create(LadderRows ladderRows) {
+        return new LadderPrinter(ladderRows);
     }
 
     public void printLadder(int currentRow, Position position, String label) {
