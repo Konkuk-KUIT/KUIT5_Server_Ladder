@@ -12,4 +12,5 @@ public class Position {
     public int getCurrentPosition(){
         return this.position;
     }
+
 }
