@@ -72,7 +72,9 @@ public class Ladder {
     private int processLadder(int startIndex) {
         int currentIndex = startIndex;
         for (int i = 0; i < positions.getMaxRow(); i++) {
+            printLadder("Before", i, currentIndex);
             currentIndex = processRow(i, currentIndex);
+            printLadder("After", i + 1, currentIndex);
         }
 
         return currentIndex;
@@ -95,6 +97,26 @@ public class Ladder {
 
         // 좌우 이동 없이 아래로 이동하는 경우
         return currentIndex;
+    }
+
+    private void printLadder(String statusDescription, int currentRow, int currentIndex) {
+        System.out.println(statusDescription);
+        for (int i = 0; i < positions.getMaxRow(); i++) {
+            for (int j = 0; j < positions.getMaxCol(); j++) {
+                if (positions.getPosition(i, j).hasBridge()) {
+                    System.out.print("1");
+                    //System.out.print("|ㅡ");
+                }else{
+                    System.out.print("0");
+                    //System.out.print("| ");
+                }
+                if (i == currentRow && j == currentIndex) {
+                    System.out.print("*");
+                }
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
     }
 
     public Positions getPositions() {
