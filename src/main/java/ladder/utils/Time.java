@@ -1,4 +1,4 @@
-package ladder;
+package ladder.utils;
 
 public enum Time {
 

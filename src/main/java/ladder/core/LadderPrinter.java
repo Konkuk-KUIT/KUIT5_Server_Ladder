@@ -1,6 +1,9 @@
-package ladder;
+package ladder.core;
 
-import static ladder.Time.AFTER;
+import ladder.utils.position.LadderPosition;
+import ladder.utils.Time;
+
+import static ladder.utils.Time.AFTER;
 
 public class LadderPrinter {
     private final Row[] rows;
@@ -28,7 +31,7 @@ public class LadderPrinter {
     }
 
     private static boolean isSameHeight(LadderPosition ladderPosition, int i) {
-        return ladderPosition.getRow() == i;
+        return ladderPosition.getRow().getValue() == i;
     }
 
 }

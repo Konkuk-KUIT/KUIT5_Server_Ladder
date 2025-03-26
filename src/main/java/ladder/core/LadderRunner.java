@@ -1,6 +1,9 @@
-package ladder;
+package ladder.core;
 
-import static ladder.Time.*;
+import ladder.utils.position.LadderPosition;
+import ladder.utils.position.Position;
+
+import static ladder.utils.Time.*;
 
 public class LadderRunner {
 

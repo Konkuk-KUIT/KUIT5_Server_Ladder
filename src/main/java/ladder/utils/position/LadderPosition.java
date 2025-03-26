@@ -1,4 +1,4 @@
-package ladder;
+package ladder.utils.position;
 
 public class LadderPosition {
     private final Position row;
@@ -13,12 +13,12 @@ public class LadderPosition {
         return new LadderPosition(row, col);
     }
 
-    public int getRow() {
-        return row.getValue();
+    public Position getRow() {
+        return row;
     }
 
-    public int getCol() {
-        return col.getValue();
+    public Position getCol() {
+        return col;
     }
 
 }
