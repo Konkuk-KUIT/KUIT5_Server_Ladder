@@ -1,5 +1,9 @@
 package ladder;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import static ladder.Direction.*;
 import static ladder.ExceptionMessage.*;
 
@@ -32,7 +36,7 @@ public class Row {
     }
 
     private void validatePosition(Position position) {
-        if (isInvalidPosition(position) ) {
+        if (isInvalidPosition(position)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
@@ -45,7 +49,7 @@ public class Row {
     }
 
     private boolean isInvalidPosition(Position position) {
-        return position.isBiggerThan(nodes.length - 1) ;
+        return position.isBiggerThan(nodes.length - 1);
     }
 
     private boolean isLineAtPosition(Position position) {
@@ -57,6 +61,19 @@ public class Row {
         boolean lineAtPosition = isLineAtPosition(position);
         position.prev();
         return lineAtPosition;
+    }
+
+    public String rowToString() {
+        return Stream.of(nodes) // Node 배열을 스트림으로 변환
+                .map(node -> String.valueOf(node.getDirectionValue())) // 각 노드의 Direction 값의 value 값을 문자열로 반환
+                .collect(Collectors.joining(" ")); // 변환한 값들을 공백으로 연결해 문자열로 만듦
+    }
+
+    public String rowToStringWithStar(int ladderPositionX) {
+        return IntStream.range(0, nodes.length)
+                .mapToObj(i -> (i == ladderPositionX) ? nodes[i].valueToString() + "*" : String.valueOf(nodes[i]))
+                .reduce((a, b) -> a + " " + b) // 문자열 합치기
+                .orElse(""); // 값이 없을 경우 빈 문자열 반환
     }
 
 }

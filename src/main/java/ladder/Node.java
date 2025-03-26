@@ -48,4 +48,16 @@ public class Node {
     private boolean isNone() {
         return direction == NONE;
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getDirectionValue() {
+        return direction.getValue();
+    }
+
+    public String valueToString() {
+        return Integer.toString(getDirectionValue());
+    }
 }
