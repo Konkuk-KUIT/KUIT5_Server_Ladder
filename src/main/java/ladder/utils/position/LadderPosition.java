@@ -1,0 +1,24 @@
+package ladder.utils.position;
+
+public class LadderPosition {
+    private final Position row;
+    private final Position col;
+
+    private LadderPosition(Position row, Position col) {
+        this.row = row;
+        this.col = col;
+    }
+
+    public static LadderPosition of(Position row, Position col) {
+        return new LadderPosition(row, col);
+    }
+
+    public Position getRow() {
+        return row;
+    }
+
+    public Position getCol() {
+        return col;
+    }
+
+}

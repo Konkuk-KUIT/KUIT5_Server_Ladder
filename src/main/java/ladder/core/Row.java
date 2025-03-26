@@ -1,7 +1,11 @@
-package ladder;
+package ladder.core;
 
-import static ladder.Direction.*;
-import static ladder.ExceptionMessage.*;
+import ladder.utils.GreaterThanOne;
+import ladder.utils.position.LadderPosition;
+import ladder.utils.position.Position;
+
+import static ladder.utils.Direction.*;
+import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
     private final Node[] nodes;
@@ -11,6 +15,10 @@ public class Row {
         for (int i = 0; i < numberOfPerson.getNumber(); i++) {
             nodes[i] = Node.from(NONE);
         }
+    }
+
+    public Node[] getNodes() {
+        return nodes;
     }
 
     public void drawLine(Position startPosition) {
@@ -57,6 +65,31 @@ public class Row {
         boolean lineAtPosition = isLineAtPosition(position);
         position.prev();
         return lineAtPosition;
+    }
+
+    public void printRow(StringBuilder sb) {
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i].printNode(sb);
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
+
+    public void printStar(StringBuilder sb, LadderPosition ladderPosition) {
+        for (int i = 0; i < nodes.length; i++) {
+            if (isCurrentLadder(ladderPosition, i)) {
+                nodes[i].printNode(sb);
+                sb.append("* ");
+                continue;
+            }
+            nodes[i].printNode(sb);
+            sb.append(" ");
+        }
+        sb.append("\n");
+    }
+
+    private static boolean isCurrentLadder(LadderPosition ladderPosition, int i) {
+        return i == ladderPosition.getCol().getValue();
     }
 
 }
