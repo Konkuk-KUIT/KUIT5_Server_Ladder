@@ -61,7 +61,7 @@ public class Row {
 
 
 
-    public String presentNode(final int row, final LadderPosition ladderPosition){
+    public String nodeToString(final int row, final LadderPosition ladderPosition){
         StringBuilder sb = new StringBuilder();
         Position origin = Position.from(0);
 
@@ -90,6 +90,10 @@ public class Row {
             origin.next();
         }
         return sb.toString();
+    }
+
+    public int getNodelength() {
+        return nodes.length;
     }
 
 }

@@ -1,12 +1,19 @@
-package ladder;
+package ladder.game;
 
+import ladder.LadderRunner;
+import ladder.Position;
+import ladder.creator.ArtificialLadderCreator;
 import ladder.creator.LadderCreator;
+import ladder.creator.RandomLadderCreator;
 
 public class LadderGame {
 
     private final LadderCreator ladderCreator;
 
-    public LadderGame(LadderCreator ladderCreator) {
+    public LadderGame(ArtificialLadderCreator ladderCreator) {
+        this.ladderCreator = ladderCreator;
+    }
+    public LadderGame(RandomLadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 

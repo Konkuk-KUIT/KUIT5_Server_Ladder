@@ -10,37 +10,25 @@ public class LadderRunner {
 
     public int run(Position position) {
         for (int i = 0; i < rows.length; i++) {
-            beforePresentLadder(new LadderPosition(i, position.getValue()));
-
+            printLadder("Before\n", position, i);
             rows[i].nextPosition(position);
-
-            afterPresentLadder(new LadderPosition(i, position.getValue()));
+            printLadder("After\n", position, i);
         }
         return position.getValue();
     }
 
-
-
-
-    // Todo 메소드의 내용이 중첩됨
-    private void beforePresentLadder(LadderPosition ladderPosition) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Before\n");
-        for (int i = 0; i<rows.length; i++) {
-            sb.append(rows[i].presentNode(i,ladderPosition));
-            sb.append("\n");
-        }
-        System.out.println(sb.toString());
+    private void printLadder(String prefix,Position position, int i) {
+        System.out.println(prefix + ladderToString(new LadderPosition(Position.from(i), position)));
     }
 
-    private void afterPresentLadder(LadderPosition ladderPosition) {
+
+    private String ladderToString(LadderPosition ladderPosition) {
         StringBuilder sb = new StringBuilder();
-        sb.append("After\n");
         for (int i = 0; i<rows.length; i++) {
-            sb.append(rows[i].presentNode(i, ladderPosition));
+            sb.append(rows[i].nodeToString(i, ladderPosition));
             sb.append("\n");
         }
-        System.out.println(sb.toString());
+        return sb.toString();
     }
 
 

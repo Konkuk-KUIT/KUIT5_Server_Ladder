@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.ArtificialLadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class DrawLadderTest {
         // given
         GreaterThanOne row = new GreaterThanOne(4);
         GreaterThanOne numberOfPerson = new GreaterThanOne(5);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        ArtificialLadderCreator ladderCreator = new ArtificialLadderCreator(row, numberOfPerson);
 
         Position position1 = Position.from(1);
         Position position2 = Position.from(2);
@@ -29,7 +29,7 @@ public class DrawLadderTest {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         int result = ladderRunner.run(Position.from(1));
         assertThat(result).isEqualTo(3);
-
-
     }
+
+
 }
