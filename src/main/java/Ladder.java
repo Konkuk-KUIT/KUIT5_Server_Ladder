@@ -15,7 +15,7 @@ public class Ladder {
         this.rows = IntStream.range(0, row.getNumber())
                 .mapToObj(i -> new Row(numberOfPerson.getNumber()))
                 .collect(Collectors.toList());
-        this.countRandomLine = toNaturalNumber(row.getNumber() * numberOfPerson.getNumber());
+        this.countRandomLine = toNaturalNumber((int)(row.getNumber() * numberOfPerson.getNumber() * 0.3));
     }
     public static Ladder create(int row, int numberOfPerson){
         return new Ladder(toNaturalNumber(row), toNaturalNumber(numberOfPerson));
@@ -69,17 +69,34 @@ public class Ladder {
         return new NaturalNumber(number);
     }
 
-    private void drawRandomLine(){
+    public void drawRandomLine(){
         NaturalNumber randomLevel, randomLine;
         Random random = new Random();
         for(int count = 0; count<countRandomLine.getNumber(); count ++) {
             randomLine = toNaturalNumber(random.nextInt(numberOfPerson.getNumber()) + 1);
-            randomLevel = toNaturalNumber(random.nextInt(rows.size())+1);
-            if(randomLine.getNumber() > numberOfPerson.getNumber() - 1 || randomLevel.getNumber() > rows.size()){
+            randomLevel = toNaturalNumber(random.nextInt(rows.size()) + 1);
+            if (randomLine.getNumber() > numberOfPerson.getNumber() - 1 || randomLevel.getNumber() > rows.size()) {
                 count--;
                 continue;
             }
-            rows.get(randomLevel.getNumber() - 1).drawLine(randomLine);
+            try {
+                rows.get(randomLevel.getNumber() - 1).drawLine(randomLine);
+            } catch (IllegalArgumentException e) {
+                // 이미 선이 존재하면 카운트를 줄이지 않고 다시 시도
+                count--;
+            }
         }
+    }
+
+    public int getRowSize() {
+        return rows.size();
+    }
+
+    public int getNumberOfPerson() {
+        return numberOfPerson.getNumber();
+    }
+
+    public int getCountRandomLine() {
+        return countRandomLine.getNumber();
     }
 }
