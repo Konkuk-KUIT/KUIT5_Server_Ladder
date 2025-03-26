@@ -25,6 +25,20 @@ public class Row {
         nodes[position.getValue()].move(position);
     }
 
+    public String printRow(boolean printStar, Position position) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nodes.length ; i++) {
+            sb.append(nodes[i].printNode(printStar(printStar,i,position)));
+        }
+        return sb.toString();
+    }
+
+    private boolean printStar(boolean printStar, int i, Position position) {
+        if (printStar && position.getValue() == i)
+            return true;
+        return false;
+    }
+
     private void setDirectionBetweenNextPosition(Position position) {
         nodes[position.getValue()].setRightNode();
         position.next();
