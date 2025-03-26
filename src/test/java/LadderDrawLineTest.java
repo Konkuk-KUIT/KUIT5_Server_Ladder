@@ -14,17 +14,17 @@ public class LadderDrawLineTest {
         Ladder ladder = Ladder.create(givenRow, givenNumberOfPerson);
 
         assertThatThrownBy(() -> ladder.drawLine(selectedLine, 1)).isInstanceOf(IllegalArgumentException.class)
-                        .hasMessage(ExceptionMessage.INVALID_DRAW_LINE.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_DRAW_POSITION.getMessage());
     }
     @ParameterizedTest
     @ValueSource(ints = {-10, -1, 0})
-    @DisplayName("사다리 그리기 - 잘못된 라인 선택(음수)")
+    @DisplayName("사다리 그리기 - 잘못된 라인 선택(음수, 0)")
     void testDrawLineWithNotNaturalNumberLine(int selectedLine){
         int givenRow = 8, givenNumberOfPerson = 5;
         Ladder ladder = Ladder.create(givenRow, givenNumberOfPerson);
 
         assertThatThrownBy(() -> ladder.drawLine(selectedLine, 1)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_NATURAL_NUMBER.getMessage());
     }
 
     @ParameterizedTest
@@ -35,18 +35,18 @@ public class LadderDrawLineTest {
         Ladder ladder = Ladder.create(givenRow, givenNumberOfPerson);
 
         assertThatThrownBy(() -> ladder.drawLine(1, selectedLevel)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_DRAW_LEVEL.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_DRAW_POSITION.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-10, -1, 0})
-    @DisplayName("사다리 그리기 - 잘못된 높이 선택(음수)")
+    @DisplayName("사다리 그리기 - 잘못된 높이 선택(음수, 0)")
     void testDrawLineWithNotNaturalNumberLevel(int selectedLevel){
         int givenRow = 8, givenNumberOfPerson = 5;
         Ladder ladder = Ladder.create(givenRow, givenNumberOfPerson);
 
         assertThatThrownBy(() -> ladder.drawLine(1, selectedLevel)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_NATURAL_NUMBER.getMessage());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class LadderDrawLineTest {
         ladder.drawLine(1, 1);
 
         assertThatThrownBy(() -> ladder.drawLine(2, 1)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ALREADY_EXIST_POSITION.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_DRAW_POSITION.getMessage());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class LadderDrawLineTest {
         ladder.drawLine(3, 1);
 
         assertThatThrownBy(() -> ladder.drawLine(2, 1)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ALREADY_EXIST_POSITION.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_DRAW_POSITION.getMessage());
     }
 
     @Test

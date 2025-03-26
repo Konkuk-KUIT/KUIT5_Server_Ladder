@@ -1,22 +1,17 @@
 public class NaturalNumber {
-    private final int value;
-
-    private NaturalNumber(int value) {
-        validate(value);
-        this.value = value;
+    private final int number;
+    public NaturalNumber(int number){
+        validateNumberIsNatural(number);
+        this.number = number;
     }
 
-    public static NaturalNumber of(int value) {
-        return new NaturalNumber(value);
-    }
-
-    private void validate(int value) {
-        if(value <= 0) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+    private void validateNumberIsNatural(int number) {
+        if(number < 1) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALD_NATURAL_NUMBER.getMessage());
         }
     }
 
-    public int getValue() {
-        return value;
+    public int getNumber() {
+        return number;
     }
 }

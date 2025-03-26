@@ -13,7 +13,7 @@ public class LadderCreateTest {
         int givenRow = 8;
 
         assertThatThrownBy(() -> Ladder.create(givenRow, numberOfPerson)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_NATURAL_NUMBER.getMessage());
     }
 
     @ParameterizedTest
@@ -23,7 +23,7 @@ public class LadderCreateTest {
         int givenNumberOfPerson = 5;
 
         assertThatThrownBy(() -> Ladder.create(row, givenNumberOfPerson)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_NATURAL_NUMBER.getMessage());
     }
 
     @Test

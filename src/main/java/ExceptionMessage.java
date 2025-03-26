@@ -1,13 +1,12 @@
 public enum ExceptionMessage {
-    NOT_NATURAL_NUMBER("자연수가 입력되어야 합니다."),
-    INVALID_DRAW_LINE("라인 생성이 불가능한 위치입니다."),
-    INVALID_DRAW_LEVEL("라인 생성이 불가능한 높이입니다."),
-    ALREADY_EXIST_POSITION("이미 선점된 위치입니다."),
-    INVALID_RUN_LINE("선택할 수 없는 번호입니다.");
+    INVALD_LADDER_POSITION("사다리 위치는 1이상 자연수입니다."),
+    INVALD_LADDER_NUMBER("사다리의 행과 열은 2 이상이어야 합니다."),
+    INVALD_POSITION("유효하지 않은 위치입니다."),
+    INVALD_DRAW_POSITION("사다리를 그릴 수 없는 위치입니다."),
+    INVALD_NATURAL_NUMBER("자연수가 아닙니다.");
 
     private final String message;
-
-    ExceptionMessage(String message) {
+    ExceptionMessage(String message){
         this.message = message;
     }
 

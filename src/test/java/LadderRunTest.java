@@ -3,9 +3,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class LadderRunTest {
     @ParameterizedTest
@@ -18,9 +18,8 @@ public class LadderRunTest {
         ladder.drawLine(4,1);
         ladder.drawLine(2,2);
         ladder.drawLine(4,2);
-
         assertThatThrownBy(() -> ladder.run(selectedLine)).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.INVALID_RUN_LINE.getMessage());
+                .hasMessage(ExceptionMessage.INVALD_POSITION.getMessage());
     }
 
     @Test
