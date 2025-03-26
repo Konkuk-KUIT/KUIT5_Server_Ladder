@@ -18,7 +18,10 @@ public class ValidationDraw {
     }
     // 이미 선이 있는 경우 방지
     private static void checkDuplicatedLine(LadderRows rows,int drawRow, int drawColumn) {
-        if (rows.getRowsValue(drawRow,drawColumn)== 1 || rows.getRowsValue(drawRow,drawColumn)==-1) {
+        if (rows.getRowsValue(drawRow,drawColumn)==Direction.RIGHT.getValue()
+                || rows.getRowsValue(drawRow,drawColumn)==Direction.LEFT.getValue()
+                || rows.getRowsValue(drawRow,drawColumn-1)==Direction.RIGHT.getValue()
+                || rows.getRowsValue(drawRow,drawColumn+1)==Direction.RIGHT.getValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_DUPLICATED_POSITION.getMessage());
         }
     }

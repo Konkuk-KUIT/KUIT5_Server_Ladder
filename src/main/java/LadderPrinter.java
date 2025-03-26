@@ -1,3 +1,4 @@
+// 사다리를 출력하는 클래스
 public class LadderPrinter {
     private final Ladder ladder;
 

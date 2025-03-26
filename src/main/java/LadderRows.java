@@ -1,3 +1,4 @@
+// 사다리 정보를 가지는 클래스
 public class LadderRows {
     private final int[][] rows;
 

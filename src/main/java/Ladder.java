@@ -25,4 +25,7 @@ public class Ladder {
         return rows;
     }
 
+    public void createRandomLadderGame() {
+        LadderRandomCreator.createRandomLadderGame(this);
+    }
 }
