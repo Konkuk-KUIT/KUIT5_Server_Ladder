@@ -1,3 +1,4 @@
+// 현재 위치를 가지는 클래스
 public class Position {
     private int position;
     private Position(int position) {

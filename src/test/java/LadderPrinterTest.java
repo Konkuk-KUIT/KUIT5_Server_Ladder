@@ -7,16 +7,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class LadderPrinterTest {
     @Test
     @DisplayName("사다리 출력이 잘 되는지 기본 생성만 하고 출력")
-    void testPrintDefaultLadder(){
+    void testPrintLadder(){
         // given
-        Ladder ladder =new Ladder(NaturalNumber.of(3),NaturalNumber.of(3));
+        Ladder ladder =new Ladder(NaturalNumber.of(4),NaturalNumber.of(5));
         ladder.tryToDrawLine(NaturalNumber.of(1),NaturalNumber.of(1));
         ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(2));
+        ladder.tryToDrawLine(NaturalNumber.of(1),NaturalNumber.of(3));
         ladder.tryToDrawLine(NaturalNumber.of(3),NaturalNumber.of(1));
-        LadderGame ladderGame=LadderGame.of(ladder.getLadderRows());
+        ladder.tryToDrawLine(NaturalNumber.of(4),NaturalNumber.of(4));
+
+
+        LadderGame ladderGame=LadderGame.of(ladder);
 
         // when
-        LadderPrinter ladderPrinter = LadderPrinter.create(ladder.getLadderRows());
+        LadderPrinter ladderPrinter = LadderPrinter.create(ladder);
         ladderGame.run(NaturalNumber.of(1));
 
         // then

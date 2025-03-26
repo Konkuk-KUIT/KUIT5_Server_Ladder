@@ -6,8 +6,8 @@ public class LadderRows {
     }
 
     public void drawLine(int row, int column) {
-        rows[row][column] = 1;
-        rows[row][column + 1] = -1;
+        rows[row][column] = Direction.RIGHT.getValue();
+        rows[row][column + 1] = Direction.LEFT.getValue();
     }
 
     public int getRowsValue(int row, int column) {

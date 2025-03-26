@@ -1,4 +1,4 @@
-// 선을 그릴 수 있는 위치가 맞는지 검증하는 로직
+// 선을 그릴 수 있는 위치가 맞는지 검증하는 클래스
 import exception.ExceptionMessage;
 
 public class ValidationDraw {

@@ -1,5 +1,6 @@
 import exception.ExceptionMessage;
 
+// 자연수를 위한 클래스. 자연수 검증
 public class NaturalNumber {
     private final int naturalNumber;
 

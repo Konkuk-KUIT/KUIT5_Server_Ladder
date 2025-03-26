@@ -106,7 +106,7 @@ class LadderTest {
         ladder.tryToDrawLine(NaturalNumber.of(2),NaturalNumber.of(2));
         ladder.tryToDrawLine(NaturalNumber.of(3),NaturalNumber.of(1));
 
-        LadderGame ladderGame=LadderGame.of(ladder.getLadderRows());
+        LadderGame ladderGame=LadderGame.of(ladder);
 
         assertEquals(expected,ladderGame.run(NaturalNumber.of(input)));
     }

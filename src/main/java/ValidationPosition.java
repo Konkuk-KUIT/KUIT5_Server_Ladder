@@ -1,5 +1,6 @@
 import exception.ExceptionMessage;
 
+// 게임을 시작할 때 사다리 범위 내를 시작점으로 하는 지 검증하는 클래스
 public class ValidationPosition {
 
     private ValidationPosition(int[][] rows){

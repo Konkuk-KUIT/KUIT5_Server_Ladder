@@ -1,6 +1,6 @@
 import exception.ExceptionMessage;
 
-// 사다리를 만드는
+// 사다리를 생성하는 클래스
 public class Ladder {
     private final LadderRows rows; // 사다리 배열
 
