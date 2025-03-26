@@ -12,7 +12,11 @@ public class LadderRandomCreator {
     }
 
     public static LadderRandomCreator createRandomLadderGame(Ladder ladder){
-        LadderRandomCreator ladderRandomCreator = new LadderRandomCreator(ladder);
+        randomDrawLines(ladder);
+        return new LadderRandomCreator(ladder);
+    }
+
+    private static void randomDrawLines(Ladder ladder) {
         int height = ladder.getLadderRows().getHeight(); // row + 1
         int width = ladder.getLadderRows().getWidth();   // numberOfPerson + 1
 
@@ -24,13 +28,12 @@ public class LadderRandomCreator {
 
         // HashSet에 사다리 행*열 *0.3 를 넘지 않도록 선을 그린다.
         while (drawnPositions.size() < maxLines) {
-            randomDrawLine(ladder, random, height, width, drawnPositions);
+            randomDrawOneLine(ladder, random, height, width, drawnPositions);
         }
-
-        return ladderRandomCreator;
     }
 
-    private static void randomDrawLine(Ladder ladder, Random random, int height, int width, Set<String> drawnPositions) {
+    private static void randomDrawOneLine(Ladder ladder, Random random, int height, int width, Set<String> drawnPositions) {
+        // 랜덤값 생성
         int row = random.nextInt(height - 1) + 1;      // 1 ~ height - 1
         int column = random.nextInt(width - 2) + 1;        // 0 ~ width - 2
 
