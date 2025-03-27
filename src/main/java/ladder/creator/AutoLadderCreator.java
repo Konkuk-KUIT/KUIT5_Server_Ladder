@@ -1,15 +1,13 @@
 package ladder.creator;
 
-import ladder.GreaterThanOne;
-import ladder.Position;
-import ladder.RandomGenerator;
-import ladder.Row;
+import ladder.*;
+
+import static ladder.AutoLine.LINE;
+import static ladder.AutoLine.RATIO;
 
 public class AutoLadderCreator implements LadderCreator {
     private final Row[] rows;
-    static final int LINE=10;
-    static final double RATIO=0.3;
-    static final int MAX_LINE= (int) (LINE*LINE*RATIO);
+    static final int MAX_LINE= (int) (LINE.getIntValue()* LINE.getValue()*RATIO.getValue());
 
     public AutoLadderCreator(GreaterThanOne numberOfRow, GreaterThanOne numberOfPerson) {
         rows = new Row[numberOfRow.getNumber()];
@@ -21,8 +19,8 @@ public class AutoLadderCreator implements LadderCreator {
     private void AutoDraw() {
         for(int i=0; i<MAX_LINE; i++){
             try{
-                Position a = RandomGenerator.randomNumber(GreaterThanOne.from(LINE));
-                Position b = RandomGenerator.randomNumber(GreaterThanOne.from(LINE));
+                Position a = RandomGenerator.randomNumber(GreaterThanOne.from(LINE.getIntValue()));
+                Position b = RandomGenerator.randomNumber(GreaterThanOne.from(LINE.getIntValue()));
                 drawLine(a, b);
             }
             catch(Exception e){
