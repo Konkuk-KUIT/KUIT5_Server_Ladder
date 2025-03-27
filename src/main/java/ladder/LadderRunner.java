@@ -17,7 +17,7 @@ public class LadderRunner {
         return position.getValue();
     }
 
-    private void printLadder(String str, int i, Position position) {
+    public void printLadder(String str, int i, Position position) {
         StringBuilder sb = new StringBuilder();
         sb.append(str).append("\n");
         for(int j = 0; j < rows.length; j++) {
