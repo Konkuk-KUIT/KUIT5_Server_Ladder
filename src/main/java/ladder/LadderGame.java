@@ -1,12 +1,12 @@
 package ladder;
 
-import ladder.creator.BasicLadderCreator;
+import ladder.creator.LadderCreator;
 
 public class LadderGame {
 
-    private final BasicLadderCreator ladderCreator;
+    private final LadderCreator ladderCreator;
 
-    public LadderGame(BasicLadderCreator ladderCreator) {
+    public LadderGame(LadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 
@@ -16,8 +16,8 @@ public class LadderGame {
         return position.getValue();
     }
 
-    public void printLadder(String size) {
+    public void printLadder(String sizeInfo) {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
-        ladderRunner.printLadder(size,0,Position.from(0));
+        ladderRunner.printLadder(sizeInfo,0,Position.from(0));
     }
 }

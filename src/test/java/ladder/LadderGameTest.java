@@ -119,7 +119,7 @@ class LadderGameTest {
         LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
         LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(ladderSize);
 
-        ladderGame.printLadder("< "+row+"x"+col+" >");
+        ladderGame.printLadder("<"+row+"x"+col+">");
     }
 
 }
