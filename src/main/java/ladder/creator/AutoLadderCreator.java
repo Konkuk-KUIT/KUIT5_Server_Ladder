@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.Set;
 
 //프로그램이 랜덤으로 사다리를 자동으로 생성하고 그리기
-public class AutoLadderCreator implements LadderCreator {
+public class AutoLadderCreator implements LadderCreator{
     private final UserLadderCreator userLadderCreator;
 
     public AutoLadderCreator(GreaterThanOne numberOfRow, GreaterThanOne numberOfPerson) {
@@ -24,6 +24,7 @@ public class AutoLadderCreator implements LadderCreator {
         int rowLimit = size.getNumberOfRow();
         int colLimit = size.getNumberOfPerson() - 1;
 
+        // LadderSIze는 user에 필드로 선언되어 있으므로 안가져와도 도미.
         Set<String> drawnLine = new HashSet<>();
         Random random = new Random();
 

@@ -84,6 +84,7 @@ public class Row {
         return nodes.length;
     }
 
+
     private Direction getDirection(int index) {
         return nodes[index].getDirection();
     }

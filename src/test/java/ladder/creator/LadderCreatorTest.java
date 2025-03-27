@@ -14,9 +14,12 @@ class LadderCreatorTest {
         GreaterThanOne numberOfRow = GreaterThanOne.from(4);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
+        // 초기화 하고 -> LadderGame 객체 (컨트롤러를 담당하는)
+
         //when
         UserLadderCreator ladderCreator = new UserLadderCreator(numberOfRow, numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        //LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createUserLadderGame(ladderCreator);
         ladderCreator.drawLine(Position.from(0), Position.from(0));
         ladderCreator.drawLine(Position.from(1), Position.from(1));
 
@@ -25,19 +28,7 @@ class LadderCreatorTest {
         ladderGame.run(Position.from(0));
     }
 
-//    @Test
-//    @DisplayName("자동 생성 사다리 출력 테스트")
-//    void autoLadderCreatorPrintTest() {
-//        //given
-//        GreaterThanOne numberOfRow = GreaterThanOne.from(4);
-//        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
-//
-//        //when
-//        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
-//        LadderGameFactory.
-//        //then
-//
-//    }
+
 
     @Test
     @DisplayName("자동 생성 사다리 게임 실행 테스트")
