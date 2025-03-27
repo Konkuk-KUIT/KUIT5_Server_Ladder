@@ -4,10 +4,10 @@ public class Ladder {
     private final Direction[][] rows;
 
     // 사다리 높이, 사다리 게임 참여하는 사람의 수
-    public Ladder(int row, int numberOfPerson) {
-        this.rows = new Direction[row][numberOfPerson];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < numberOfPerson; j++) {
+    public Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
+        this.rows = new Direction[row.getNum()][numberOfPerson.getNum()];
+        for (int i = 0; i < row.getNum(); i++) {
+            for (int j = 0; j < numberOfPerson.getNum(); j++) {
                 rows[i][j] = Direction.NONE;
             }
         }

@@ -20,7 +20,7 @@ class LadderTest {
     @DisplayName("줄이 없는 경우는 그대로 내려감")
     void runWithoutLines(int input, int expected) {
         // given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
 
         // when
         int result = ladder.run(input);
@@ -33,7 +33,7 @@ class LadderTest {
     @DisplayName("여러 줄에 걸쳐 선을 그린 후 올바르게 이동하는지 확인")
     void runMultiLineLadderTest() {
         // given
-        Ladder ladder = new Ladder(3, 4); // 3줄, 4명
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
         ladder.drawLine(0, 1); // 줄 0: 1-2 연결
         ladder.drawLine(1, 2); // 줄 1: 2-3 연결
         ladder.drawLine(2, 0); // 줄 2: 0-1 연결
@@ -49,7 +49,7 @@ class LadderTest {
     @Test
     @DisplayName("줄이 그어진 위치에서만 좌우 이동")
     void drawLineMoveLeftOrRight() {
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
         ladder.drawLine(0, 1);
 
         // when
@@ -67,7 +67,7 @@ class LadderTest {
     @DisplayName("연속된 줄은 예외 발생")
     void drawLineException() {
         // given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
         ladder.drawLine(0, 1);
 
         // when & then
@@ -80,7 +80,7 @@ class LadderTest {
     @DisplayName("마지막 열에는 선을 그을 수 없음")
     void drawLineCannotInLastCol() {
         // given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
 
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(0, 3))
@@ -92,13 +92,15 @@ class LadderTest {
     @DisplayName("범위를 벗어난 줄에 그릴 경우 예외 발생")
     void drawLineOutOfBoundsException() {
         // given
-        Ladder ladder = new Ladder(3, 4);
+        Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
 
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(3, 0)) // row는 0~2까지
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMsg.INVALID_LADDER_POSITION.getMessage());
     }
+
+
 
 
 }
