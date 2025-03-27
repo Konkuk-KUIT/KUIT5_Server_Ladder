@@ -54,7 +54,13 @@ public class Ladder {
 
     private void printLadder(LadderPosition position) {
         for(int levelIndex = 0; levelIndex < rows.size(); levelIndex ++) {
-            System.out.println(rows.get(levelIndex).printRow(position.getX(), position.checkY(levelIndex)));
+            System.out.println(
+                rows.get(levelIndex)
+                .printRow(
+                    position.getX(),
+                    position.checkY(levelIndex)
+                )
+            );
         }
         System.out.println();
     }
