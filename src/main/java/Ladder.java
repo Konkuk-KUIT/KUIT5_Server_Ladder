@@ -1,7 +1,9 @@
 import java.util.Random;
 
 public class Ladder {
-    private final Positions positions;
+    private Positions positions;
+    public static final String before = "Before";
+    public static final String after = "After";
 
     private Ladder(int row, int numberOfPerson) {
         this.positions = new Positions(row, numberOfPerson);
@@ -9,13 +11,6 @@ public class Ladder {
 
     public static Ladder createEmptyLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
         return new Ladder(row.getNumber(), numberOfPerson.getNumber());
-    }
-
-    public static Ladder createRandomLadder(NaturalNumber row, NaturalNumber numberOfPerson) {
-        Ladder ladder = new Ladder(row.getNumber(), numberOfPerson.getNumber());
-        ladder.drawRandomLine();
-
-        return ladder;
     }
 
     // 사다리타기 시작
@@ -45,36 +40,13 @@ public class Ladder {
         positions.getPosition(row, col).setHasBridge(true);
     }
 
-    // 사다리의 구조를 결정하는 메소드. Ladder 인스턴스가 생성됨과 동시에 배열의 값을 초기화한다.
-    // 0 : row[row][col]값에 해당하는 좌표에 다른 컬럼으로 이동하는 다리가 없음
-    // 1 : 다리가 있음
-    private void drawRandomLine(){
-        for (int i = 0; i < positions.getMaxRow(); i++) {
-            drawRandomBridge(i);
-        }
-    }
-
-    private void drawRandomBridge(int rowIndex){
-        Random random = new Random();
-        for (int j = 0; j < positions.getMaxCol(rowIndex) - 1; j++) { // 마지막 열은 오른쪽으로 뻗어나가는 다리를 생성할 수 없다
-            boolean canCreateBridge = random.nextBoolean();
-
-            // 왼쪽에 다리가 있을 경우 현재 칸에 다리 없도록 설정
-            if (j > 0 && positions.getPosition(rowIndex, j - 1).hasBridge()) {
-                positions.getPosition(rowIndex, j).setHasBridge(false);
-            } else if (canCreateBridge) { // 연속된 다리가 없는 경우에 대해 랜덤으로 다리 생성
-                positions.getPosition(rowIndex, j).setHasBridge(true);
-            }
-        }
-    }
-
     // 사다리를 탈 때, 아래로 내려오는 로직
     private int processLadder(int startIndex) {
         int currentIndex = startIndex;
         for (int i = 0; i < positions.getMaxRow(); i++) {
-            printLadder("Before", i, currentIndex);
+            printLadder(before, i, currentIndex);
             currentIndex = processRow(i, currentIndex);
-            printLadder("After", i + 1, currentIndex);
+            printLadder(after, i + 1, currentIndex);
         }
 
         return currentIndex;
