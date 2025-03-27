@@ -1,11 +1,16 @@
 // 사다리 관리 클래스
 public class Ladder {
 
-    private final int[][] rows;
+    private final Direction[][] rows;
 
     // 사다리 높이, 사다리 게임 참여하는 사람의 수
     public Ladder(int row, int numberOfPerson) {
-        rows = new int[row][numberOfPerson];
+        this.rows = new Direction[row][numberOfPerson];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < numberOfPerson; j++) {
+                rows[i][j] = Direction.NONE;
+            }
+        }
     }
 
     public void drawLine(int row, int col) {
@@ -15,17 +20,22 @@ public class Ladder {
         line.validateDrawLine(col);
 
         // 선 그리기
-        rows[row][col] = 1;
-        rows[row][col+1] = -1;
+        rows[row][col] = Direction.RIGHT;
+        rows[row][col+1] = Direction.LEFT;
     }
 
     public int run (int startPosition){
         Position position = new Position(startPosition);
 
-        for (int row = 0; row < rows.length; row++) {
-            int direction = rows[row][position.getIndex()];
-            position.move(direction);
-        }
+        for(int row = 0; row < rows.length; row++) {
+            System.out.println("Before");
+            LadderPrint.print(rows, row, position.getIndex());
+
+            Direction direction = rows[row][position.getIndex()];
+            position.move(direction.getDirection());
+
+            System.out.println("After");
+            LadderPrint.print(rows, row, position.getIndex());}
 
         return position.getIndex();
     }
@@ -35,7 +45,7 @@ public class Ladder {
             throw new IllegalArgumentException(ExceptionMsg.INVALID_LADDER_POSITION.getMessage());
         }
 
-        if (rows[row][col] != 0 || rows[row][col + 1] != 0){
+        if (rows[row][col] != Direction.NONE || rows[row][col + 1] != Direction.NONE){
             throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
 

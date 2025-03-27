@@ -1,8 +1,8 @@
 public class Line {
     // 사다리의 한 줄마다 이동하는 로직
-    private final int[] moves;
+    private final Direction[] moves;
 
-    public Line(int[] moves) {
+    public Line(Direction[] moves) {
         this.moves = moves;
     }
 
@@ -10,7 +10,7 @@ public class Line {
         if (col < 0 || col >= moves.length - 1) {
             throw new IllegalArgumentException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
-        if (moves[col] != 0 || moves[col + 1] != 0) {
+        if (moves[col] != Direction.NONE || moves[col + 1] != Direction.NONE) {
             throw new IllegalStateException(ExceptionMsg.ALREADY_CONNECTED.getMessage());
         }
     }
