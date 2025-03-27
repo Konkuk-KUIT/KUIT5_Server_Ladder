@@ -25,6 +25,13 @@ public class Node {
         }
     }
 
+    public String printNode(boolean star){
+        String result = String.valueOf(direction.getValue());
+        if(star)
+            result += "*";
+        return result+" ";
+    }
+
     public void setRightNode() {
         direction = RIGHT;
     }

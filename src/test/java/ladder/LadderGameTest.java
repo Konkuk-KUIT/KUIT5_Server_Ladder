@@ -1,6 +1,8 @@
 package ladder;
 
+import ladder.creator.BasicLadderCreator;
 import ladder.creator.LadderCreator;
+import ladder.creator.LadderGameFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,9 +20,10 @@ class LadderGameTest {
         //given
         GreaterThanOne numberOfRow = GreaterThanOne.from(3);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        BasicLadderCreator ladderCreator = new BasicLadderCreator(ladderSize);
 
         //then
         assertThat(ladderCreator).isNotNull();
@@ -30,9 +33,10 @@ class LadderGameTest {
     @DisplayName("사람 예외 처리 확인")
     void throwInvalidPersonException() {
         //when
+        GreaterThanOne numberOfRow = GreaterThanOne.from(2);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
 
         //given
         Position position = Position.from(4);
@@ -49,8 +53,9 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderSize ladderSize = new LadderSize(row, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
+        LadderCreator ladderCreator = ladderGame.getLadderCreator();
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
         ladderCreator.drawLine(Position.from(1),Position.from(1));
@@ -86,8 +91,9 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderSize ladderSize = new LadderSize(row, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
+        LadderCreator ladderCreator = ladderGame.getLadderCreator();
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));
         ladderCreator.drawLine(Position.from(1), Position.from(1));
@@ -98,6 +104,22 @@ class LadderGameTest {
 
         //then
         assertThat(ladderGame.run(position)).isEqualTo(expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "3, 4",
+            "5, 5",
+            "6, 4"
+    })
+    @DisplayName("사다리 자동 생성 확인")
+    void testRandomLadder(int row, int col) {
+        GreaterThanOne numberOfRow = GreaterThanOne.from(row);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(col);
+        LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(ladderSize);
+
+        ladderGame.printLadder("<"+row+"x"+col+">");
     }
 
 }
