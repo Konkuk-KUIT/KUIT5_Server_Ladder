@@ -10,4 +10,9 @@ public class LadderGameFactory {
         creator.drawRandomLines(ladderSize);
         return new LadderGame(creator);
     }
+
+    public static LadderGame createBasicLadderGame(LadderSize ladderSize) {
+        BasicLadderCreator creator = new BasicLadderCreator(ladderSize);
+        return new LadderGame(creator);
+    }
 }

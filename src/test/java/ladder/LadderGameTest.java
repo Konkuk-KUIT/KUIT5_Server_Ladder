@@ -1,6 +1,7 @@
 package ladder;
 
 import ladder.creator.BasicLadderCreator;
+import ladder.creator.LadderCreator;
 import ladder.creator.LadderGameFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,7 @@ class LadderGameTest {
         GreaterThanOne numberOfRow = GreaterThanOne.from(2);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
         LadderSize ladderSize = new LadderSize(numberOfRow, numberOfPerson);
-        BasicLadderCreator ladderCreator = new BasicLadderCreator(ladderSize);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
 
         //given
         Position position = Position.from(4);
@@ -54,8 +54,8 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
         LadderSize ladderSize = new LadderSize(row, numberOfPerson);
-        BasicLadderCreator ladderCreator = new BasicLadderCreator(ladderSize);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
+        LadderCreator ladderCreator = ladderGame.getLadderCreator();
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
         ladderCreator.drawLine(Position.from(1),Position.from(1));
@@ -92,8 +92,8 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
         LadderSize ladderSize = new LadderSize(row, numberOfPerson);
-        BasicLadderCreator ladderCreator = new BasicLadderCreator(ladderSize);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createBasicLadderGame(ladderSize);
+        LadderCreator ladderCreator = ladderGame.getLadderCreator();
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));
         ladderCreator.drawLine(Position.from(1), Position.from(1));

@@ -20,4 +20,8 @@ public class LadderGame {
         LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
         ladderRunner.printLadder(sizeInfo,0,Position.from(0));
     }
+
+    public LadderCreator getLadderCreator() {
+        return ladderCreator;
+    }
 }
