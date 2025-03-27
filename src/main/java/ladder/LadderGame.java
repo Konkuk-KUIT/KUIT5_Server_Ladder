@@ -1,21 +1,27 @@
 package ladder;
 
+import ladder.creator.AutoLadderCreator;
+import ladder.creator.CustomLadderCreator;
 import ladder.creator.LadderCreator;
 
 public class LadderGame {
 
-    private final LadderCreator ladderCreator;
+    private final LadderCreator LadderCreator;
+    // auto ,custom으로 짜기 Ladder random 이랑 custom 을 돌려
 
-    public LadderGame(LadderCreator ladderCreator) {
-        this.ladderCreator = ladderCreator;
+    private LadderGame(LadderCreator LadderCreator) {
+        this.LadderCreator = LadderCreator;
     }
 
-    public static LadderGame createRandomLadderGame(LadderCreator ladderCreator) {
-        return new LadderGame(ladderCreator);
+    public static LadderGame createCustomLadderGame(CustomLadderCreator customLadderCreator) {
+        return new LadderGame(customLadderCreator);
+    }
+    public static LadderGame createAutoLadderGame(AutoLadderCreator autoLadderCreator) {// HashSet<>()도 받기
+        return new LadderGame(autoLadderCreator);
     }
 
     public int run(Position position) {
-        LadderRunner ladderRunner = new LadderRunner(ladderCreator.getRows());
+        LadderRunner ladderRunner = new LadderRunner(LadderCreator.getRows());
         ladderRunner.run(position);
         return position.getValue();
     }

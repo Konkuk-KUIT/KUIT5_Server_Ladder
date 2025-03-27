@@ -1,12 +1,12 @@
 package ladder;
 
+import ladder.creator.CustomLadderCreator;
 import ladder.creator.LadderCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static ladder.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -78,14 +78,17 @@ class LadderGameTest {
     @ParameterizedTest
     @CsvSource({
             "0, 2",
+            "1, 1",
+            "2, 0",
+            "3, 3"
     })
     @DisplayName("사다리 결과 확인 (ParameterizedTest 적용)")
     void testLadderResult(int input, int expectedResult) {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(row, numberOfPerson);
+        LadderGame ladderGame = LadderGameFactory.createCustomLadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));
         ladderCreator.drawLine(Position.from(1), Position.from(1));
@@ -97,5 +100,15 @@ class LadderGameTest {
         //then
         assertThat(ladderGame.run(position)).isEqualTo(expectedResult);
     }
+    @Test
+    @DisplayName("팩토리 테스트")
+    void factoryTest(){
+        // given
+        LadderGame ladderGame = LadderGameFactory.createRandomLadderGame();
+        // when
+        ladderGame.run(Position.from(0));
+        ladderGame.run(Position.from(1));
+        // then
 
+    }
 }

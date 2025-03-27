@@ -3,7 +3,8 @@ package ladder;
 public class LadderRunner {
 
     private final Row[] rows;
-
+    private static final String BEFORE ="before";
+    private static final String AFTER ="after";
     public LadderRunner(Row[] rows) {
         this.rows = rows;
     }
@@ -12,13 +13,11 @@ public class LadderRunner {
 
         for (Row row : rows) {
             row.nextPosition(position);
-            System.out.println("Before");
+            System.out.println(BEFORE);
             printRow();
-            System.out.println();
             row.nextStar(position);
-            System.out.println("After");
+            System.out.println(AFTER);
             printRow();
-            System.out.println();
         }
     }
 
@@ -27,5 +26,6 @@ public class LadderRunner {
             row.showRow();
             System.out.println();
         }
+        System.out.println();
     }
 }
