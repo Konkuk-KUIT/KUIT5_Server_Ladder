@@ -1,5 +1,8 @@
 package ladder;
 
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+
 import static ladder.Direction.*;
 import static ladder.ExceptionMessage.*;
 
@@ -32,7 +35,7 @@ public class Row {
     }
 
     private void validatePosition(Position position) {
-        if (isInvalidPosition(position) ) {
+        if (isInvalidPosition(position)) {
             throw new IllegalArgumentException(INVALID_POSITION.getMessage());
         }
     }
@@ -45,7 +48,7 @@ public class Row {
     }
 
     private boolean isInvalidPosition(Position position) {
-        return position.isBiggerThan(nodes.length - 1) ;
+        return position.isBiggerThan(nodes.length - 1);
     }
 
     private boolean isLineAtPosition(Position position) {
@@ -60,32 +63,55 @@ public class Row {
     }
 
 
-
-    public String nodeToString(final int row, final LadderPosition ladderPosition){
+    public String nodeToString() {
         StringBuilder sb = new StringBuilder();
         Position origin = Position.from(0);
 
-        for (int i = 0 ; i<nodes.length ; i++) {
+        for (Node node : this.nodes) {
             Position tempPosition = Position.from(origin.getValue());
-            nodes[i].move(tempPosition);
-
-            if(origin.isSmallerThan(tempPosition.getValue())){
+            node.move(tempPosition);
+            if (origin.isSmallerThan(tempPosition.getValue())) {
                 sb.append(" 1");
             }
 
-            if(origin.isBiggerThan(tempPosition.getValue())){
+            if (origin.isBiggerThan(tempPosition.getValue())) {
                 sb.append("-1");
             }
 
-            if(origin.isSameAs(tempPosition.getValue())) {
+            if (origin.isSameAs(tempPosition.getValue())) {
+                sb.append(" 0");
+            }
+            sb.append(" ");
+            origin.next();
+        }
+
+        return sb.toString();
+    }
+
+    public String nodeToString(final int row, final LadderPosition ladderPosition) {
+        StringBuilder sb = new StringBuilder();
+        Position origin = Position.from(0);
+
+        for (int i = 0; i < nodes.length; i++) {
+            Position tempPosition = Position.from(origin.getValue());
+            nodes[i].move(tempPosition);
+
+            if (origin.isSmallerThan(tempPosition.getValue())) {
+                sb.append(" 1");
+            }
+
+            if (origin.isBiggerThan(tempPosition.getValue())) {
+                sb.append("-1");
+            }
+
+            if (origin.isSameAs(tempPosition.getValue())) {
                 sb.append(" 0");
             }
 
-            if(ladderPosition.isSameAs(row,i)){
+            if (ladderPosition.isSameAs(row, i)) {
                 sb.append("*");
                 continue;
             }
-
             sb.append(" ");
             origin.next();
         }

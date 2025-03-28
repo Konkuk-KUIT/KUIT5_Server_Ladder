@@ -1,5 +1,7 @@
 package ladder;
 
+import ladder.position.Position;
+
 import static ladder.Direction.*;
 
 public class Node {

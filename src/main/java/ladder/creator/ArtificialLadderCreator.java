@@ -1,7 +1,7 @@
 package ladder.creator;
 
 import ladder.GreaterThanOne;
-import ladder.Position;
+import ladder.position.Position;
 import ladder.Row;
 
 public class ArtificialLadderCreator implements LadderCreator {
@@ -24,8 +24,6 @@ public class ArtificialLadderCreator implements LadderCreator {
     public Row[] getRows() {
         return rows;
     }
-
-
 
 
     public int getRowLength() {

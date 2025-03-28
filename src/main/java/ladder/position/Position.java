@@ -1,4 +1,4 @@
-package ladder;
+package ladder.position;
 
 import static ladder.ExceptionMessage.INVALID_LADDER_POSITION;
 

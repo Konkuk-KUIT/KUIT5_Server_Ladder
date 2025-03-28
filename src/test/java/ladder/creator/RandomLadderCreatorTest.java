@@ -2,7 +2,7 @@ package ladder.creator;
 
 import ladder.GreaterThanOne;
 import ladder.game.LadderGame;
-import ladder.Position;
+import ladder.position.Position;
 import ladder.game.LadderGameFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,8 +21,7 @@ class RandomLadderCreatorTest {
         // given
         GreaterThanOne row = GreaterThanOne.from(rowData);
         GreaterThanOne column = GreaterThanOne.from(colData);
-        ArtificialLadderCreator ladderCreator = new ArtificialLadderCreator(row, column);
-        RandomLadderCreator randomLadderCreator = new RandomLadderCreator(ladderCreator);
+        RandomLadderCreator randomLadderCreator = new RandomLadderCreator(row, column);
 
         LadderGame ladderGame = LadderGameFactory.createRandomLadderGame(randomLadderCreator);
 

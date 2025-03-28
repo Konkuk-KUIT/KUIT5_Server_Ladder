@@ -1,7 +1,7 @@
 package ladder.game;
 
 import ladder.LadderRunner;
-import ladder.Position;
+import ladder.position.Position;
 import ladder.creator.ArtificialLadderCreator;
 import ladder.creator.LadderCreator;
 import ladder.creator.RandomLadderCreator;

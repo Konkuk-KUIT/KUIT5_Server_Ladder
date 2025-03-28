@@ -1,35 +1,35 @@
 package ladder;
 
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+
 public class LadderRunner {
 
     private final Row[] rows;
+
+    LadderPainter ladderPainter = new LadderPainter();
 
     public LadderRunner(Row[] rows) {
         this.rows = rows;
     }
 
+
     public int run(Position position) {
+
+
+
         for (int i = 0; i < rows.length; i++) {
-            printLadder("Before\n", position, i);
+            ladderPainter.printLadder("Before\n", new LadderPosition(Position.from(i), position), rows);
             rows[i].nextPosition(position);
-            printLadder("After\n", position, i);
+            ladderPainter.printLadder("After\n", new LadderPosition(Position.from(i), position), rows);
         }
         return position.getValue();
     }
 
-    private void printLadder(String prefix,Position position, int i) {
-        System.out.println(prefix + ladderToString(new LadderPosition(Position.from(i), position)));
-    }
 
 
-    private String ladderToString(LadderPosition ladderPosition) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i<rows.length; i++) {
-            sb.append(rows[i].nodeToString(i, ladderPosition));
-            sb.append("\n");
-        }
-        return sb.toString();
-    }
+
+
 
 
 }
