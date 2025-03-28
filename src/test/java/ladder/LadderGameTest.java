@@ -52,9 +52,13 @@ class LadderGameTest {
         LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
-        ladderCreator.drawLine(Position.from(0),Position.from(0));
-        ladderCreator.drawLine(Position.from(1),Position.from(1));
-        ladderCreator.drawLine(Position.from(2),Position.from(0));
+        LadderPosition ladderPosition1 = LadderPosition.of(Position.from(0), Position.from(0));
+        LadderPosition ladderPosition2 = LadderPosition.of(Position.from(1), Position.from(1));
+        LadderPosition ladderPosition3 = LadderPosition.of(Position.from(2), Position.from(0));
+
+        ladderCreator.drawLine(ladderPosition1);
+        ladderCreator.drawLine(ladderPosition2);
+        ladderCreator.drawLine(ladderPosition3);
 
         //given
         Position position = Position.from(0);
@@ -89,9 +93,13 @@ class LadderGameTest {
         LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
-        ladderCreator.drawLine(Position.from(0), Position.from(0));
-        ladderCreator.drawLine(Position.from(1), Position.from(1));
-        ladderCreator.drawLine(Position.from(2), Position.from(0));
+        LadderPosition ladderPosition1 = LadderPosition.of(Position.from(0), Position.from(0));
+        LadderPosition ladderPosition2 = LadderPosition.of(Position.from(1), Position.from(1));
+        LadderPosition ladderPosition3 = LadderPosition.of(Position.from(2), Position.from(0));
+
+        ladderCreator.drawLine(ladderPosition1);
+        ladderCreator.drawLine(ladderPosition2);
+        ladderCreator.drawLine(ladderPosition3);
 
         //given
         Position position = Position.from(input);

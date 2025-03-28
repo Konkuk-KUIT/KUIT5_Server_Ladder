@@ -24,6 +24,10 @@ public class LadderPosition {
         return col.getValue();
     }
 
+    public Position getCol() {
+        return col;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
