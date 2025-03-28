@@ -103,16 +103,16 @@ class LadderGameTest {
         GreaterThanOne row = GreaterThanOne.from(3);
         LadderSize ladderSize = LadderSize.of(row, numberOfPerson);
 
-        CustomLadderCreator ladderCreator = new CustomLadderCreator(ladderSize);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        CustomLadderCreator customLadderCreator = new CustomLadderCreator(ladderSize);
+        LadderGame ladderGame = new LadderGame(customLadderCreator);
 
         LadderPosition ladderPosition1 = LadderPosition.of(Position.from(0), Position.from(0));
         LadderPosition ladderPosition2 = LadderPosition.of(Position.from(1), Position.from(1));
         LadderPosition ladderPosition3 = LadderPosition.of(Position.from(2), Position.from(0));
 
-        ladderCreator.drawLine(ladderPosition1);
-        ladderCreator.drawLine(ladderPosition2);
-        ladderCreator.drawLine(ladderPosition3);
+        customLadderCreator.drawLine(ladderPosition1);
+        customLadderCreator.drawLine(ladderPosition2);
+        customLadderCreator.drawLine(ladderPosition3);
 
         //given
         Position position = Position.from(input);
