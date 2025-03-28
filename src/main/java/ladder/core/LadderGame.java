@@ -1,5 +1,6 @@
-package ladder;
+package ladder.core;
 
+import ladder.position.Position;
 import ladder.creator.LadderCreator;
 
 public class LadderGame {

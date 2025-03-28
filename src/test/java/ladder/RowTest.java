@@ -1,11 +1,15 @@
 package ladder;
 
+import ladder.core.Row;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+import ladder.utils.GreaterThanOne;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static ladder.ExceptionMessage.*;
+import static ladder.exception.ExceptionMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

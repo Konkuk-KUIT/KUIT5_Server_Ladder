@@ -1,7 +1,12 @@
-package ladder;
+package ladder.core;
 
-import static ladder.Direction.*;
-import static ladder.ExceptionMessage.*;
+import ladder.exception.ExceptionMessage;
+import ladder.utils.GreaterThanOne;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+
+import static ladder.core.Direction.*;
+import static ladder.exception.ExceptionMessage.*;
 
 public class Row {
     private final Node[] nodes;

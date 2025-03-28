@@ -1,4 +1,4 @@
-package ladder;
+package ladder.position;
 
 import java.util.Objects;
 

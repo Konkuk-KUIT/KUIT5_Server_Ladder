@@ -1,9 +1,9 @@
 package ladder.creator;
 
-import ladder.LadderPosition;
-import ladder.LadderSize;
-import ladder.Position;
-import ladder.Row;
+import ladder.position.LadderPosition;
+import ladder.core.LadderSize;
+import ladder.position.Position;
+import ladder.core.Row;
 import ladder.creator.utils.NumberGenerator;
 import ladder.creator.utils.RandomNumberGenerator;
 

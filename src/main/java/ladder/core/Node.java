@@ -1,6 +1,8 @@
-package ladder;
+package ladder.core;
 
-import static ladder.Direction.*;
+import ladder.position.Position;
+
+import static ladder.core.Direction.*;
 
 public class Node {
 

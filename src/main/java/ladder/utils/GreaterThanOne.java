@@ -1,6 +1,6 @@
-package ladder;
+package ladder.utils;
 
-import static ladder.ExceptionMessage.*;
+import static ladder.exception.ExceptionMessage.*;
 
 public class GreaterThanOne {
 

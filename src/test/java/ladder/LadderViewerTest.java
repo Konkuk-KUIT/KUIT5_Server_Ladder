@@ -1,6 +1,11 @@
 package ladder;
 
+import ladder.core.LadderSize;
+import ladder.core.LadderViewer;
 import ladder.creator.CustomLadderCreator;
+import ladder.position.LadderPosition;
+import ladder.position.Position;
+import ladder.utils.GreaterThanOne;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static ladder.LadderLabel.*;
+import static ladder.core.LadderLabel.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 

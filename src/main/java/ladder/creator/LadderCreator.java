@@ -1,7 +1,7 @@
 package ladder.creator;
 
-import ladder.LadderPosition;
-import ladder.Row;
+import ladder.position.LadderPosition;
+import ladder.core.Row;
 
 public interface LadderCreator {
 
