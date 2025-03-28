@@ -1,6 +1,6 @@
 package ladder;
 
-import ladder.creator.LadderCreator;
+import ladder.creator.LadderBasicCreator;
 import ladder.creator.LadderRandomCreator;
 
 public class LadderGameFactory {
@@ -9,6 +9,6 @@ public class LadderGameFactory {
     }
 
     public static LadderGame createLadderGame(LadderSize ladderSize) {
-        return new LadderGame(new LadderCreator(ladderSize));
+        return new LadderGame(new LadderBasicCreator(ladderSize));
     }
 }

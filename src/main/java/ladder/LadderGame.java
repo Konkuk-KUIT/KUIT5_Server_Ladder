@@ -1,12 +1,12 @@
 package ladder;
 
-import ladder.creator.LadderCreatorInterface;
+import ladder.creator.LadderCreator;
 
 public class LadderGame {
 
-    private final LadderCreatorInterface ladderCreator;
+    private final LadderCreator ladderCreator;
 
-    public LadderGame(LadderCreatorInterface ladderCreator) {
+    public LadderGame(LadderCreator ladderCreator) {
         this.ladderCreator = ladderCreator;
     }
 

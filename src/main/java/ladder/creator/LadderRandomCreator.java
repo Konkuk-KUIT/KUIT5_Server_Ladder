@@ -8,14 +8,13 @@ import ladder.Row;
 import java.util.HashSet;
 import java.util.Random;
 
-public class LadderRandomCreator implements LadderCreatorInterface{
-    private final Row[] rows;
+public class LadderRandomCreator implements LadderCreator {
+    //private final Row[] rows;
+    private final LadderBasicCreator ladderBasicCreator;
 
     public LadderRandomCreator(LadderSize ladderSize) {
-        rows = new Row[ladderSize.getRowSize()];
-        for (int i = 0; i < ladderSize.getRowSize(); i++) {
-            rows[i] = new Row(ladderSize.getColumnSize());
-        }
+        //this.rows = this.ladderCreator.getRows(); // rows 배열을 LadderBasicCreator 에서 가져옴
+        this.ladderBasicCreator = new LadderBasicCreator(ladderSize); // LadderBasicCreator 인스턴스 생성
         createRandomPositionLines(ladderSize);
     }
 
@@ -26,7 +25,7 @@ public class LadderRandomCreator implements LadderCreatorInterface{
 
         while (positionSet.size() < lineCount) {
             Position startPositionX = Position.from(random.nextInt(ladderSize.getRowSize()));
-            Position startPositionY = Position.from(random.nextInt(ladderSize.getColumnSize().getNumber() - 1));
+            Position startPositionY = Position.from(random.nextInt(ladderSize.getColumnSize().getNumber() - 1)); // 맨 마지막 column 이 line 시작점이 될 순 없으니까
 
             addLadderPositionToHashset(startPositionX, startPositionY, positionSet);
         }
@@ -52,11 +51,11 @@ public class LadderRandomCreator implements LadderCreatorInterface{
 
     @Override
     public void drawLine(Position row, Position col){
-        rows[row.getValue()].drawLine(col);
+        this.ladderBasicCreator.drawLine(row, col);
     }
 
     @Override
     public Row[] getRows() {
-        return rows;
+        return this.ladderBasicCreator.getRows();
     }
 }

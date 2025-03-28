@@ -1,7 +1,7 @@
 package ladder;
 
+import ladder.creator.LadderBasicCreator;
 import ladder.creator.LadderCreator;
-import ladder.creator.LadderCreatorInterface;
 import ladder.creator.LadderRandomCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,10 +22,10 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(new LadderSize(numberOfRow, numberOfPerson));
+        LadderBasicCreator ladderBasicCreator = new LadderBasicCreator(new LadderSize(numberOfRow, numberOfPerson));
 
         //then
-        assertThat(ladderCreator).isNotNull();
+        assertThat(ladderBasicCreator).isNotNull();
     }
 
     @Test
@@ -50,12 +50,12 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(new LadderSize(row, numberOfPerson));
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderBasicCreator ladderBasicCreator = new LadderBasicCreator(new LadderSize(row, numberOfPerson));
+        LadderGame ladderGame = new LadderGame(ladderBasicCreator);
 
-        ladderCreator.drawLine(Position.from(0),Position.from(0));
-        ladderCreator.drawLine(Position.from(1),Position.from(1));
-        ladderCreator.drawLine(Position.from(2),Position.from(0));
+        ladderBasicCreator.drawLine(Position.from(0),Position.from(0));
+        ladderBasicCreator.drawLine(Position.from(1),Position.from(1));
+        ladderBasicCreator.drawLine(Position.from(2),Position.from(0));
 
         //given
         Position position = Position.from(0);
@@ -87,12 +87,12 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(new LadderSize(row, numberOfPerson));
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderBasicCreator ladderBasicCreator = new LadderBasicCreator(new LadderSize(row, numberOfPerson));
+        LadderGame ladderGame = new LadderGame(ladderBasicCreator);
 
-        ladderCreator.drawLine(Position.from(0), Position.from(0));
-        ladderCreator.drawLine(Position.from(1), Position.from(1));
-        ladderCreator.drawLine(Position.from(2), Position.from(0));
+        ladderBasicCreator.drawLine(Position.from(0), Position.from(0));
+        ladderBasicCreator.drawLine(Position.from(1), Position.from(1));
+        ladderBasicCreator.drawLine(Position.from(2), Position.from(0));
 
         //given
         Position position = Position.from(input);
@@ -109,7 +109,7 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreatorInterface ladderRandomCreator = new LadderRandomCreator(new LadderSize(numberOfRow, numberOfPerson));
+        LadderCreator ladderRandomCreator = new LadderRandomCreator(new LadderSize(numberOfRow, numberOfPerson));
 
         //then
         assertThat(ladderRandomCreator).isNotNull();
