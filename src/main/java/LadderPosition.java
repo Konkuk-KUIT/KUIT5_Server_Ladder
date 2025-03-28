@@ -7,11 +7,6 @@ public class LadderPosition {
         this.y = y;
     }
 
-    public LadderPosition(int y){
-        this.x = 0;
-        this.y = y;
-    }
-
     public int getX() {
         return x;
     }
@@ -25,9 +20,6 @@ public class LadderPosition {
 
     public void moveHorizontally(Direction direction) {
         y += direction.getValue();
-    }
-    public boolean isSame(int row, int col) {
-        return this.x == row && this.y == col;
     }
 
     public boolean matches(int col) {
