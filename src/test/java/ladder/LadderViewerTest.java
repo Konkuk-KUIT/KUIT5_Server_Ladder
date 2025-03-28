@@ -26,7 +26,9 @@ public class LadderViewerTest {
         //given
         GreaterThanOne numberOfRow = GreaterThanOne.from(4);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
+
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderViewer ladderViewer = new LadderViewer(ladderCreator.getRows());
 
         Position currentRow = Position.from(2);

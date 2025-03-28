@@ -20,7 +20,7 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(LadderSize.of(numberOfRow, numberOfPerson));
 
         //then
         assertThat(ladderCreator).isNotNull();
@@ -30,8 +30,11 @@ class LadderGameTest {
     @DisplayName("사람 예외 처리 확인")
     void throwInvalidPersonException() {
         //when
+        GreaterThanOne numberOfRow = GreaterThanOne.from(2);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
+
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         //given
@@ -47,9 +50,11 @@ class LadderGameTest {
     @DisplayName("사다리 결과 확인")
     void testLadderResult() {
         //when
-        GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
+        LadderSize ladderSize = LadderSize.of(row, numberOfPerson);
+
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         LadderPosition ladderPosition1 = LadderPosition.of(Position.from(0), Position.from(0));
@@ -90,7 +95,9 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        LadderSize ladderSize = LadderSize.of(row, numberOfPerson);
+
+        LadderCreator ladderCreator = new LadderCreator(ladderSize);
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         LadderPosition ladderPosition1 = LadderPosition.of(Position.from(0), Position.from(0));
