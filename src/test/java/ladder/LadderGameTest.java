@@ -1,6 +1,8 @@
 package ladder;
 
 import ladder.creator.LadderCreator;
+import ladder.creator.LadderCreatorInterface;
+import ladder.creator.LadderRandomCreator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -99,4 +101,51 @@ class LadderGameTest {
         assertThat(ladderGame.run(position)).isEqualTo(expectedResult);
     }
 
+    @Test
+    @DisplayName("랜덤 사다리 생성 확인")
+    void testRandomCreateLadder() {
+        //given
+        GreaterThanOne numberOfRow = GreaterThanOne.from(3);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+
+        //when
+        LadderCreatorInterface ladderRandomCreator = new LadderRandomCreator(new LadderSize(numberOfRow, numberOfPerson));
+
+        //then
+        assertThat(ladderRandomCreator).isNotNull();
+    }
+
+    @Test
+    @DisplayName("랜덤 사다리 게임 생성 확인")
+    void testRandomCreateLadderGame() {
+        //given
+        GreaterThanOne numberOfRow = GreaterThanOne.from(3);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
+
+        //when
+        LadderGame randomLadderGame = LadderGameFactory.createRandomLadderGame(new LadderSize(numberOfRow, numberOfPerson));
+
+        //then
+        assertThat(randomLadderGame).isNotNull();
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "3, 5, 0", //line count 4
+            "3, 3, 0", //line count 2
+            "6, 5, 0" //line count 9
+    })
+    @DisplayName("랜덤 사다리 게임 실행 확인 (사다리 출력 확인용, 무조건 성공)")
+    void testRandomCreateLadderGameRun(int row, int col, int position) {
+        //given
+        GreaterThanOne numberOfRow = GreaterThanOne.from(row);
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(col);
+        LadderGame randomLadderGame = LadderGameFactory.createRandomLadderGame(new LadderSize(numberOfRow, numberOfPerson));
+
+        //when
+        randomLadderGame.run(Position.from(position));
+
+        //then
+        assertThat(randomLadderGame).isNotNull();
+    }
 }

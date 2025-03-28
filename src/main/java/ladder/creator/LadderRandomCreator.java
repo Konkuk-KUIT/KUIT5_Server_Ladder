@@ -25,7 +25,7 @@ public class LadderRandomCreator implements LadderCreatorInterface{
         Random random = new Random();
 
         while (positionSet.size() < lineCount) {
-            Position startPositionX = Position.from(random.nextInt(ladderSize.getRowSize() - 1));
+            Position startPositionX = Position.from(random.nextInt(ladderSize.getRowSize()));
             Position startPositionY = Position.from(random.nextInt(ladderSize.getColumnSize().getNumber() - 1));
 
             addLadderPositionToHashset(startPositionX, startPositionY, positionSet);
