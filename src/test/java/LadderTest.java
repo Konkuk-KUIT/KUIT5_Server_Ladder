@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LadderTest {
 
     @Test
-    @DisplayName("사다리 - 정상 생성 확인")
+    @DisplayName("사다리 정상 생성 확인")
     void testLadderCreation() {
         //given
         NaturalNumber row = new NaturalNumber(5);
@@ -47,7 +47,7 @@ class LadderTest {
     void testDrawLine() {
         // given
         Ladder ladder = new Ladder(new NaturalNumber(5), new NaturalNumber(4));
-        Position position = new Position(0, 0);
+        Position position = Position.of(0, 0);
 
         // when
         ladder.drawLine(position);
@@ -68,9 +68,9 @@ class LadderTest {
     void testRunLadder(int input, int result) {
         // given
         Ladder ladder = new Ladder(new NaturalNumber(5), new NaturalNumber(4));
-        ladder.drawLine(new Position(0, 0));
-        ladder.drawLine(new Position(1, 1));
-        ladder.drawLine(new Position(2, 2));
+        ladder.drawLine(Position.of(0, 0));
+        ladder.drawLine(Position.of(1, 1));
+        ladder.drawLine(Position.of(2, 2));
 
         // when
         NaturalNumber startPosition = new NaturalNumber(input);
@@ -91,7 +91,7 @@ class LadderTest {
         Ladder ladder = new Ladder(new NaturalNumber(5), new NaturalNumber(4));
 
         // when & then
-        assertThatThrownBy(() -> ladder.drawLine(new Position(x, y)))
+        assertThatThrownBy(() -> ladder.drawLine(Position.of(x, y)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 위치입니다.");
     }
@@ -106,10 +106,10 @@ class LadderTest {
     void testDrawLineAlreadyExists(int x, int y) {
         // given
         Ladder ladder = new Ladder(new NaturalNumber(5), new NaturalNumber(4));
-        ladder.drawLine(new Position(x, y));
+        ladder.drawLine(Position.of(x, y));
 
         // when & then
-        assertThatThrownBy(() -> ladder.drawLine(new Position(x, y)))
+        assertThatThrownBy(() -> ladder.drawLine(Position.of(x, y)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이미 선이 그려진 위치입니다.");
     }
