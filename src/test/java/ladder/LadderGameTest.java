@@ -87,7 +87,7 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        CustomLadderCreator ladderCreator = new CustomLadderCreator(row, numberOfPerson);
+        CustomLadderCreator ladderCreator = new CustomLadderCreator(new LadderSize<>(numberOfPerson, row));
         LadderGame ladderGame = LadderGameFactory.createCustomLadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));
