@@ -3,7 +3,7 @@ package ladder;
 public enum LadderStar {
     STAR("* "), BLANK(" ");
 
-    String now;
+    final String now;
     LadderStar(String now) {
         this.now = now;
     }
