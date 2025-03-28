@@ -16,7 +16,7 @@ public class Node {
     }
 
     public void showNode() {
-        System.out.print(direction.getValue() + (star ? "* " : " "));
+        System.out.printf("%d%s", direction.getValue(), star ? LadderStar.STAR.getValue() : LadderStar.BLANK.getValue() );
         star = false;
     }
 
