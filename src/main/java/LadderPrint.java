@@ -1,3 +1,5 @@
+import util.Direction;
+
 public class LadderPrint {
     public static void print(Direction[][] rows, int currentRow, int currentCol) {
         // 각 줄마다 반복

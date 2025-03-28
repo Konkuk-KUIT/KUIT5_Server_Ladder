@@ -1,13 +1,23 @@
+import util.Direction;
+import util.ExceptionMsg;
+import util.Position;
+
 // 사다리 관리 클래스
 public class Ladder {
 
+    public Direction[][] getRows() {
+        return rows;
+    }
+
     private final Direction[][] rows;
+    private final LadderSize ladderSize;
 
     // 사다리 높이, 사다리 게임 참여하는 사람의 수
-    public Ladder(NaturalNumber row, NaturalNumber numberOfPerson) {
-        this.rows = new Direction[row.getNum()][numberOfPerson.getNum()];
-        for (int i = 0; i < row.getNum(); i++) {
-            for (int j = 0; j < numberOfPerson.getNum(); j++) {
+    public Ladder(LadderSize ladderSize) {
+        this.ladderSize = ladderSize;
+        this.rows = new Direction[ladderSize.getRowCount()][ladderSize.getPersonCount()];
+        for (int i = 0; i < ladderSize.getRowCount(); i++) {
+            for (int j = 0; j < ladderSize.getPersonCount(); j++) {
                 rows[i][j] = Direction.NONE;
             }
         }
