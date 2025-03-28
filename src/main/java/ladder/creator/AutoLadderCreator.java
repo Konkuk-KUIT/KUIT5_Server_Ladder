@@ -9,10 +9,10 @@ public class AutoLadderCreator implements LadderCreator {
     private final Row[] rows;
     static final int MAX_LINE= (int) (LINE.getIntValue()* LINE.getValue()*RATIO.getValue());
 
-    public AutoLadderCreator(GreaterThanOne numberOfRow, GreaterThanOne numberOfPerson) {
-        rows = new Row[numberOfRow.getNumber()];
-        for (int i = 0; i < numberOfRow.getNumber(); i++) {
-            rows[i] = new Row(numberOfPerson);
+    public AutoLadderCreator(LadderSize<GreaterThanOne,GreaterThanOne> ladderSize) {
+        rows = new Row[ladderSize.numberOfRow.getNumber()];
+        for (int i = 0; i < ladderSize.numberOfRow.getNumber(); i++) {
+            rows[i] = new Row(ladderSize.numberOfPerson);
         }
         AutoDraw();
     }

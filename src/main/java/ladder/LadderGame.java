@@ -16,7 +16,7 @@ public class LadderGame {
     public static LadderGame createCustomLadderGame(CustomLadderCreator customLadderCreator) {
         return new LadderGame(customLadderCreator);
     }
-    public static LadderGame createAutoLadderGame(AutoLadderCreator autoLadderCreator) {// HashSet<>()도 받기
+    public static LadderGame createAutoLadderGame(AutoLadderCreator autoLadderCreator) {
         return new LadderGame(autoLadderCreator);
     }
 
