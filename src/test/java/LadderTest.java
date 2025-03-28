@@ -1,3 +1,4 @@
+import common.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -93,7 +94,7 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(Position.of(x, y)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("유효하지 않은 위치입니다.");
+                .hasMessage(ExceptionMessage.INVALID_POSITION.getMessage());
     }
 
     @ParameterizedTest
@@ -111,7 +112,7 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.drawLine(Position.of(x, y)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이미 선이 그려진 위치입니다.");
+                .hasMessage(ExceptionMessage.ALREADY_HAS_LINE.getMessage());
     }
 
     @Test
@@ -123,6 +124,6 @@ class LadderTest {
         // when & then
         assertThatThrownBy(() -> ladder.run(new NaturalNumber(5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("잘못된 시작 위치입니다.");
+                .hasMessage(ExceptionMessage.INVALID_START_POSITION.getMessage());
     }
 }

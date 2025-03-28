@@ -1,3 +1,5 @@
+import common.exception.ExceptionMessage;
+
 public class NaturalNumber {
     private final int number;
 
@@ -8,7 +10,7 @@ public class NaturalNumber {
 
     private static void validate(int number) {
         if (!isNaturalNumber(number)) {
-            throw new IllegalArgumentException("자연수(1 이상)이어야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
         }
     }
 

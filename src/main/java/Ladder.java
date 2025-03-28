@@ -1,3 +1,5 @@
+import common.exception.ExceptionMessage;
+
 public class Ladder {
 
     private final int[][] rows;
@@ -30,16 +32,16 @@ public class Ladder {
 
     private void validatePosition(final int x, final int y) {
         if (x < 0 || x >= rows.length || y < 0 || y >= rows[0].length - 1) {
-            throw new IllegalArgumentException("유효하지 않은 위치입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
         if (rows[x][y] != 0 || rows[x][y + 1] != 0) {
-            throw new IllegalArgumentException("이미 선이 그려진 위치입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.ALREADY_HAS_LINE.getMessage());
         }
     }
 
     private void validateStartPosition(final int position) {
         if (position < 0 || position >= rows[0].length) {
-            throw new IllegalArgumentException("잘못된 시작 위치입니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_START_POSITION.getMessage());
         }
     }
 
