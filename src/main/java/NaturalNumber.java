@@ -1,24 +1,21 @@
-import common.exception.ExceptionMessage;
+import exception.ExceptionMessage;
 
 public class NaturalNumber {
     private final int number;
 
-    public NaturalNumber(final int number) {
+    private NaturalNumber(final int number) {
         validate(number);
         this.number = number;
     }
 
-    private static void validate(int number) {
-        if (!isNaturalNumber(number)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
-        }
+    public static NaturalNumber of(int number) {
+        return new NaturalNumber(number);
     }
 
-    private static boolean isNaturalNumber(int number) {
-        if (number > 0) {
-            return true;
+    private static void validate(int number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER.getMessage());
         }
-        return false;
     }
 
     public int getValue(){
