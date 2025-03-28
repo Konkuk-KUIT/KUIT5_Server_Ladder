@@ -194,16 +194,4 @@ class RowTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_DRAW_POSITION.getMessage());
     }
-
-    @Test
-    @DisplayName("test")
-    void test() {
-        //when
-        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        Row row = new Row(numberOfPerson);
-        row.drawLine(Position.from(1));
-
-        //then
-        System.out.println(row);
-    }
 }

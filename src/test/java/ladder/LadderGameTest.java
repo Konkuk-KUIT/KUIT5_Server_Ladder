@@ -20,7 +20,7 @@ class LadderGameTest {
         GreaterThanOne numberOfPerson = GreaterThanOne.from(5);
 
         //when
-        LadderCreator ladderCreator = new LadderCreator(numberOfRow, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(new LadderSize(numberOfRow, numberOfPerson));
 
         //then
         assertThat(ladderCreator).isNotNull();
@@ -31,8 +31,7 @@ class LadderGameTest {
     void throwInvalidPersonException() {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(GreaterThanOne.from(2), numberOfPerson);
-        LadderGame ladderGame = new LadderGame(ladderCreator);
+        LadderGame ladderGame = LadderGameFactory.createLadderGame(new LadderSize(GreaterThanOne.from(2), numberOfPerson));
 
         //given
         Position position = Position.from(4);
@@ -49,7 +48,7 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(new LadderSize(row, numberOfPerson));
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0),Position.from(0));
@@ -86,7 +85,7 @@ class LadderGameTest {
         //when
         GreaterThanOne numberOfPerson = GreaterThanOne.from(4);
         GreaterThanOne row = GreaterThanOne.from(3);
-        LadderCreator ladderCreator = new LadderCreator(row, numberOfPerson);
+        LadderCreator ladderCreator = new LadderCreator(new LadderSize(row, numberOfPerson));
         LadderGame ladderGame = new LadderGame(ladderCreator);
 
         ladderCreator.drawLine(Position.from(0), Position.from(0));
