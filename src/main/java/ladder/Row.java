@@ -59,4 +59,30 @@ public class Row {
         return lineAtPosition;
     }
 
+    // 일반 row 를 출력하는 메서드
+    public void printRowWithoutCurrentPosition() {
+        StringBuilder sb = new StringBuilder();
+        for (Node node : nodes) {
+            sb.append(node.getNodeDirection()).append(" ");
+        }
+        System.out.println(sb);
+    }
+
+    // 현재 run 중인 row 를 출력하는 메서드
+    public void printRowWithCurrentPosition(LadderPosition ladderPosition) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < nodes.length; i++) {
+            printStar(ladderPosition, i, sb);
+        }
+        System.out.println(sb);
+    }
+
+    // row 안에서 star 를 찍는 메서드
+    private void printStar(LadderPosition ladderPosition, int i, StringBuilder sb) {
+        if (ladderPosition.equalToPositionY(i)) {
+            sb.append(nodes[i].getNodeDirection()).append("* ");
+            return;
+        }
+        sb.append(nodes[i].getNodeDirection()).append(" ");
+    }
 }
