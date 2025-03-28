@@ -159,5 +159,40 @@ class LadderTest {
                 .hasMessage(ExceptionMessage.INVALID_START_POSITION.getMessage());
     }
 
+    @Test
+    @DisplayName("랜덤 사다리 자동 생성 테스트")
+    void testRandomLadderGeneration() {
+        // given
+        NaturalNumber row = NaturalNumber.of(5);
+        NaturalNumber col = NaturalNumber.of(4);
+        LadderGame game = LadderGameFactory.createRandomLadderGame(row, col);
+        int[][] rows = game.getLadderState();
 
+        // when
+        int count = 0;
+        for (int[] r : rows) {
+            for (int val : r) {
+                if (val != 0) count++;
+            }
+        }
+
+        // then
+        int expected = (int)(row.getValue() * col.getValue() * 0.3) * 2;
+        assertThat(count).isGreaterThanOrEqualTo(expected - 2);
+    }
+
+    @Test
+    @DisplayName("게임 플레이 테스트")
+    void testLadderGamePlay() {
+        // given
+        NaturalNumber row = NaturalNumber.of(5);
+        NaturalNumber col = NaturalNumber.of(4);
+        LadderGame game = LadderGameFactory.createManualLadderGame(row, col);
+
+        // when
+        int result = game.play(NaturalNumber.of(1));
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
 }

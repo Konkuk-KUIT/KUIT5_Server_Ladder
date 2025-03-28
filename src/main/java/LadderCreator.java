@@ -1,6 +1,6 @@
 import exception.ExceptionMessage;
 
-public class LadderCreator {
+public class LadderCreator implements LineCreator{
 
     private LadderCreator() {
     }
@@ -16,6 +16,11 @@ public class LadderCreator {
 
         rows[position.getX()][position.getY()] = Direction.RIGHT.getValue();
         rows[position.getX()][position.getY() + 1] = Direction.LEFT.getValue();
+    }
+
+    @Override
+    public int[][] getRows(Ladder ladder) {
+        return ladder.getRows();
     }
 
     private void validatePosition(int[][] rows, Position position) {
