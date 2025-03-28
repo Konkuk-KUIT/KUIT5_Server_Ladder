@@ -204,7 +204,7 @@ class RowTest {
         //then
         assertThatThrownBy(() -> row.drawLine(position))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_POSITION.getMessage());
+                .hasMessage(INVALID_DRAW_POSITION.getMessage());
     }
 
     @Test

@@ -47,14 +47,15 @@ public class Row {
     }
 
     private void validatePosition(Position position) {
-        if (isInvalidPosition(position) ) {
-            throw new IllegalArgumentException(INVALID_POSITION.getMessage());
+        if (isInvalidPosition(position)) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
     }
 
     private void validateDrawLinePosition(Position startPosition) {
-        validatePosition(startPosition);
-        if (isLineAtPosition(startPosition) || isLineAtNextPosition(startPosition)) {
+        if (isInvalidPositionForDrawLine(startPosition) ||
+                isLineAtPosition(startPosition) ||
+                isLineAtNextPosition(startPosition)) {
             throw new IllegalArgumentException(INVALID_DRAW_POSITION.getMessage());
         }
     }
@@ -63,15 +64,18 @@ public class Row {
         return position.isBiggerThan(nodes.length - 1) ;
     }
 
+    private boolean isInvalidPositionForDrawLine(Position position) {
+        return position.isBiggerThan(nodes.length - 2);
+    }
+
     private boolean isLineAtPosition(Position position) {
         return nodes[position.getValue()].isAlreadySetDirection();
     }
 
     private boolean isLineAtNextPosition(Position position) {
-        position.next();
-        boolean lineAtPosition = isLineAtPosition(position);
-        position.prev();
-        return lineAtPosition;
+        Position nextPosition = Position.from(position.getValue());
+        nextPosition.next();
+        return isLineAtPosition(nextPosition);
     }
 
 }

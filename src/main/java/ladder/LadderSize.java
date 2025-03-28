@@ -26,6 +26,10 @@ public class LadderSize {
         return numberOfPerson.getNumber();
     }
 
+    public int getSize() {
+        return getHeightValue() * getNumberOfPersonValue();
+    }
+
     static LadderSize of(GreaterThanOne height, GreaterThanOne numberOfPerson) {
         return new LadderSize(height, numberOfPerson);
     }

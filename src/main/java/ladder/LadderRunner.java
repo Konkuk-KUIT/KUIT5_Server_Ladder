@@ -1,5 +1,8 @@
 package ladder;
 
+import static ladder.LadderLabel.AFTER;
+import static ladder.LadderLabel.BEFORE;
+
 public class LadderRunner {
 
     private final Row[] rows;
@@ -8,14 +11,13 @@ public class LadderRunner {
         this.rows = rows;
     }
 
-    public int run(Position position) {
+    public void run(Position position) {
         LadderViewer ladderViewer = new LadderViewer(rows);
         for (int i = 0; i < rows.length; i++) {
-            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position));
+            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position), BEFORE);
             rows[i].nextPosition(position);
-            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position));
+            ladderViewer.printLadderStatus(LadderPosition.of(Position.from(i), position), AFTER);
         }
-        return position.getValue();
     }
 
     public void printLadderStatus(LadderPosition ladderPosition, String label) {
