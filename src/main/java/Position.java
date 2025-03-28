@@ -18,4 +18,17 @@ public class Position {
     public int getY() {
         return y;
     }
+
+    public boolean invalidPosition(int[][] rows) {
+        return x < 0 || x >= rows.length || y < 0 || y >= rows[0].length - 1;
+    }
+
+    public boolean hasLine(int[][] rows) {
+        return rows[x][y] != 0 || rows[x][y + 1] != 0;
+    }
+
+    public boolean invalidStartPosition(int[][] rows, int position) {
+        return position < 0 || position >= rows[0].length;
+    }
+
 }

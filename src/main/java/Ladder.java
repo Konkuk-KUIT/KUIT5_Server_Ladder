@@ -25,4 +25,9 @@ public class Ladder {
     public int getLadderState(final int x, final int y) {
         return rows[x][y];
     }
+
+    public boolean isValidStartPosition(NaturalNumber start) {
+        int position = start.getValue() - 1;
+        return position >= 0 && position < getCol();
+    }
 }

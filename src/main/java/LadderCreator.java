@@ -11,20 +11,18 @@ public class LadderCreator {
 
     public void drawLine(Ladder ladder, Position position) {
         int[][] rows = ladder.getRows();
-        int x = position.getX();
-        int y = position.getY();
 
-        validatePosition(rows, x, y);
+        validatePosition(rows, position);
 
-        rows[x][y] = Direction.RIGHT.getValue();
-        rows[x][y + 1] = Direction.LEFT.getValue();
+        rows[position.getX()][position.getY()] = Direction.RIGHT.getValue();
+        rows[position.getY()][position.getY() + 1] = Direction.LEFT.getValue();
     }
 
-    private void validatePosition(int[][] rows, int x, int y) {
-        if (x < 0 || x >= rows.length || y < 0 || y >= rows[0].length - 1) {
+    private void validatePosition(int[][] rows, Position position) {
+        if (position.invalidPosition(rows)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITION.getMessage());
         }
-        if (rows[x][y] != 0 || rows[x][y + 1] != 0) {
+        if (position.hasLine(rows)) {
             throw new IllegalArgumentException(ExceptionMessage.ALREADY_HAS_LINE.getMessage());
         }
     }
