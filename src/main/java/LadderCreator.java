@@ -15,7 +15,7 @@ public class LadderCreator {
         validatePosition(rows, position);
 
         rows[position.getX()][position.getY()] = Direction.RIGHT.getValue();
-        rows[position.getY()][position.getY() + 1] = Direction.LEFT.getValue();
+        rows[position.getX()][position.getY() + 1] = Direction.LEFT.getValue();
     }
 
     private void validatePosition(int[][] rows, Position position) {
