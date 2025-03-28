@@ -1,3 +1,5 @@
+import util.ExceptionMsg;
+
 public class NaturalNumber {
     private final int num;
     public NaturalNumber(int num) {

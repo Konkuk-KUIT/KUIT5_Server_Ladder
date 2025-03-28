@@ -1,3 +1,6 @@
+import util.Direction;
+import util.ExceptionMsg;
+
 public class Line {
     // 사다리의 한 줄마다 이동하는 로직
     private final Direction[] moves;

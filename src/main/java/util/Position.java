@@ -1,3 +1,5 @@
+package util;
+
 public class Position {
     // 현재 위치 파악 클래스
     private int index;
