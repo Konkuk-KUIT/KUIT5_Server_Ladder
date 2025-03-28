@@ -16,10 +16,9 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
 
         //when & then
-        assertThatThrownBy(() ->  creator.drawLine(ladder,givendrawrow,1))
+        assertThatThrownBy(() ->  creator.drawLine(givendrawrow,1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_DRAW_ROWCOL.getMessage());
 
@@ -33,10 +32,10 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+
 
         //when & then
-        assertThatThrownBy(() ->  creator.drawLine(ladder,2,givendrawcol))
+        assertThatThrownBy(() ->  creator.drawLine(2,givendrawcol))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_DRAW_ROWCOL.getMessage());
     }
@@ -49,10 +48,10 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+
 
         //when & then
-        assertThatThrownBy(() ->  creator.drawLine(ladder,givendrawrow,givendrawcol))
+        assertThatThrownBy(() ->  creator.drawLine(givendrawrow,givendrawcol))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_DRAW_ROWCOL.getMessage());
     }
@@ -64,11 +63,11 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+
 
         //when
-        creator.drawLine(ladder,givendrawrow,givendrawcol);
-        Row[] DrawResultRows = ladder.getRows();
+        creator.drawLine(givendrawrow,givendrawcol);
+        Row[] DrawResultRows =creator.getRows();
         Direction[] resultRow = DrawResultRows[givendrawrow].getRow();
 
         //then
@@ -83,13 +82,13 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(4,4);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+
 
         //when
-        creator.drawLine(ladder,givendrawrow,givendrawcol);
+        creator.drawLine(givendrawrow,givendrawcol);
 
         //then
-        assertThatThrownBy(() ->  creator.drawLine(ladder,givenCheckRow, givenCheckCol))
+        assertThatThrownBy(() ->  creator.drawLine(givenCheckRow, givenCheckCol))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.NO_CONTINUOUS_LINE.getMessage());
     }
@@ -101,13 +100,13 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(4,4);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+
 
         //when
-        creator.drawLine(ladder,givendrawrow, givendrawcol);
+        creator.drawLine(givendrawrow, givendrawcol);
 
         //then
-        assertThatThrownBy(() -> creator.drawLine(ladder,givenCheckRow, givenCheckCol))
+        assertThatThrownBy(() -> creator.drawLine(givenCheckRow, givenCheckCol))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.ALREADY_EXIST_LINE.getMessage());
     }
@@ -119,10 +118,9 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,5);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
-
+        LadderGame game = new LadderGame(creator);
         //when & then
-        assertThat(ladder.run(givenRunCol)).isEqualTo(givenRunCol);
+        assertThat(game.run(givenRunCol)).isEqualTo(givenRunCol);
     }
 
     @ParameterizedTest
@@ -132,14 +130,14 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
 
-        creator.drawLine(ladder,0,0);
-        creator.drawLine(ladder,1,0);
-        creator.drawLine(ladder,2,1);
+        creator.drawLine(0,0);
+        creator.drawLine(1,0);
+        creator.drawLine(2,1);
+        LadderGame game = new LadderGame(creator);
 
         //when & then
-        assertThat(ladder.run(givenRunCol)).isEqualTo(resultRunCol);
+        assertThat(game.run(givenRunCol)).isEqualTo(resultRunCol);
     }
 
     @ParameterizedTest
@@ -149,16 +147,17 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(4,5);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
 
-        creator.drawLine(ladder,0,0);
-        creator.drawLine(ladder,1,1);
-        creator.drawLine(ladder,2,2);
-        creator.drawLine(ladder,3,1);
-        creator.drawLine(ladder,0,3);
+
+        creator.drawLine(0,0);
+        creator.drawLine(1,1);
+        creator.drawLine(2,2);
+        creator.drawLine(3,1);
+        creator.drawLine(0,3);
+        LadderGame game = new LadderGame(creator);
 
         //when & then
-        assertThat(ladder.run(givenRunCol)).isEqualTo(resultRunCol);
+        assertThat(game.run(givenRunCol)).isEqualTo(resultRunCol);
     }
 
     @ParameterizedTest
@@ -168,10 +167,10 @@ class LadderTest {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+        LadderGame game = new LadderGame(creator);
 
         //when & then
-        assertThatThrownBy(() -> ladder.run(givenRunSelect))
+        assertThatThrownBy(() -> game.run(givenRunSelect))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_SELECT_RUN_COL.getMessage());
 
@@ -179,19 +178,19 @@ class LadderTest {
 
     @ParameterizedTest
     @ValueSource (ints = {1,2,3})
-    @DisplayName("현재 사다리 상태 출력 잘되는지 확인 ")
+    @DisplayName("사다리 진행상태 출력 잘되는지 확인 ")
     void testPrintLadder(int givenRunCol) {
         //given
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator creator = new ManualLadderCreator(ladderSize);
-        Ladder ladder = creator.create();
+        LadderGame game = new LadderGame(creator);
 
-        creator.drawLine(ladder,0,0);
-        creator.drawLine(ladder,1,0);
-        creator.drawLine(ladder,2,1);
+        creator.drawLine(0,0);
+        creator.drawLine(1,0);
+        creator.drawLine(2,1);
 
         //when & then
-        ladder.run(givenRunCol);
+        game.run(givenRunCol);
     }
 
     @ParameterizedTest
@@ -202,14 +201,14 @@ class LadderTest {
         LadderSize ladderSize = new LadderSize(3,3);
         ManualLadderCreator manualcreator = new ManualLadderCreator(ladderSize);
         LadderGame game = new LadderGame(manualcreator);
-        Ladder ladder = manualcreator.create();
 
-        manualcreator.drawLine(ladder,0,0);
-        manualcreator.drawLine(ladder,1,0);
-        manualcreator.drawLine(ladder,2,1);
+
+        manualcreator.drawLine(0,0);
+        manualcreator.drawLine(1,0);
+        manualcreator.drawLine(2,1);
 
         //when & then
-        assertThat(ladder.run(givenRunCol)).isEqualTo(resultRunCol);
+        assertThat(game.run(givenRunCol)).isEqualTo(resultRunCol);
     }
 
 
@@ -217,17 +216,15 @@ class LadderTest {
     @Test
     void testLadderGameRandom() {
         //given
-        LadderSize ladderSize = new LadderSize(3,3);
+        LadderSize ladderSize = new LadderSize(4,3);
         RandomLadderCreator randomCreator = new RandomLadderCreator(ladderSize);
         LadderGame game = new LadderGame(randomCreator);
-        Ladder ladder = randomCreator.RandomLineGenerate();
 
         // then
         // 사다리 실행이 예외 없이 진행되는지 확인
         for (int startCol = 1; startCol <= ladderSize.getNumberOfPerson(); startCol++) {
-            int result = ladder.run(startCol); // 실행 결과
-
-            // 결과는 1부터 사람 수 사이여야 함
+            int result = game.run(startCol);
+            // 결과가 1부터 사람수 사이인지
             assertThat(result).isBetween(1, ladderSize.getNumberOfPerson());
         }
     }

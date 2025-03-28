@@ -1,4 +1,3 @@
-import javax.swing.text.Position;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -11,15 +10,10 @@ public class RandomLadderCreator implements LadderCreator {
     public RandomLadderCreator(LadderSize laddersize) {
         this.laddersize = laddersize;
         this.manualcreator = new ManualLadderCreator(laddersize);
+        RandomLineGenerate();
     }
 
-    @Override
-    public Ladder create() {
-        return manualcreator.create();
-    }
-
-    public Ladder RandomLineGenerate() {
-        Ladder ladder = create();
+    private void RandomLineGenerate() {
         Set<LadderPosition> drawLines = new HashSet<>();
         int targetLineCount = laddersize.getLineCount();
 
@@ -32,17 +26,22 @@ public class RandomLadderCreator implements LadderCreator {
                 continue;
 
             try {
-                drawLine(ladder,row,col);
+                drawLine(row,col);
                 drawLines.add(position);
             } catch (IllegalArgumentException e) {}
         }
 
-        return ladder;
+
     }
 
     @Override
-    public void drawLine(Ladder ladder, int row, int col) {
-        manualcreator.drawLine(ladder,row,col);
+    public void drawLine(int row, int col) {
+        manualcreator.drawLine(row,col);
+    }
+
+    @Override
+    public Row[] getRows() {
+        return manualcreator.getRows();
     }
 
 }

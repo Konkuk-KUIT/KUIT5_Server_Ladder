@@ -1,4 +1,5 @@
 public interface LadderCreator {
-    Ladder create();
-    void drawLine(Ladder ladder, int row, int col);
+    //Ladder create();
+    void drawLine(int row, int col);
+    Row[] getRows();
 }
