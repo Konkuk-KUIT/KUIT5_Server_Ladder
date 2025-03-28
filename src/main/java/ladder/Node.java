@@ -48,4 +48,8 @@ public class Node {
     private boolean isNone() {
         return direction == NONE;
     }
+
+    public Direction getDirection() {
+        return direction;
+    }
 }

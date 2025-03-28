@@ -9,8 +9,17 @@ public class Row {
     public Row(GreaterThanOne numberOfPerson) {
         nodes = new Node[numberOfPerson.getNumber()];
         for (int i = 0; i < numberOfPerson.getNumber(); i++) {
-            nodes[i] = Node.from(NONE);
+            nodes[i] = Node.from(NONE); // None으로 모든 노드 초기화
         }
+    }
+
+    public StringBuilder buildLine() {
+        StringBuilder sb = new StringBuilder();
+        for (Node node : nodes) {
+            sb.append(node.getDirection().getValue());
+            sb.append(" ");
+        }
+        return sb;
     }
 
     public void drawLine(Position startPosition) {
@@ -25,7 +34,7 @@ public class Row {
         nodes[position.getValue()].move(position);
     }
 
-    private void setDirectionBetweenNextPosition(Position position) {
+    private void setDirectionBetweenNextPosition(Position position) { //오른쪽으로 줄 긋기
         nodes[position.getValue()].setRightNode();
         position.next();
         nodes[position.getValue()].setLeftNode();
@@ -59,4 +68,13 @@ public class Row {
         return lineAtPosition;
     }
 
+    public Node[] getNodes() {
+        return nodes;
+    }
+
+    public boolean canDraw(Position position) { // RandomLadderCreator에서 사용하기 위함.
+        return !isInvalidPosition(position)
+                && !isLineAtPosition(position)
+                && !isLineAtNextPosition(position);
+    }
 }

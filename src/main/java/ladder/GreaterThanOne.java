@@ -2,7 +2,7 @@ package ladder;
 
 import static ladder.ExceptionMessage.*;
 
-public class GreaterThanOne {
+public class GreaterThanOne { // 사다리의 행과 열이 2이상이어야 하므로, 그것을 검증해주는 클래스
 
     private final int number;
 
