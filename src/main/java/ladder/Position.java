@@ -1,5 +1,7 @@
 package ladder;
 
+import java.util.Objects;
+
 import static ladder.ExceptionMessage.INVALID_LADDER_POSITION;
 
 public class Position {
@@ -42,5 +44,18 @@ public class Position {
 
     private static boolean isPosition(int position) {
         return position >= 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position1 = (Position) o;
+        return position == position1.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(position);
     }
 }

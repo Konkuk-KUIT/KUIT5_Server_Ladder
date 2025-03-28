@@ -37,6 +37,10 @@ public class Node {
         return !isNone();
     }
 
+    public void appendSymbol(StringBuilder sb) {
+        sb.append(direction.getValue());
+    }
+
     private boolean isRight() {
         return direction == RIGHT;
     }

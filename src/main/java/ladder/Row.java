@@ -25,6 +25,21 @@ public class Row {
         nodes[position.getValue()].move(position);
     }
 
+    public void generateRow(StringBuilder sb, Position currentPosition, LadderPosition ladderPosition) {
+        for (int i = 0; i < nodes.length; i++) {
+            nodes[i].appendSymbol(sb);
+            markCurrentPosition(sb, currentPosition, ladderPosition, i);
+        }
+        sb.append("\n");
+    }
+
+    private void markCurrentPosition(StringBuilder sb, Position currentPosition, LadderPosition ladderPosition, int i) {
+        if (LadderPosition.of(currentPosition, Position.from(i)).equals(ladderPosition)) {
+            sb.append("*");
+        }
+        sb.append(" ");
+    }
+
     private void setDirectionBetweenNextPosition(Position position) {
         nodes[position.getValue()].setRightNode();
         position.next();
