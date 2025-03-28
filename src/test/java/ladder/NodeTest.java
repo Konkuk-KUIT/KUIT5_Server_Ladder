@@ -62,4 +62,18 @@ class NodeTest {
         assertThat(position.getValue()).isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "RIGHT, 1",
+            "LEFT, -1",
+            "NONE, 0"
+    })
+    @DisplayName("노드 심볼 추가 확인")
+    void testPutSymbol(Direction direction, String expectedResult) {
+        StringBuilder sb = new StringBuilder();
+        Node node = Node.from(direction);
+        node.appendSymbol(sb);
+        assertThat(sb.toString()).isEqualTo(expectedResult);
+    }
+
 }

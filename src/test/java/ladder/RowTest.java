@@ -100,6 +100,59 @@ class RowTest {
         assertThat(position.getValue()).isEqualTo(expectedResult);
     }
 
+    @Test
+    @DisplayName("사다리 선 없는 행 생성")
+    void testGenerateRowWithoutLine() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        Row row = new Row(numberOfPerson);
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        Position position = Position.from(0);
+        LadderPosition ladderPosition = LadderPosition.of(Position.from(1), Position.from(1));
+        row.generateRow(sb, position, ladderPosition);
+
+        //then
+        assertThat(sb.toString()).isEqualTo("0 0 0 \n");
+    }
+
+    @Test
+    @DisplayName("사다리 선 있는 행 생성")
+    void testGenerateRowWithLine() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.from(0));
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        Position position = Position.from(0);
+        LadderPosition ladderPosition = LadderPosition.of(Position.from(1), Position.from(1));
+        row.generateRow(sb, position, ladderPosition);
+
+        //then
+        assertThat(sb.toString()).isEqualTo("1 -1 0 \n");
+    }
+
+    @Test
+    @DisplayName("현재 노드가 포함된 행 생성")
+    void testGenerateRowWithCurrentNode() {
+        //when
+        GreaterThanOne numberOfPerson = GreaterThanOne.from(3);
+        Row row = new Row(numberOfPerson);
+        row.drawLine(Position.from(0));
+        StringBuilder sb = new StringBuilder();
+
+        //given
+        Position position = Position.from(0);
+        LadderPosition ladderPosition = LadderPosition.of(Position.from(0), Position.from(0));
+        row.generateRow(sb, position, ladderPosition);
+
+        //then
+        assertThat(sb.toString()).isEqualTo("1* -1 0 \n");
+    }
+
 
     @Test
     @DisplayName("사다리 사람 수 예외 처리")
