@@ -85,6 +85,30 @@ class LadderTest {
 
     @ParameterizedTest
     @CsvSource({
+            "1,4",
+            "2,1",
+            "3,2",
+            "4,3"
+    })
+    @DisplayName("사다리 가로선 추가 - 정상 실행 & 출력 확인")
+    void testRunLadderPrinter(int input, int result) {
+        // given
+        Ladder ladder = Ladder.from(NaturalNumber.of(5), NaturalNumber.of(4));
+        LadderCreator creator = LadderCreator.from();
+        LadderRunnerWithPrinter runner = LadderRunnerWithPrinter.from(LadderPrinter.of(ladder.getRows()));
+        creator.drawLine(ladder, Position.of(0, 0));
+        creator.drawLine(ladder, Position.of(1, 1));
+        creator.drawLine(ladder, Position.of(2, 2));
+
+        // when
+        NaturalNumber startPosition = NaturalNumber.of(input);
+
+        // then
+        assertThat(runner.run(ladder, startPosition)).isEqualTo(result);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
             "0, -1",
             "-1, 2",
             "5, 1"
@@ -134,4 +158,6 @@ class LadderTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.INVALID_START_POSITION.getMessage());
     }
+
+
 }
