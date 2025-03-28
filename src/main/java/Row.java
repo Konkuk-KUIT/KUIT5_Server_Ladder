@@ -31,4 +31,19 @@ public class Row {
     public Direction[] getRow() {
         return row;
     }
+
+    public StringBuilder PrintRow(int currentX) {
+        StringBuilder sb = new StringBuilder();
+        for (int i=0; i<row.length; i++) {
+            sb.append(row[i].getDirection());
+            if (currentX==i) {
+                sb.append("*\t");
+            }
+            else {
+                sb.append("\t");
+            }
+        }
+        sb.append("\n");
+        return sb;
+    }
 }

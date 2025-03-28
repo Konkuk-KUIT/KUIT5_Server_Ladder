@@ -171,6 +171,23 @@ class LadderTest {
 
     }
 
+    @ParameterizedTest
+    @ValueSource (ints = {1,2,3})
+    @DisplayName("현재 사다리 상태 출력 잘되는지 확인 ")
+    void testPrintLadder(int givenRunCol) {
+        //given
+        LadderCreator creator = new LadderCreator(3, 3);
+        Ladder ladder = creator.create();
+
+        creator.drawLine(ladder,0,0);
+        creator.drawLine(ladder,1,0);
+        creator.drawLine(ladder,2,1);
+
+        //when & then
+        ladder.run(givenRunCol);
+
+    }
+
 
 
 }
