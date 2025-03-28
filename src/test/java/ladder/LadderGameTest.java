@@ -124,9 +124,9 @@ class LadderGameTest {
         GreaterThanOne numberOfRow = GreaterThanOne.from(5);
         GreaterThanOne numberOfPerson = GreaterThanOne.from(30);
         LadderSize ladderSize = LadderSize.of(numberOfRow, numberOfPerson);
-        CustomLadderCreator customLadderCreator = new CustomLadderCreator(ladderSize);
+
         // When
-        LadderGame ladderGame = new LadderGame(new RandomLadderCreator(customLadderCreator));
+        LadderGame ladderGame = LadderGameFactory.randomLadderGame(ladderSize);
 
         // Then
         assertThat(ladderGame).isNotNull();
