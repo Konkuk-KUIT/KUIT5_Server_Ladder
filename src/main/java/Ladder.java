@@ -1,39 +1,28 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ladder {
-    private final List<Line> lines;
+    private final List<Row> rows;
 
-    public Ladder(final NaturalNumber height, final NaturalNumber numberOfPerson) {
-        this.lines = new ArrayList<>();
-        for (int i = 0; i < height.getNumber(); i++) {
-            lines.add(new Line(numberOfPerson.getNumber() - 1));
-        }
+    public Ladder(List<Row> rows) {
+        this.rows = rows;
     }
 
-    public int run(NaturalNumber startPosition) {
-        int position = startPosition.getNumber();
-        return move(position);
+    public int move(int startX) {
+        LadderPosition position = new LadderPosition(startX, 0);
+
+        for (Row row : rows) {
+            position = row.move(position);
+        }
+
+        return position.getX();
     }
 
-    private int move(int position) {
-        for (Line line : lines) {
-           position += line.getDirectionAt(position).getDirection();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Row row : rows) {
+            sb.append(row.toString()).append("\n");
         }
-        return position;
-    }
-
-    public void drawLine(Position position) {
-        validateDrawLine(position);
-        lines.get(position.getY()).draw(position.getX());
-    }
-
-    private void validateDrawLine(Position position) {
-        if (position.getY()>=lines.size()){
-            throw new IllegalArgumentException(ErrorCode.OUT_OF_BOUNDS_ROW_POSITION.getErrorMessage());
-        }
-        if (position.getX()>=lines.get(position.getY()).size()){
-            throw new IllegalArgumentException(ErrorCode.OUT_OF_BOUNDS_COL_POSITION.getErrorMessage());
-        }
+        return sb.toString();
     }
 }
