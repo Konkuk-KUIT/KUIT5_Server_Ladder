@@ -31,4 +31,15 @@ public class Position {
         return position < 0 || position >= rows[0].length;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Position that)) return false;
+        return x == that.x && y == that.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * x + y;
+    }
 }

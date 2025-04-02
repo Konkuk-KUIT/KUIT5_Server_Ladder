@@ -25,19 +25,18 @@ public class RandomLadderCreator implements LineCreator {
 
     public void drawRandomLines(Ladder ladder, LadderSize size) {
         int numberOfLines = size.calculateNumberOfLines();
-        HashSet<String> drawn = new HashSet<>();
+        HashSet<Position> drawn = new HashSet<>();
 
         while (drawn.size() < numberOfLines) {
             int x = random.nextInt(size.getRow());
             int y = random.nextInt(size.getCol() - 1);
 
             Position pos = Position.of(x, y);
-            String key = x + "," + y;
 
             try {
-                if (!drawn.contains(key)) {
+                if (!drawn.contains(pos)) {
                     drawLine(ladder, pos);
-                    drawn.add(key);
+                    drawn.add(pos);
                 }
             } catch (IllegalArgumentException ignored) {
             }
