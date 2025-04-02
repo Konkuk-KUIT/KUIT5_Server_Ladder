@@ -1,29 +1,33 @@
 public class Row {
-    private final int[] rows;
+    private final Node[] nodes;
 
-    private Row(int[] rows) {
-        this.rows = rows;
+    private Row(Node[] nodes) {
+        this.nodes = nodes;
     }
 
-    public static Row of(int[] rows) {
-        return new Row(rows);
+    public static Row of(int[] rawRow) {
+        Node[] nodes = new Node[rawRow.length];
+        for (int i = 0; i < rawRow.length; i++) {
+            nodes[i] = Node.of(rawRow[i]);
+        }
+        return new Row(nodes);
     }
 
     public void printWithMarker(StringBuilder sb, int yMarker) {
-        for (int i = 0; i < rows.length; i++) {
-            sb.append(rows[i]);
+        for (int i = 0; i < nodes.length; i++) {
+            sb.append(nodes[i]);
             if (i == yMarker) {
                 sb.append("*");
             }
-            if (i < rows.length - 1) sb.append(" ");
+            if (i < nodes.length - 1) sb.append(" ");
         }
         sb.append("\n");
     }
 
     public void printRow(StringBuilder sb) {
-        for (int i = 0; i < rows.length; i++) {
-            sb.append(rows[i]);
-            if (i < rows.length - 1) sb.append(" ");
+        for (int i = 0; i < nodes.length; i++) {
+            sb.append(nodes[i]);
+            if (i < nodes.length - 1) sb.append(" ");
         }
         sb.append("\n");
     }
